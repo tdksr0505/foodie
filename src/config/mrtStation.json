@@ -1,0 +1,707 @@
+[
+  {
+    "LineID": "BL",
+    "Stations": [
+      {
+        "Sequence": 1,
+        "StationID": "BL01",
+        "StationName": "頂埔"
+      },
+      {
+        "Sequence": 2,
+        "StationID": "BL02",
+        "StationName": "永寧"
+      },
+      {
+        "Sequence": 3,
+        "StationID": "BL03",
+        "StationName": "土城"
+      },
+      {
+        "Sequence": 4,
+        "StationID": "BL04",
+        "StationName": "海山"
+      },
+      {
+        "Sequence": 5,
+        "StationID": "BL05",
+        "StationName": "亞東醫院"
+      },
+      {
+        "Sequence": 6,
+        "StationID": "BL06",
+        "StationName": "府中"
+      },
+      {
+        "Sequence": 7,
+        "StationID": "BL07",
+        "StationName": "板橋"
+      },
+      {
+        "Sequence": 8,
+        "StationID": "BL08",
+        "StationName": "新埔"
+      },
+      {
+        "Sequence": 9,
+        "StationID": "BL09",
+        "StationName": "江子翠"
+      },
+      {
+        "Sequence": 10,
+        "StationID": "BL10",
+        "StationName": "龍山寺"
+      },
+      {
+        "Sequence": 11,
+        "StationID": "BL11",
+        "StationName": "西門"
+      },
+      {
+        "Sequence": 12,
+        "StationID": "BL12",
+        "StationName": "台北車站"
+      },
+      {
+        "Sequence": 13,
+        "StationID": "BL13",
+        "StationName": "善導寺"
+      },
+      {
+        "Sequence": 14,
+        "StationID": "BL14",
+        "StationName": "忠孝新生"
+      },
+      {
+        "Sequence": 15,
+        "StationID": "BL15",
+        "StationName": "忠孝復興"
+      },
+      {
+        "Sequence": 16,
+        "StationID": "BL16",
+        "StationName": "忠孝敦化"
+      },
+      {
+        "Sequence": 17,
+        "StationID": "BL17",
+        "StationName": "國父紀念館"
+      },
+      {
+        "Sequence": 18,
+        "StationID": "BL18",
+        "StationName": "市政府"
+      },
+      {
+        "Sequence": 19,
+        "StationID": "BL19",
+        "StationName": "永春"
+      },
+      {
+        "Sequence": 20,
+        "StationID": "BL20",
+        "StationName": "後山埤"
+      },
+      {
+        "Sequence": 21,
+        "StationID": "BL21",
+        "StationName": "昆陽"
+      },
+      {
+        "Sequence": 22,
+        "StationID": "BL22",
+        "StationName": "南港"
+      },
+      {
+        "Sequence": 23,
+        "StationID": "BL23",
+        "StationName": "南港展覽館"
+      }
+    ]
+  },
+  {
+    "LineID": "BR",
+    "Stations": [
+      {
+        "Sequence": 1,
+        "StationID": "BR01",
+        "StationName": "動物園"
+      },
+      {
+        "Sequence": 2,
+        "StationID": "BR02",
+        "StationName": "木柵"
+      },
+      {
+        "Sequence": 3,
+        "StationID": "BR03",
+        "StationName": "萬芳社區"
+      },
+      {
+        "Sequence": 4,
+        "StationID": "BR04",
+        "StationName": "萬芳醫院"
+      },
+      {
+        "Sequence": 5,
+        "StationID": "BR05",
+        "StationName": "辛亥"
+      },
+      {
+        "Sequence": 6,
+        "StationID": "BR06",
+        "StationName": "麟光"
+      },
+      {
+        "Sequence": 7,
+        "StationID": "BR07",
+        "StationName": "六張犁"
+      },
+      {
+        "Sequence": 8,
+        "StationID": "BR08",
+        "StationName": "科技大樓"
+      },
+      {
+        "Sequence": 9,
+        "StationID": "BR09",
+        "StationName": "大安"
+      },
+      {
+        "Sequence": 10,
+        "StationID": "BR10",
+        "StationName": "忠孝復興"
+      },
+      {
+        "Sequence": 11,
+        "StationID": "BR11",
+        "StationName": "南京復興"
+      },
+      {
+        "Sequence": 12,
+        "StationID": "BR12",
+        "StationName": "中山國中"
+      },
+      {
+        "Sequence": 13,
+        "StationID": "BR13",
+        "StationName": "松山機場"
+      },
+      {
+        "Sequence": 14,
+        "StationID": "BR14",
+        "StationName": "大直"
+      },
+      {
+        "Sequence": 15,
+        "StationID": "BR15",
+        "StationName": "劍南路"
+      },
+      {
+        "Sequence": 16,
+        "StationID": "BR16",
+        "StationName": "西湖"
+      },
+      {
+        "Sequence": 17,
+        "StationID": "BR17",
+        "StationName": "港墘"
+      },
+      {
+        "Sequence": 18,
+        "StationID": "BR18",
+        "StationName": "文德"
+      },
+      {
+        "Sequence": 19,
+        "StationID": "BR19",
+        "StationName": "內湖"
+      },
+      {
+        "Sequence": 20,
+        "StationID": "BR20",
+        "StationName": "大湖公園"
+      },
+      {
+        "Sequence": 21,
+        "StationID": "BR21",
+        "StationName": "葫洲"
+      },
+      {
+        "Sequence": 22,
+        "StationID": "BR22",
+        "StationName": "東湖"
+      },
+      {
+        "Sequence": 23,
+        "StationID": "BR23",
+        "StationName": "南港軟體園區"
+      },
+      {
+        "Sequence": 24,
+        "StationID": "BR24",
+        "StationName": "南港展覽館"
+      }
+    ]
+  },
+  {
+    "LineID": "G",
+    "Stations": [
+      {
+        "Sequence": 1,
+        "StationID": "G01",
+        "StationName": "新店"
+      },
+      {
+        "Sequence": 2,
+        "StationID": "G02",
+        "StationName": "新店區公所"
+      },
+      {
+        "Sequence": 3,
+        "StationID": "G03",
+        "StationName": "七張"
+      },
+      {
+        "Sequence": 4,
+        "StationID": "G04",
+        "StationName": "大坪林"
+      },
+      {
+        "Sequence": 5,
+        "StationID": "G05",
+        "StationName": "景美"
+      },
+      {
+        "Sequence": 6,
+        "StationID": "G06",
+        "StationName": "萬隆"
+      },
+      {
+        "Sequence": 7,
+        "StationID": "G07",
+        "StationName": "公館"
+      },
+      {
+        "Sequence": 8,
+        "StationID": "G08",
+        "StationName": "台電大樓"
+      },
+      {
+        "Sequence": 9,
+        "StationID": "G09",
+        "StationName": "古亭"
+      },
+      {
+        "Sequence": 10,
+        "StationID": "G10",
+        "StationName": "中正紀念堂"
+      },
+      {
+        "Sequence": 11,
+        "StationID": "G11",
+        "StationName": "小南門"
+      },
+      {
+        "Sequence": 12,
+        "StationID": "G12",
+        "StationName": "西門"
+      },
+      {
+        "Sequence": 13,
+        "StationID": "G13",
+        "StationName": "北門"
+      },
+      {
+        "Sequence": 14,
+        "StationID": "G14",
+        "StationName": "中山"
+      },
+      {
+        "Sequence": 15,
+        "StationID": "G15",
+        "StationName": "松江南京"
+      },
+      {
+        "Sequence": 16,
+        "StationID": "G16",
+        "StationName": "南京復興"
+      },
+      {
+        "Sequence": 17,
+        "StationID": "G17",
+        "StationName": "台北小巨蛋"
+      },
+      {
+        "Sequence": 18,
+        "StationID": "G18",
+        "StationName": "南京三民"
+      },
+      {
+        "Sequence": 19,
+        "StationID": "G19",
+        "StationName": "松山"
+      },
+      {
+        "Sequence": 20,
+        "StationID": "G03A",
+        "StationName": "小碧潭"
+      }
+    ]
+  },
+  {
+    "LineID": "O",
+    "Stations": [
+      {
+        "Sequence": 1,
+        "StationID": "O01",
+        "StationName": "南勢角"
+      },
+      {
+        "Sequence": 2,
+        "StationID": "O02",
+        "StationName": "景安"
+      },
+      {
+        "Sequence": 3,
+        "StationID": "O03",
+        "StationName": "永安市場"
+      },
+      {
+        "Sequence": 4,
+        "StationID": "O04",
+        "StationName": "頂溪"
+      },
+      {
+        "Sequence": 5,
+        "StationID": "O05",
+        "StationName": "古亭"
+      },
+      {
+        "Sequence": 6,
+        "StationID": "O06",
+        "StationName": "東門"
+      },
+      {
+        "Sequence": 7,
+        "StationID": "O07",
+        "StationName": "忠孝新生"
+      },
+      {
+        "Sequence": 8,
+        "StationID": "O08",
+        "StationName": "松江南京"
+      },
+      {
+        "Sequence": 9,
+        "StationID": "O09",
+        "StationName": "行天宮"
+      },
+      {
+        "Sequence": 10,
+        "StationID": "O10",
+        "StationName": "中山國小"
+      },
+      {
+        "Sequence": 11,
+        "StationID": "O11",
+        "StationName": "民權西路"
+      },
+      {
+        "Sequence": 12,
+        "StationID": "O12",
+        "StationName": "大橋頭"
+      },
+      {
+        "Sequence": 13,
+        "StationID": "O50",
+        "StationName": "三重國小"
+      },
+      {
+        "Sequence": 13,
+        "StationID": "O13",
+        "StationName": "台北橋"
+      },
+      {
+        "Sequence": 14,
+        "StationID": "O14",
+        "StationName": "菜寮"
+      },
+      {
+        "Sequence": 14,
+        "StationID": "O51",
+        "StationName": "三和國中"
+      },
+      {
+        "Sequence": 15,
+        "StationID": "O15",
+        "StationName": "三重"
+      },
+      {
+        "Sequence": 15,
+        "StationID": "O52",
+        "StationName": "徐匯中學"
+      },
+      {
+        "Sequence": 16,
+        "StationID": "O16",
+        "StationName": "先嗇宮"
+      },
+      {
+        "Sequence": 16,
+        "StationID": "O53",
+        "StationName": "三民高中"
+      },
+      {
+        "Sequence": 17,
+        "StationID": "O54",
+        "StationName": "蘆洲"
+      },
+      {
+        "Sequence": 17,
+        "StationID": "O17",
+        "StationName": "頭前庄"
+      },
+      {
+        "Sequence": 18,
+        "StationID": "O18",
+        "StationName": "新莊"
+      },
+      {
+        "Sequence": 19,
+        "StationID": "O19",
+        "StationName": "輔大"
+      },
+      {
+        "Sequence": 20,
+        "StationID": "O20",
+        "StationName": "丹鳳"
+      },
+      {
+        "Sequence": 21,
+        "StationID": "O21",
+        "StationName": "迴龍"
+      }
+    ]
+  },
+  {
+    "LineID": "R",
+    "Stations": [
+      {
+        "Sequence": 1,
+        "StationID": "R02",
+        "StationName": "象山"
+      },
+      {
+        "Sequence": 2,
+        "StationID": "R03",
+        "StationName": "台北101/世貿"
+      },
+      {
+        "Sequence": 3,
+        "StationID": "R04",
+        "StationName": "信義安和"
+      },
+      {
+        "Sequence": 4,
+        "StationID": "R05",
+        "StationName": "大安"
+      },
+      {
+        "Sequence": 5,
+        "StationID": "R06",
+        "StationName": "大安森林公園"
+      },
+      {
+        "Sequence": 6,
+        "StationID": "R07",
+        "StationName": "東門"
+      },
+      {
+        "Sequence": 7,
+        "StationID": "R08",
+        "StationName": "中正紀念堂"
+      },
+      {
+        "Sequence": 8,
+        "StationID": "R09",
+        "StationName": "台大醫院"
+      },
+      {
+        "Sequence": 9,
+        "StationID": "R10",
+        "StationName": "台北車站"
+      },
+      {
+        "Sequence": 10,
+        "StationID": "R11",
+        "StationName": "中山"
+      },
+      {
+        "Sequence": 11,
+        "StationID": "R12",
+        "StationName": "雙連"
+      },
+      {
+        "Sequence": 12,
+        "StationID": "R13",
+        "StationName": "民權西路"
+      },
+      {
+        "Sequence": 13,
+        "StationID": "R14",
+        "StationName": "圓山"
+      },
+      {
+        "Sequence": 14,
+        "StationID": "R15",
+        "StationName": "劍潭"
+      },
+      {
+        "Sequence": 15,
+        "StationID": "R16",
+        "StationName": "士林"
+      },
+      {
+        "Sequence": 16,
+        "StationID": "R17",
+        "StationName": "芝山"
+      },
+      {
+        "Sequence": 17,
+        "StationID": "R18",
+        "StationName": "明德"
+      },
+      {
+        "Sequence": 18,
+        "StationID": "R19",
+        "StationName": "石牌"
+      },
+      {
+        "Sequence": 19,
+        "StationID": "R20",
+        "StationName": "唭哩岸"
+      },
+      {
+        "Sequence": 20,
+        "StationID": "R21",
+        "StationName": "奇岩"
+      },
+      {
+        "Sequence": 21,
+        "StationID": "R22",
+        "StationName": "北投"
+      },
+      {
+        "Sequence": 22,
+        "StationID": "R23",
+        "StationName": "復興崗"
+      },
+      {
+        "Sequence": 23,
+        "StationID": "R24",
+        "StationName": "忠義"
+      },
+      {
+        "Sequence": 24,
+        "StationID": "R25",
+        "StationName": "關渡"
+      },
+      {
+        "Sequence": 25,
+        "StationID": "R26",
+        "StationName": "竹圍"
+      },
+      {
+        "Sequence": 26,
+        "StationID": "R27",
+        "StationName": "紅樹林"
+      },
+      {
+        "Sequence": 27,
+        "StationID": "R28",
+        "StationName": "淡水"
+      },
+      {
+        "Sequence": 28,
+        "StationID": "R22A",
+        "StationName": "新北投"
+      }
+    ]
+  },
+  {
+    "LineID": "Y",
+    "Stations": [
+      {
+        "Sequence": 1,
+        "StationID": "Y07",
+        "StationName": "大坪林"
+      },
+      {
+        "Sequence": 2,
+        "StationID": "Y08",
+        "StationName": "十四張"
+      },
+      {
+        "Sequence": 3,
+        "StationID": "Y09",
+        "StationName": "秀朗橋"
+      },
+      {
+        "Sequence": 4,
+        "StationID": "Y10",
+        "StationName": "景平"
+      },
+      {
+        "Sequence": 5,
+        "StationID": "Y11",
+        "StationName": "景安"
+      },
+      {
+        "Sequence": 6,
+        "StationID": "Y12",
+        "StationName": "中和"
+      },
+      {
+        "Sequence": 7,
+        "StationID": "Y13",
+        "StationName": "橋和"
+      },
+      {
+        "Sequence": 8,
+        "StationID": "Y14",
+        "StationName": "中原"
+      },
+      {
+        "Sequence": 9,
+        "StationID": "Y15",
+        "StationName": "板新"
+      },
+      {
+        "Sequence": 10,
+        "StationID": "Y16",
+        "StationName": "板橋"
+      },
+      {
+        "Sequence": 11,
+        "StationID": "Y17",
+        "StationName": "新埔民生"
+      },
+      {
+        "Sequence": 12,
+        "StationID": "Y18",
+        "StationName": "頭前庄"
+      },
+      {
+        "Sequence": 13,
+        "StationID": "Y19",
+        "StationName": "幸福"
+      },
+      {
+        "Sequence": 14,
+        "StationID": "Y20",
+        "StationName": "新北產業園區"
+      }
+    ]
+  }
+]

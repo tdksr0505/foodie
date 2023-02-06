@@ -1,22 +1,23 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
-import MongoDb from '../../lib/mongoDb';
+import MongoDb from '@/lib/mongoDb';
+import { ObjectId } from 'mongodb';
+
 type Data = {
   name: string;
 };
 
-let exportDb;
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  const { id } = req.query;
+  console.log('xx');
+  console.log(id);
   const database = await MongoDb.getDb();
-  exportDb = database;
   const restaurants = database?.collection('restaurant');
-  const restaurant = await restaurants?.find().toArray();
-  res.status(200).json(restaurant);
-}
-
-export function exportDbFunc(): any {
-  return exportDb;
+  const o_id = new ObjectId(id);
+  const query = { _id: o_id };
+  const data = await restaurants?.findOne(query);
+  res.status(200).json(data);
 }
