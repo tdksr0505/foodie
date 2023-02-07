@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Tag as BaseTag } from '../tag/styledList';
+import BaseTag from '../Tag';
 import StarIcon from '@mui/icons-material/Star';
 
 export const Title = styled.div`

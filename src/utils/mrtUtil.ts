@@ -1,5 +1,4 @@
 import mrtStationInfo from '../config/mrtStation.json';
-
 const MRT_TAG_CONFIG = {
   BL: {
     font: '#ffffff',
@@ -27,6 +26,21 @@ const MRT_TAG_CONFIG = {
   },
 };
 console.log(`outer mrt`);
+
+interface IMrtOption {
+  StationID: string;
+  StationName: string;
+}
+
+export const getAllStationOptions = () => {
+  const options = <Array<IMrtOption> | null>[];
+  console.log(`for`);
+  for (let lineInfo of mrtStationInfo) {
+    options?.push(...lineInfo.Stations);
+  }
+  return options;
+};
+
 export const getStationName = (StationID: string): string => {
   console.log(`getStationName`);
 

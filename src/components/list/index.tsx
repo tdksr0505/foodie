@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Link from 'next/link';
 import * as Styled from './styledList';
 // import fakeData from '@/../fakeData.json';
 import useMrt from '../../hooks/useMrt';
 import type { TRestaurantDetail } from '@/type';
-import { getStationName, getTagColor } from '../../utils/mrtUtil';
+import { getStationName, getTagColor, getAllStationOptions } from '../../utils/mrtUtil';
 interface IListProps {
   data: Array<TRestaurantDetail> | null;
 }
+
 const List = ({ data }: IListProps) => {
-  getStationName('01');
-  getTagColor('11');
   const BASE_DETAIL_URL = '/restaurant/';
   return (
     <Styled.List>
@@ -26,15 +25,13 @@ const List = ({ data }: IListProps) => {
             <Styled.ListItem key={item._id}>
               <Link href={BASE_DETAIL_URL + item._id}>
                 <Styled.ListItemBox>
-                  {item.isVisted && <Styled.VisitMark>done</Styled.VisitMark>}
+                  {item.isVisited && <Styled.VisitMark>done</Styled.VisitMark>}
                   <Styled.Title>{item.name}</Styled.Title>
                   <Styled.RateBox>
                     <Styled.Star />
                     <Styled.Rate>{item.rate}</Styled.Rate>
                   </Styled.RateBox>
-                  <Styled.SimpleAddress>
-                    {item.simpleAddress}
-                  </Styled.SimpleAddress>
+                  <Styled.SimpleAddress>{item.simpleAddress}</Styled.SimpleAddress>
                   <Styled.TagBox>
                     <Styled.Tag fontColor={fontColor} bgColor={bgColor}>
                       {stationName}

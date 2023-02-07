@@ -6,7 +6,7 @@ export type TRestaurantDetail = {
   tel: string;
   type: string;
   mrt: Array<string>;
-  isVisted: boolean;
+  isVisited: boolean;
   isReturnVisted: boolean;
   rate: string;
   canReserve: boolean;

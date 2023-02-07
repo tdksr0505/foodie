@@ -1,11 +1,17 @@
 import React from 'react';
-import * as Styled from './styledList';
+import styled from 'styled-components';
 
 interface ITagProps {
-  children: React.ReactNode;
+  fontColor?: string;
+  bgColor?: string;
 }
-const Tag = ({ children }: ITagProps) => {
-  return <Styled.Tag>{children}</Styled.Tag>;
-};
+const DEFAULT_BG = '#ab8a46';
+const DEFAULT_FONT = '#FFF';
 
-export default Tag;
+export default styled.div<ITagProps>`
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: ${(props) => (props.bgColor ? props.bgColor : DEFAULT_BG)};
+  color: ${(props) => (props.fontColor ? props.fontColor : DEFAULT_FONT)};
+`;

@@ -11,6 +11,6 @@ export const Header = styled.header`
   position: sticky;
   height: 70px;
   padding: 0 30px;
-  background-color: #36a9d1;
+  background-color: #d6b657;
   box-shadow: 0 2px 5px rgb(0 0 0 / 15%);
 `;

@@ -30,7 +30,7 @@ export default function RestaurantDetail() {
           <div>{detailData.address}</div>
           <div>{detailData.canReserve ? '可訂位' : '不可訂位'}</div>
           <div>{detailData.isReturnVisted ? '可回訪' : '不用回訪'}</div>
-          <div>{detailData.isVisted ? '已吃過' : '沒吃過'}</div>
+          <div>{detailData.isVisited ? '已吃過' : '沒吃過'}</div>
           <div>{detailData.mrt}</div>
           <div>{detailData.rate}</div>
           <div>{detailData.tel}</div>

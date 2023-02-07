@@ -1,5 +1,5 @@
-import List from '../components/list';
-import Filter from '../components/filter';
+import List from '../components/List';
+import Filter from '../components/Filter';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { useEffect, useState } from 'react';
@@ -7,9 +7,7 @@ import type { TRestaurantDetail } from '@/type';
 import Link from 'next/link';
 
 export default function Home() {
-  const [listData, setListData] = useState<Array<TRestaurantDetail> | null>(
-    null
-  );
+  const [listData, setListData] = useState<Array<TRestaurantDetail> | null>(null);
   useEffect(() => {
     const fetchData = async () => {
       await fetch(`/api/restaurant/`)
