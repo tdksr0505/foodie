@@ -8,6 +8,7 @@ export default styled(Button)`
   padding: 2px 10px;
   background-color: #dda52e;
   color: #fff;
+  font-size: 15px;
   &:hover {
     background-color: #ddbb70;
   }

@@ -1,14 +1,17 @@
 import type { AppProps } from 'next/app';
 import Layout from '../components/Layout';
 import GlobalStyles from '../styled/globalStyles';
-
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from '../config/theme';
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <GlobalStyles />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
     </>
   );
 }

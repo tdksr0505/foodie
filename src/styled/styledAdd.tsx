@@ -8,26 +8,47 @@ export const ButtonArea = styled.div`
 export const Label = styled.div`
   color: #646b73;
   width: 80px;
-  text-align: right;
+  @media (min-width: 768px) {
+    text-align: right;
+  }
 `;
 
 export const RightBox = styled.div`
-  flex: 1 0 auto;
-  margin-left: 10px;
+  margin-top: 5px;
+
+  @media (min-width: 768px) {
+    flex: 1 0 auto;
+    margin-top: 0px;
+    margin-left: 10px;
+  }
 `;
 
 export const FormGroup = styled.div`
-  display: flex;
   align-items: center;
   & + & {
-    margin-top: 20px;
+    margin-top: 10px;
+  }
+  @media (min-width: 768px) {
+    display: flex;
+    & + & {
+      margin-top: 20px;
+    }
   }
 `;
 
 export const FormBox = styled.div`
   background-color: #fff;
-  max-width: 500px;
+  max-width: 800px;
+  width: 100%;
   margin: auto;
   padding: 30px;
   border-radius: 10px;
+`;
+
+export const PageTitle = styled.div`
+  color: #d6b657;
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 20px;
+  font-weight: bold;
 `;

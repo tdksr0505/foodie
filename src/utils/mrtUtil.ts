@@ -1,4 +1,5 @@
 import mrtStationInfo from '../config/mrtStation.json';
+import { TOption } from '@/type';
 const MRT_TAG_CONFIG = {
   BL: {
     font: '#ffffff',
@@ -25,20 +26,15 @@ const MRT_TAG_CONFIG = {
     bg: '#e3002c',
   },
 };
-console.log(`outer mrt`);
-
-interface IMrtOption {
-  StationID: string;
-  StationName: string;
-}
 
 export const getAllStationOptions = () => {
-  const options = <Array<IMrtOption> | null>[];
-  console.log(`for`);
+  const options = <Array<TOption> | null>[];
   for (let lineInfo of mrtStationInfo) {
-    options?.push(...lineInfo.Stations);
+    for (let station of lineInfo.Stations) {
+      options?.push({ label: station.StationName, value: station.StationID });
+    }
   }
-  return options;
+  return options!;
 };
 
 export const getStationName = (StationID: string): string => {
