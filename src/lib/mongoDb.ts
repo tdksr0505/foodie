@@ -24,7 +24,7 @@ export default class MongoDb {
 
     const client = await MongoClient.connect(process.env.DB_URL!);
     MongoDb._db = client.db(process.env.DB_NAME);
-    console.log(MongoDb._db);
+    // console.log(MongoDb._db);
 
     return MongoDb._db;
   }

@@ -60,7 +60,7 @@ export const ListItem = styled.div`
   }
 
   &:hover {
-    background-color: #e7f4ff;
+    background-color: #fff0d7;
   }
 `;
 
@@ -76,7 +76,4 @@ export const RateBox = styled.div`
   display: flex;
   align-items: center;
 `;
-export const List = styled.div`
-  flex: 1 0 auto;
-  padding-left: 20px;
-`;
+export const List = styled.div``;

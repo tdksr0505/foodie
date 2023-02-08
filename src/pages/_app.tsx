@@ -4,19 +4,16 @@ import Layout from '../components/Layout';
 import GlobalStyles from '../styled/globalStyles';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '../config/theme';
-import ConfigContext from '../context/ConfigContext';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <ConfigContext.Provider value={false}>
-        <ThemeProvider theme={theme}>
-          <GlobalStyles />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </ThemeProvider>
-      </ConfigContext.Provider>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
     </>
   );
 }

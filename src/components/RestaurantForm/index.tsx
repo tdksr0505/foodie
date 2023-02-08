@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import TextField from '../../components/TextField';
 import Button from '../../components/Button';
-import { getStationName, getTagColor, getAllStationOptions } from '../../utils/mrtUtil';
+import { getAllStationOptions } from '../../utils/mrtUtil';
 import * as Styled from './styledRestaurantForm';
 import RadioGroup from '@/components/RadioGroup';
 import { TOption, TRestaurantFormData } from '@/type';
@@ -15,6 +15,8 @@ import { SelectChangeEvent } from '@mui/material/Select';
 interface IRestaurantFormProps {
   data?: TRestaurantFormData;
   title?: string;
+  id?: string | string[];
+  loading?: boolean;
 }
 const isVisitedConfig: Array<TOption> = [
   {
@@ -49,9 +51,7 @@ const canReserveConfig: Array<TOption> = [
 
 const foodTypeOptions = getFoodTypeOptions();
 const mrtStationOptions = getAllStationOptions();
-const mrtStrToOption = () => {};
-export default ({ data, title }: IRestaurantFormProps) => {
-  console.log(data);
+export default ({ data, title, id, loading }: IRestaurantFormProps) => {
   const router = useRouter();
   const initailValue: TRestaurantFormData = {
     name: null,
@@ -66,12 +66,14 @@ export default ({ data, title }: IRestaurantFormProps) => {
     canReserve: canReserveConfig[0].value,
   };
 
-  console.log(initailValue);
   const [formValue, setFormValue] = useState<TRestaurantFormData>(initailValue);
+  const [mrtDefaultOption, setMrtDefaultOption] = useState<Array<TOption> | null>(null);
+  console.log(formValue);
   useEffect(() => {
-    console.log(`useEffect`);
-    // console.log(`useeffect `, data);
-    data && setFormValue(data);
+    if (data) {
+      setMrtDefaultOption(getMrtDefalutValue(data.mrt));
+      setFormValue(data);
+    }
   }, [data]);
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>, newValue: string) => {
     let target = e.target as HTMLInputElement;
@@ -90,19 +92,22 @@ export default ({ data, title }: IRestaurantFormProps) => {
       [e.target.name]: e.target.value,
     });
   };
-  const handleAutoCompleteChange = (e: React.SyntheticEvent, value: Array<TOption>) => {
+  const handleMrtChange = (e: React.SyntheticEvent, value: Array<TOption>) => {
     let storeValue = value.map((elem) => {
       return elem.value;
     });
+    setMrtDefaultOption(value);
     setFormValue({
       ...formValue,
       // @ts-ignore
-      [e.target.dataset.name]: storeValue,
+      mrt: storeValue,
     });
   };
   const onSubmit = () => {
     console.log(formValue);
-    fetch('/api/restaurant', {
+    const fetchUrl = id ? `/api/restaurant/${id}` : `/api/restaurant`;
+    const returnUrl = id ? `/restaurant/detail/${id}` : `/`;
+    fetch(fetchUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -111,14 +116,21 @@ export default ({ data, title }: IRestaurantFormProps) => {
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log(json.msg);
-        router.push('/');
+        console.log(json.data.msg);
+        router.push(returnUrl);
       });
+  };
+  const getMrtDefalutValue = (mrtStations: Array<string>): Array<TOption> => {
+    let r = mrtStationOptions.filter((elem) => {
+      return mrtStations.includes(elem.value);
+    });
+    console.log(r);
+    return r;
   };
   return (
     <>
       <Styled.FormBox>
-        {data ? (
+        {!loading || data ? (
           <>
             {title && <Styled.PageTitle>{title}</Styled.PageTitle>}
             <Styled.FormGroup>
@@ -165,7 +177,12 @@ export default ({ data, title }: IRestaurantFormProps) => {
             <Styled.FormGroup>
               <Styled.Label>最近捷運站</Styled.Label>
               <Styled.RightBox>
-                <AutoComplete options={mrtStationOptions} name="mrt" handleChange={handleAutoCompleteChange} />
+                <AutoComplete
+                  options={mrtStationOptions}
+                  name="mrt"
+                  handleChange={handleMrtChange}
+                  value={mrtDefaultOption || []}
+                />
               </Styled.RightBox>
             </Styled.FormGroup>
             <Styled.FormGroup>
