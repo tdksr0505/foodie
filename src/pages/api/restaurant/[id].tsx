@@ -7,10 +7,7 @@ type Data = {
   name: string;
 };
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   const { id } = req.query;
   console.log('xx');
   console.log(id);

@@ -6,9 +6,12 @@ export const Logo = styled.img`
 `;
 
 export const Header = styled.header`
+  z-index: 3;
   display: flex;
   align-items: center;
   position: sticky;
+  top: 0;
+  left: 0;
   height: 70px;
   padding: 0 30px;
   background-color: #d6b657;

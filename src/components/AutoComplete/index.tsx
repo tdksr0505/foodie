@@ -7,10 +7,6 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 const StyledAutocomplete = styled(Autocomplete)`
   width: 100%;
-  input {
-    padding: 2px 10px !important;
-    box-sizing: border-box;
-  }
   fieldset {
     border-color: #514e4e !important;
     border-width: 1px !important;
@@ -22,7 +18,7 @@ const StyledAutocomplete = styled(Autocomplete)`
 
 interface ISelectProps {
   options: Array<TOption>;
-  defaultValue: Array<TOption>;
+  defaultValue?: Array<TOption>;
   name: string;
   handleChange: (e: React.SyntheticEvent, value: Array<TOption>) => void;
 }

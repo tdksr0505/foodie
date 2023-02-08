@@ -5,7 +5,7 @@ import StarIcon from '@mui/icons-material/Star';
 export const Title = styled.div`
   font-weight: bold;
   font-size: 18px;
-  color: #44688d;
+  color: #646667;
   margin-bottom: 6px;
   overflow: hidden;
   text-overflow: ellipsis;

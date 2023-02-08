@@ -13,7 +13,7 @@ export default function Home() {
       await fetch(`/api/restaurant/`)
         .then((res) => res.json())
         .then((response) => {
-          setListData(response);
+          setListData(response.data.restaurant);
         });
     };
     fetchData();

@@ -10,7 +10,7 @@ interface IListProps {
 }
 
 const List = ({ data }: IListProps) => {
-  const BASE_DETAIL_URL = '/restaurant/';
+  const BASE_DETAIL_URL = '/restaurant/detail/';
   return (
     <Styled.List>
       {data &&

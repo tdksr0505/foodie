@@ -14,13 +14,13 @@ const StyledSelect = styled(Select)`
 
 interface ISelectProps {
   options: Array<TOption>;
-  defaultValue: number | string;
+  value: number | string;
   name: string;
   handleChange: (e: SelectChangeEvent<unknown>) => void;
 }
 export default ({ name, ...props }: ISelectProps) => {
   return (
-    <StyledSelect name={name} defaultValue={props.defaultValue} onChange={props.handleChange}>
+    <StyledSelect name={name} value={props.value} onChange={props.handleChange}>
       {props.options.map((option: TOption) => (
         <MenuItem key={option.value} value={option.value}>
           {option.label}
