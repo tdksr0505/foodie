@@ -2,7 +2,14 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import type { TRestaurantFormData } from '@/type';
 import Link from 'next/link';
+
 import Button from '@/components/Button';
+import WhiteBox from '@/components/WhiteBox';
+import TagBox from '@/components/TagBox';
+import Tag from '@/components/Tag';
+import { DataRow, DataLabel, DataValue, Title, TopArea, PageButtonArea } from '@/styled/styledDetailPage';
+
+import { getStationName, getTagColor, getAllStationOptions } from '../../..//utils/mrtUtil';
 export default function RestaurantDetail() {
   const router = useRouter();
   const { id } = router.query;
@@ -36,21 +43,73 @@ export default function RestaurantDetail() {
   };
   return (
     <>
-      <Button onClick={onClickEdit}>編輯</Button>
-      <Button onClick={onClickDelete}>刪除</Button>
-      {detailData && (
-        <>
-          <div>{detailData.name}</div>
-          <div>{detailData.address}</div>
-          <div>{detailData.canReserve ? '可訂位' : '不可訂位'}</div>
-          <div>{detailData.isReturnVisited ? '可回訪' : '不用回訪'}</div>
-          <div>{detailData.isVisited ? '已吃過' : '沒吃過'}</div>
-          <div>{detailData.mrt}</div>
-          <div>{detailData.rate}</div>
-          <div>{detailData.tel}</div>
-          <div>{detailData.type}</div>
-        </>
-      )}
+      <WhiteBox>
+        {detailData && (
+          <>
+            <TopArea>
+              <Title>{detailData.name}</Title>
+              <TagBox>
+                {detailData.mrt.map((stationID) => {
+                  const { fontColor, bgColor } = getTagColor(stationID);
+                  const stationName = getStationName(stationID);
+                  return (
+                    <Tag key={stationID} fontColor={fontColor} bgColor={bgColor}>
+                      {stationName}
+                    </Tag>
+                  );
+                })}
+              </TagBox>
+            </TopArea>
+            <DataRow>
+              <DataLabel>評分：</DataLabel>
+              <DataValue>
+                <div>{detailData.rate}</div>
+              </DataValue>
+            </DataRow>
+            <DataRow>
+              <DataLabel>地址：</DataLabel>
+              <DataValue>
+                <div>{detailData.address}</div>
+              </DataValue>
+            </DataRow>
+            <DataRow>
+              <DataLabel>電話：</DataLabel>
+              <DataValue>
+                <div>{detailData.tel}</div>
+              </DataValue>
+            </DataRow>
+            <DataRow>
+              <DataLabel>餐廳類型：</DataLabel>
+              <DataValue>
+                <div>{detailData.type}</div>
+              </DataValue>
+            </DataRow>
+            <DataRow>
+              <DataLabel>是否可訂位：</DataLabel>
+              <DataValue>
+                <div>{detailData.canReserve ? '可訂位' : '不可訂位'}</div>
+              </DataValue>
+            </DataRow>
+            <DataRow>
+              <DataLabel>是否吃過：</DataLabel>
+              <DataValue>
+                <div>{detailData.isVisited ? '已吃過' : '沒吃過'}</div>
+              </DataValue>
+            </DataRow>
+            <DataRow>
+              <DataLabel>是否回訪：</DataLabel>
+              <DataValue>
+                <div>{detailData.isReturnVisited ? '可回訪' : '不用回訪'}</div>
+              </DataValue>
+            </DataRow>
+
+            <PageButtonArea>
+              <Button onClick={onClickDelete}>刪除</Button>
+              <Button onClick={onClickEdit}>編輯</Button>
+            </PageButtonArea>
+          </>
+        )}
+      </WhiteBox>
     </>
   );
 }

@@ -3,6 +3,8 @@ import Link from 'next/link';
 import * as Styled from './styledList';
 // import fakeData from '@/../fakeData.json';
 import type { TRestaurantDetail } from '@/type';
+import TagBox from '@/components/TagBox';
+import Tag from '@/components/Tag';
 import { getStationName, getTagColor, getAllStationOptions } from '../../utils/mrtUtil';
 interface IListProps {
   data: Array<TRestaurantDetail> | null;
@@ -25,24 +27,23 @@ const List = ({ data }: IListProps) => {
                     <Styled.Rate>{item.rate}</Styled.Rate>
                   </Styled.RateBox>
                   <Styled.SimpleAddress>{item.simpleAddress}</Styled.SimpleAddress>
-                  <Styled.TagBox>
+                  <TagBox>
                     {item.mrt.map((stationID) => {
                       const { fontColor, bgColor } = getTagColor(stationID);
                       const stationName = getStationName(stationID);
                       return (
-                        <Styled.Tag key={stationID} fontColor={fontColor} bgColor={bgColor}>
+                        <Tag key={stationID} fontColor={fontColor} bgColor={bgColor}>
                           {stationName}
-                        </Styled.Tag>
+                        </Tag>
                       );
                     })}
-
-                    <Styled.Tag>{item.type}</Styled.Tag>
+                    <Tag>{item.type}</Tag>
                     {item.canReserve && (
-                      <Styled.Tag fontColor="#fff" bgColor="#0eafa4">
+                      <Tag fontColor="#fff" bgColor="#0eafa4">
                         可預約
-                      </Styled.Tag>
+                      </Tag>
                     )}
-                  </Styled.TagBox>
+                  </TagBox>
                 </Styled.ListItemBox>
               </Link>
             </Styled.ListItem>

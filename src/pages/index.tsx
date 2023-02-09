@@ -1,9 +1,14 @@
-import Link from 'next/link';
+import { useRouter } from 'next/router';
+
 import { useEffect, useState } from 'react';
 import type { TRestaurantDetail } from '@/type';
-import * as Styled from '../styled/styledPage';
+import * as Styled from '../styled/styledListPage';
+import Filter from '../components/Filter';
+import List from '../components/List';
+import Button from '../components/Button';
 
 export default function Home() {
+  const router = useRouter();
   const [listData, setListData] = useState<Array<TRestaurantDetail> | null>(null);
   useEffect(() => {
     const fetchData = async () => {
@@ -15,12 +20,22 @@ export default function Home() {
     };
     fetchData();
   }, []);
+
+  const onClickAdd = () => {
+    router.push(`/restaurant/add`);
+  };
   return (
     <>
-      <Link href="/restaurant/add">新增</Link>
+      <Styled.PageButtonArea>
+        <Button onClick={onClickAdd}>新增</Button>
+      </Styled.PageButtonArea>
       <Styled.RestaurantListPageBox>
-        <Styled.Filter />
-        <Styled.List data={listData} />
+        <Styled.FilterBox>
+          <Filter />
+        </Styled.FilterBox>
+        <Styled.ListBox>
+          <List data={listData} />
+        </Styled.ListBox>
       </Styled.RestaurantListPageBox>
     </>
   );

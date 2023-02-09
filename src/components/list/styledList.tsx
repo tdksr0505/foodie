@@ -19,19 +19,6 @@ export const SimpleAddress = styled.div`
   margin-bottom: 8px;
 `;
 
-export const Tag = styled(BaseTag)`
-  & + & {
-    margin-left: 10px;
-  }
-`;
-
-export const TagBox = styled.div`
-  display: flex;
-  align-items: center;
-  ${Tag}+${Tag} {
-    margin-left: 10px;
-  }
-`;
 export const VisitMark = styled.div`
   position: absolute;
   top: 10px;
@@ -50,7 +37,6 @@ export const ListItemBox = styled.div`
 export const ListItem = styled.div`
   position: relative;
   width: 100%;
-  height: 140px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0px 5px 9px -3px rgba(110, 106, 106, 0.75);

@@ -1,8 +1,9 @@
 import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import TextField from '../../components/TextField';
-import Button from '../../components/Button';
+import TextField from '@/components/TextField';
+import Button from '@/components/Button';
+import WhiteBox from '@/components/WhiteBox';
 import { getAllStationOptions } from '../../utils/mrtUtil';
 import * as Styled from './styledRestaurantForm';
 import RadioGroup from '@/components/RadioGroup';
@@ -92,11 +93,11 @@ export default ({ data, title, id, loading }: IRestaurantFormProps) => {
       [e.target.name]: e.target.value,
     });
   };
-  const handleMrtChange = (e: React.SyntheticEvent, value: Array<TOption>) => {
-    let storeValue = value.map((elem) => {
+  const handleMrtChange = (e: React.SyntheticEvent, value: unknown) => {
+    let storeValue = (value as Array<TOption>).map((elem) => {
       return elem.value;
     });
-    setMrtDefaultOption(value);
+    setMrtDefaultOption(value as Array<TOption>);
     setFormValue({
       ...formValue,
       // @ts-ignore
@@ -129,7 +130,7 @@ export default ({ data, title, id, loading }: IRestaurantFormProps) => {
   };
   return (
     <>
-      <Styled.FormBox>
+      <WhiteBox>
         {!loading || data ? (
           <>
             {title && <Styled.PageTitle>{title}</Styled.PageTitle>}
@@ -186,6 +187,17 @@ export default ({ data, title, id, loading }: IRestaurantFormProps) => {
               </Styled.RightBox>
             </Styled.FormGroup>
             <Styled.FormGroup>
+              <Styled.Label>是否可訂位</Styled.Label>
+              <Styled.RightBox>
+                <RadioGroup
+                  name={'canReserve'}
+                  radiosConfig={canReserveConfig}
+                  value={formValue?.canReserve.toString()}
+                  handleChange={handleValueChange}
+                ></RadioGroup>
+              </Styled.RightBox>
+            </Styled.FormGroup>
+            <Styled.FormGroup>
               <Styled.Label>是否吃過</Styled.Label>
               <Styled.RightBox>
                 <RadioGroup
@@ -207,17 +219,7 @@ export default ({ data, title, id, loading }: IRestaurantFormProps) => {
                 ></RadioGroup>
               </Styled.RightBox>
             </Styled.FormGroup>
-            <Styled.FormGroup>
-              <Styled.Label>是否可訂位</Styled.Label>
-              <Styled.RightBox>
-                <RadioGroup
-                  name={'canReserve'}
-                  radiosConfig={canReserveConfig}
-                  value={formValue?.canReserve.toString()}
-                  handleChange={handleValueChange}
-                ></RadioGroup>
-              </Styled.RightBox>
-            </Styled.FormGroup>
+
             <Styled.ButtonArea>
               <Button onClick={onSubmit}>送出</Button>
             </Styled.ButtonArea>
@@ -225,7 +227,7 @@ export default ({ data, title, id, loading }: IRestaurantFormProps) => {
         ) : (
           <div>loading...</div>
         )}
-      </Styled.FormBox>
+      </WhiteBox>
       <Link href="/">返回</Link>
     </>
   );

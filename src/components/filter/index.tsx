@@ -7,7 +7,11 @@ import * as Styled from './styledFilter';
 // 依 照分數
 
 const Filter = () => {
-  return <Styled.Filter></Styled.Filter>;
+  return (
+    <>
+      <Styled.Filter>Filter</Styled.Filter>
+    </>
+  );
 };
 
 export default Filter;

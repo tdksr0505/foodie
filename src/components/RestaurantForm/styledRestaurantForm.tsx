@@ -36,15 +36,6 @@ export const FormGroup = styled.div`
   }
 `;
 
-export const FormBox = styled.div`
-  background-color: #fff;
-  max-width: 800px;
-  width: 100%;
-  margin: auto;
-  padding: 30px;
-  border-radius: 10px;
-`;
-
 export const PageTitle = styled.div`
   color: #d6b657;
   text-align: center;

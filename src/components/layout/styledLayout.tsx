@@ -4,5 +4,9 @@ import BaseContainer from '@mui/material/Container';
 export const Container = styled(BaseContainer)``;
 
 export const Main = styled.main`
-  padding: 40px 0;
+  padding: 20px 0;
+
+  @media (min-width: 768px) {
+    /* padding: 40px 0; */
+  }
 `;
