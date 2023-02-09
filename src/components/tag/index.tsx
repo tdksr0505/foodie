@@ -10,7 +10,7 @@ const DEFAULT_FONT = '#FFF';
 
 export default styled.div<ITagProps>`
   padding: 2px 6px;
-  border-radius: 5px;
+  border-radius: 4px;
   font-size: 16px;
   background-color: ${(props) => (props.bgColor ? props.bgColor : DEFAULT_BG)};
   color: ${(props) => (props.fontColor ? props.fontColor : DEFAULT_FONT)};

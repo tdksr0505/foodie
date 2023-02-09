@@ -1,15 +1,20 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import type { TRestaurantFormData } from '@/type';
-import Link from 'next/link';
-
 import Button from '@/components/Button';
 import WhiteBox from '@/components/WhiteBox';
-import TagBox from '@/components/TagBox';
 import Tag from '@/components/Tag';
-import { DataRow, DataLabel, DataValue, Title, TopArea, PageButtonArea } from '@/styled/styledDetailPage';
-
-import { getStationName, getTagColor, getAllStationOptions } from '../../..//utils/mrtUtil';
+import {
+  DataRow,
+  DataLabel,
+  DataValue,
+  Title,
+  TopArea,
+  DetailButtonArea,
+  DetailTagBox,
+} from '@/styled/styledDetailPage';
+import { RateBox, Rate, Star } from '@/components/List/styledList';
+import { getStationName, getTagColor } from '../../../utils/mrtUtil';
 export default function RestaurantDetail() {
   const router = useRouter();
   const { id } = router.query;
@@ -48,7 +53,7 @@ export default function RestaurantDetail() {
           <>
             <TopArea>
               <Title>{detailData.name}</Title>
-              <TagBox>
+              <DetailTagBox>
                 {detailData.mrt.map((stationID) => {
                   const { fontColor, bgColor } = getTagColor(stationID);
                   const stationName = getStationName(stationID);
@@ -58,14 +63,12 @@ export default function RestaurantDetail() {
                     </Tag>
                   );
                 })}
-              </TagBox>
+              </DetailTagBox>
+              <RateBox>
+                <Star />
+                <Rate>{detailData.rate}</Rate>
+              </RateBox>
             </TopArea>
-            <DataRow>
-              <DataLabel>評分：</DataLabel>
-              <DataValue>
-                <div>{detailData.rate}</div>
-              </DataValue>
-            </DataRow>
             <DataRow>
               <DataLabel>地址：</DataLabel>
               <DataValue>
@@ -103,10 +106,10 @@ export default function RestaurantDetail() {
               </DataValue>
             </DataRow>
 
-            <PageButtonArea>
+            <DetailButtonArea>
               <Button onClick={onClickDelete}>刪除</Button>
               <Button onClick={onClickEdit}>編輯</Button>
-            </PageButtonArea>
+            </DetailButtonArea>
           </>
         )}
       </WhiteBox>

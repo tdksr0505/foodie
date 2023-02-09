@@ -9,13 +9,16 @@ import Button from '../components/Button';
 
 export default function Home() {
   const router = useRouter();
-  const [listData, setListData] = useState<Array<TRestaurantDetail> | null>(null);
+  const [fetchData, setFetchData] = useState<Array<TRestaurantDetail> | null>(null);
+  const [filterData, setFilterData] = useState<Array<TRestaurantDetail> | null>(null);
+
   useEffect(() => {
     const fetchData = async () => {
       await fetch(`/api/restaurant/`)
         .then((res) => res.json())
         .then((response) => {
-          setListData(response.data.restaurant);
+          setFetchData(response.data.restaurant);
+          setFilterData(response.data.restaurant);
         });
     };
     fetchData();
@@ -31,10 +34,10 @@ export default function Home() {
       </Styled.PageButtonArea>
       <Styled.RestaurantListPageBox>
         <Styled.FilterBox>
-          <Filter />
+          <Filter fetchData={fetchData} setFilterData={setFilterData} />
         </Styled.FilterBox>
         <Styled.ListBox>
-          <List data={listData} />
+          <List data={filterData} />
         </Styled.ListBox>
       </Styled.RestaurantListPageBox>
     </>

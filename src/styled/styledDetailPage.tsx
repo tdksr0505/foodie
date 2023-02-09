@@ -1,7 +1,12 @@
 import styled from 'styled-components';
-import { PageButtonArea as BasePageButtonArea } from './styledListPage';
+import { PageButtonArea } from './styledListPage';
+import TagBox from '@/components/TagBox';
 
-export const PageButtonArea = styled(BasePageButtonArea)`
+export const DetailTagBox = styled(TagBox)`
+  margin-bottom: 10px;
+`;
+
+export const DetailButtonArea = styled(PageButtonArea)`
   margin-top: 25px;
   text-align: center;
 `;
@@ -13,7 +18,8 @@ export const TopArea = styled.div`
 `;
 
 export const Title = styled.div`
-  font-size: 20px;
+  font-size: 22px;
+  color: #464646;
   margin-bottom: 10px;
 `;
 export const DataRow = styled.div`
