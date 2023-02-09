@@ -27,7 +27,7 @@ export default function RestaurantDetail() {
   }, [router.isReady]);
   return (
     <>
-      <RestaurantForm title="Edit" data={detailData} id={id} loading={loading}></RestaurantForm>;
+      <RestaurantForm title="Edit" data={detailData} id={id} loading={loading}></RestaurantForm>
     </>
   );
 }

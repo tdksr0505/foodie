@@ -6,9 +6,6 @@ export const Title = styled.div`
   font-size: 20px;
   color: #464646;
   margin-bottom: 6px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 `;
 
 export const SimpleAddress = styled.div`
@@ -37,15 +34,20 @@ export const ListItem = styled.div`
   position: relative;
   width: 100%;
   background-color: #fff;
-  border-radius: 8px;
   box-shadow: 0px 5px 9px -3px rgba(110, 106, 106, 0.75);
   cursor: pointer;
+  &:focus-visible,
+  &:focus,
+  &:active {
+    outline: 0;
+  }
   & + & {
     margin-top: 20px;
   }
-
-  &:hover {
-    background-color: #fff0d7;
+  @media screen and (min-width: 992px) {
+    &:hover {
+      background-color: #fff0d7;
+    }
   }
 `;
 

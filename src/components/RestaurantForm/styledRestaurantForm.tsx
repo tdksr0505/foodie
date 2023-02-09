@@ -1,14 +1,14 @@
 import styled from 'styled-components';
+import { PageButtonArea } from '@/styled/styledListPage';
 
-export const ButtonArea = styled.div`
-  margin-top: 20px;
-  text-align: right;
+export const ButtonArea = styled(PageButtonArea)`
+  margin: 20px 0 0 0;
 `;
 
 export const Label = styled.div`
   color: #646b73;
   width: 80px;
-  @media (min-width: 768px) {
+  @media screen and (min-width: 992px) {
     text-align: right;
   }
 `;
@@ -16,7 +16,7 @@ export const Label = styled.div`
 export const RightBox = styled.div`
   margin-top: 5px;
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: 992px) {
     flex: 1 0 auto;
     margin-top: 0px;
     margin-left: 10px;
@@ -28,7 +28,7 @@ export const FormGroup = styled.div`
   & + & {
     margin-top: 10px;
   }
-  @media (min-width: 768px) {
+  @media screen and (min-width: 992px) {
     display: flex;
     & + & {
       margin-top: 20px;

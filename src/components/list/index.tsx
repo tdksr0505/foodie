@@ -38,11 +38,6 @@ const List = ({ data }: IListProps) => {
                       );
                     })}
                     <Tag>{item.type}</Tag>
-                    {item.canReserve && (
-                      <Tag fontColor="#fff" bgColor="#0eafa4">
-                        可預約
-                      </Tag>
-                    )}
                   </TagBox>
                 </Styled.ListItemBox>
               </Link>

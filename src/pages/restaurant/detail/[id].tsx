@@ -4,6 +4,7 @@ import type { TRestaurantFormData } from '@/type';
 import Button from '@/components/Button';
 import WhiteBox from '@/components/WhiteBox';
 import Tag from '@/components/Tag';
+import Dialog from '@/components/Dialog';
 import {
   DataRow,
   DataLabel,
@@ -19,6 +20,7 @@ export default function RestaurantDetail() {
   const router = useRouter();
   const { id } = router.query;
   const [detailData, setDetailData] = useState<TRestaurantFormData | null>(null);
+  const [openDialog, setOpenDialog] = useState<boolean>(false);
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -36,7 +38,7 @@ export default function RestaurantDetail() {
   const onClickEdit = () => {
     router.push(`/restaurant/edit/${id}`);
   };
-  const onClickDelete = async () => {
+  const handleDelete = async () => {
     await fetch(`/api/restaurant/${id}`, { method: 'DELETE' })
       .then((res) => res.json())
       .then((response) => {
@@ -45,6 +47,9 @@ export default function RestaurantDetail() {
           router.push(`/`);
         }
       });
+  };
+  const onClickDelete = () => {
+    setOpenDialog(true);
   };
   return (
     <>
@@ -113,6 +118,7 @@ export default function RestaurantDetail() {
           </>
         )}
       </WhiteBox>
+      <Dialog title={'確定要刪除餐廳嗎?'} handleAgree={handleDelete} open={openDialog} setOpen={setOpenDialog} />
     </>
   );
 }

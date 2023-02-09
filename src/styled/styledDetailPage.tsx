@@ -23,16 +23,20 @@ export const Title = styled.div`
   margin-bottom: 10px;
 `;
 export const DataRow = styled.div`
-  display: flex;
   font-size: 16px;
   & + & {
     margin-top: 10px;
+  }
+  @media screen and (min-width: 992px) {
+    display: flex;
   }
 `;
 export const DataLabel = styled.div`
   flex: 0 0 auto;
   width: 96px;
-  text-align: right;
   color: #646b73;
+  @media screen and (min-width: 992px) {
+    text-align: right;
+  }
 `;
 export const DataValue = styled.div``;

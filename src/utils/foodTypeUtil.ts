@@ -1,11 +1,10 @@
 import foodType from '../config/foodType.json';
+import { TOption } from '@/type';
 
-export interface IFoodTypeOption {
-  label: string;
-  value: string;
-}
-export const getFoodTypeOptions = () => {
+const getFoodTypeOptions = (): Array<TOption> => {
   return foodType.map((type) => {
     return { label: type, value: type };
   });
 };
+
+export const foodTypeOptions = getFoodTypeOptions();

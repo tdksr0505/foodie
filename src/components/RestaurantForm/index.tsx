@@ -10,7 +10,7 @@ import RadioGroup from '@/components/RadioGroup';
 import { TOption, TRestaurantFormData } from '@/type';
 import Select from '@/components/Select';
 import AutoComplete from '@/components/AutoComplete';
-import { getFoodTypeOptions } from '../../utils/foodTypeUtil';
+import { foodTypeOptions } from '../../utils/foodTypeUtil';
 import { SelectChangeEvent } from '@mui/material/Select';
 
 interface IRestaurantFormProps {
@@ -50,7 +50,6 @@ const canReserveConfig: Array<TOption> = [
   },
 ];
 
-const foodTypeOptions = getFoodTypeOptions();
 const mrtStationOptions = getAllStationOptions();
 export default ({ data, title, id, loading }: IRestaurantFormProps) => {
   const router = useRouter();
@@ -122,11 +121,9 @@ export default ({ data, title, id, loading }: IRestaurantFormProps) => {
       });
   };
   const getMrtDefalutValue = (mrtStations: Array<string>): Array<TOption> => {
-    let r = mrtStationOptions.filter((elem) => {
+    return mrtStationOptions.filter((elem) => {
       return mrtStations.includes(elem.value);
     });
-    console.log(r);
-    return r;
   };
   return (
     <>
@@ -221,6 +218,13 @@ export default ({ data, title, id, loading }: IRestaurantFormProps) => {
             </Styled.FormGroup>
 
             <Styled.ButtonArea>
+              <Button
+                onClick={() => {
+                  router.push(id ? `/restaurant/detail/${id}` : '/');
+                }}
+              >
+                返回
+              </Button>
               <Button onClick={onSubmit}>送出</Button>
             </Styled.ButtonArea>
           </>
@@ -228,7 +232,6 @@ export default ({ data, title, id, loading }: IRestaurantFormProps) => {
           <div>loading...</div>
         )}
       </WhiteBox>
-      <Link href="/">返回</Link>
     </>
   );
 };

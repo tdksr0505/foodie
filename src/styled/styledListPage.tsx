@@ -9,16 +9,25 @@ export const PageButtonArea = styled.div`
   }
 `;
 export const FilterBox = styled.div`
-  display: none;
-  flex: 0 0 auto;
-  width: 300px;
-  @media (min-width: 992px) {
+  z-index: 5;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  @media screen and (min-width: 992px) {
+    z-index: auto;
     display: block;
+    position: static;
+    flex: 0 0 auto;
+    width: 300px;
+    height: auto;
   }
 `;
 export const ListBox = styled.div`
   flex: 1 1 auto;
-  @media (min-width: 992px) {
+  @media screen and (min-width: 992px) {
     padding-left: 20px;
   }
 `;
