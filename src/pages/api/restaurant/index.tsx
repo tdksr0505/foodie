@@ -8,8 +8,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const restaurants = database?.collection('restaurant');
   if (req.method === 'POST') {
     //insert
-    console.log(req);
-    const result = await restaurants.insertOne(req.body);
+    const date = new Date();
+    const createDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date
+      .getDate()
+      .toString()
+      .padStart(2, '0')} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    const result = await restaurants.insertOne({ ...req.body, createDate: createDate });
     if (result.acknowledged) {
       res.status(200).json({
         code: 0,

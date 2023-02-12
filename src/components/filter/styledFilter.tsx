@@ -23,6 +23,7 @@ export const Filter = styled.div<IFilterProps>`
 
 export const InputBox = styled.div`
   position: relative;
+  margin-bottom: 20px;
 `;
 export const SearchInput = styled(TextField)`
   border-color: #b8b6b6;
@@ -67,4 +68,7 @@ export const CloseBtnBox = styled.div`
 export const CloseBtn = styled(CloseIcon)`
   color: #e4bc46;
   font-size: 50px;
+`;
+export const ToggleTagBox = styled.div`
+  margin-bottom: 10px;
 `;
