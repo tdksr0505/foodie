@@ -1,7 +1,7 @@
 import mrtStationInfo from '../config/mrtStation.json';
 import { TOption } from '@/type';
 import { off } from 'process';
-const MRT_TAG_CONFIG = {
+const MRT_TAG_CONFIG: { [x: string]: { font: string; bg: string } } = {
   BL: {
     font: '#ffffff',
     bg: '#0070bd',
@@ -28,6 +28,14 @@ const MRT_TAG_CONFIG = {
   },
 };
 
+const MRT_LINE: { [x: string]: string } = {
+  BL: '板南線',
+  BR: '文湖線',
+  G: '松山新店線',
+  O: '中和新蘆線',
+  Y: '環狀線',
+  R: '淡水信義線',
+};
 const getAllStationOptions = (): Array<TOption> => {
   const options: Array<TOption> = [];
   for (let lineInfo of mrtStationInfo) {
@@ -52,15 +60,33 @@ export const getTagColor = (StationID: string): { fontColor: string; bgColor: st
   }
   return { fontColor: MRT_TAG_CONFIG.BL.font, bgColor: MRT_TAG_CONFIG.BL.bg };
 };
-export const getFilterMrt = (StationIDArray: Array<string>): any => {
-  const filterArray = [];
+export const getFilterMrt = (StationIDArray: Array<string>) => {
+  const filterMrt: { [x: string]: TOption[] } = {};
   for (let lineInfo of mrtStationInfo) {
-    const arr = lineInfo.Stations.filter((elem) => {
-      return StationIDArray.includes(elem.StationID);
-    });
-    if (arr.length) {
-      filterArray.push(...arr);
+    let lineId = lineInfo.LineID;
+    for (let station of lineInfo.Stations) {
+      if (StationIDArray.includes(station.StationID)) {
+        if (lineId in filterMrt) {
+          filterMrt[lineId].push({ label: station.StationName, value: station.StationID });
+        } else {
+          filterMrt[lineId] = [{ label: station.StationName, value: station.StationID }];
+        }
+      }
     }
   }
-  return filterArray;
+  return filterMrt;
+};
+
+export const getLineName = (lineID: string) => {
+  if (lineID in MRT_LINE) {
+    return MRT_LINE[lineID];
+  }
+  return null;
+};
+
+export const getLineColor = (lineID: string) => {
+  if (lineID in MRT_TAG_CONFIG) {
+    return { fontColor: MRT_TAG_CONFIG[lineID].font, bgColor: MRT_TAG_CONFIG[lineID].bg };
+  }
+  return { fontColor: MRT_TAG_CONFIG.BL.font, bgColor: MRT_TAG_CONFIG.BL.bg };
 };

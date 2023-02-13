@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router';
-
 import { useEffect, useState } from 'react';
 import type { TRestaurantDetail } from '@/type';
-import { getFilterMrt } from '@/utils/mrtUtil';
 import * as Styled from '../styled/styledListPage';
 import Filter from '../components/Filter';
 import List from '../components/List';
@@ -25,13 +23,6 @@ export default function Home() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const mrtStationID = fetchData?.reduce((pre, cur) => {
-      return [...pre, ...cur.mrt];
-    }, [] as Array<string>);
-    console.log(`mrtStationID`, mrtStationID);
-    if (mrtStationID) getFilterMrt(mrtStationID);
-  }, [fetchData]);
   const onClickAdd = () => {
     router.push(`/restaurant/add`);
   };

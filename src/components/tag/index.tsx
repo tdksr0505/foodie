@@ -9,6 +9,7 @@ const DEFAULT_BG = '#ab8a46';
 const DEFAULT_FONT = '#FFF';
 
 export default styled.div<ITagProps>`
+  display: inline-block;
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 16px;

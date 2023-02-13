@@ -28,16 +28,18 @@ const StyledToggleTag = styled.div<IStyledToggleTagProps>`
 interface IToggleTagProps {
   label: string;
   defaultValue?: boolean;
-  onClick?: (label: string, value: boolean) => void;
+  onClick?: (e: React.SyntheticEvent, value: boolean) => void;
   [x: string]: unknown;
 }
 export default ({ label, defaultValue = false, onClick, ...restProps }: IToggleTagProps) => {
   const [toggle, setToggle] = useState<boolean>(defaultValue);
+  const [clickEvent, setClickEvent] = useState<React.SyntheticEvent | null>(null);
   const onClickTag = (e: React.SyntheticEvent) => {
     setToggle((state) => !state);
+    setClickEvent(e);
   };
   useEffect(() => {
-    if (onClick) onClick(label, toggle);
+    if (onClick && clickEvent) onClick(clickEvent, toggle);
   }, [toggle]);
   return (
     <StyledToggleTag active={toggle} onClick={onClickTag} {...restProps}>

@@ -77,6 +77,19 @@ export const FilterOptionTitle = styled.div`
   margin-bottom: 10px;
 `;
 
+export const MrtLineBox = styled.div`
+  & + & {
+    margin-top: 10px;
+  }
+`;
+
+interface IMrtLineNameProps {
+  color?: string;
+}
+export const MrtLineName = styled.div<IMrtLineNameProps>`
+  color: ${(props) => props.color};
+`;
+
 export const ToggleTagBox = styled.div`
   margin-bottom: 10px;
 `;
