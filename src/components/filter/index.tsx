@@ -4,8 +4,7 @@ import type { TRestaurantDetail } from '@/type';
 import Button from '@/components/Button';
 import ToggleTag from '@/components/ToggleTag';
 import { foodTypeOptions } from '@/utils/foodTypeUtil';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+
 // 依 捷運站
 // 依 捷運站
 // 依 類型
@@ -41,15 +40,14 @@ const Filter = ({ fetchData, setFilteredData }: IFilterProps) => {
     setFilter({ ...filter, [e.target.name]: e.target.value });
   };
 
-  const onClickFoodType = (e: React.SyntheticEvent) => {
-    const name = (e.target as Element).getAttribute('name');
-    if (!name) return;
+  const onClickFoodType = (label: string, value: boolean) => {
     const foodTypeValue = filter.type;
-    if (foodTypeValue.includes(name)) {
-      let idx = foodTypeValue.indexOf(name);
+    const isLabelExist = foodTypeValue.includes(label);
+    if (value && !isLabelExist) {
+      foodTypeValue.push(label);
+    } else if (!value && isLabelExist) {
+      let idx = foodTypeValue.indexOf(label);
       foodTypeValue.splice(idx, 1);
-    } else {
-      foodTypeValue.push(name);
     }
     setFilter({ ...filter, type: foodTypeValue });
   };
@@ -70,11 +68,14 @@ const Filter = ({ fetchData, setFilteredData }: IFilterProps) => {
           <Styled.SearchInput name="name" value={filter.name} onChange={onChangeFilter} />
           <Styled.SearchIcon />
         </Styled.InputBox>
+
+        <Styled.FilterOptionTitle>類型</Styled.FilterOptionTitle>
         <Styled.ToggleTagBox>
           {foodTypeOptions.map((elem) => {
-            return <ToggleTag key={elem.label} label={elem.label} name={elem.label} onToggle={onClickFoodType} />;
+            return <ToggleTag key={elem.label} label={elem.label} onClick={onClickFoodType} />;
           })}
         </Styled.ToggleTagBox>
+        <Styled.FilterOptionTitle>捷運站</Styled.FilterOptionTitle>
 
         <Button onClick={onClickSearch}>查詢</Button>
       </Styled.Filter>

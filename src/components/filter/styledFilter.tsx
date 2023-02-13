@@ -69,6 +69,14 @@ export const CloseBtn = styled(CloseIcon)`
   color: #e4bc46;
   font-size: 50px;
 `;
+
+export const FilterOptionTitle = styled.div`
+  color: #717171;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #acabab;
+  margin-bottom: 10px;
+`;
+
 export const ToggleTagBox = styled.div`
   margin-bottom: 10px;
 `;

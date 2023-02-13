@@ -4,7 +4,7 @@ import Link from 'next/link';
 import TextField from '@/components/TextField';
 import Button from '@/components/Button';
 import WhiteBox from '@/components/WhiteBox';
-import { getAllStationOptions } from '../../utils/mrtUtil';
+import { allStationOptions } from '../../utils/mrtUtil';
 import * as Styled from './styledRestaurantForm';
 import RadioGroup from '@/components/RadioGroup';
 import { TOption, TRestaurantFormData } from '@/type';
@@ -50,7 +50,6 @@ const canReserveConfig: Array<TOption> = [
   },
 ];
 
-const mrtStationOptions = getAllStationOptions();
 export default ({ data, title, id, loading }: IRestaurantFormProps) => {
   const router = useRouter();
   const initailValue: TRestaurantFormData = {
@@ -121,7 +120,7 @@ export default ({ data, title, id, loading }: IRestaurantFormProps) => {
       });
   };
   const getMrtDefalutValue = (mrtStations: Array<string>): Array<TOption> => {
-    return mrtStationOptions.filter((elem) => {
+    return allStationOptions.filter((elem) => {
       return mrtStations.includes(elem.value);
     });
   };
@@ -176,7 +175,7 @@ export default ({ data, title, id, loading }: IRestaurantFormProps) => {
               <Styled.Label>最近捷運站</Styled.Label>
               <Styled.RightBox>
                 <AutoComplete
-                  options={mrtStationOptions}
+                  options={allStationOptions}
                   name="mrt"
                   handleChange={handleMrtChange}
                   value={mrtDefaultOption || []}

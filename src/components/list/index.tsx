@@ -5,7 +5,7 @@ import * as Styled from './styledList';
 import type { TRestaurantDetail } from '@/type';
 import TagBox from '@/components/TagBox';
 import Tag from '@/components/Tag';
-import { getStationName, getTagColor, getAllStationOptions } from '../../utils/mrtUtil';
+import { getStationName, getTagColor, allStationOptions } from '../../utils/mrtUtil';
 interface IListProps {
   data: Array<TRestaurantDetail> | null;
 }

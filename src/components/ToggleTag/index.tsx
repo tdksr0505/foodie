@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const DEFAULT_COLOR = '#aaaaaa';
@@ -28,20 +28,17 @@ const StyledToggleTag = styled.div<IStyledToggleTagProps>`
 interface IToggleTagProps {
   label: string;
   defaultValue?: boolean;
-  onToggle?: (e: React.SyntheticEvent, value: boolean) => void;
+  onClick?: (label: string, value: boolean) => void;
   [x: string]: unknown;
 }
-export default ({
-  label,
-  defaultValue = false,
-  onToggle = (e: React.SyntheticEvent, value: boolean) => {},
-  ...restProps
-}: IToggleTagProps) => {
+export default ({ label, defaultValue = false, onClick, ...restProps }: IToggleTagProps) => {
   const [toggle, setToggle] = useState<boolean>(defaultValue);
   const onClickTag = (e: React.SyntheticEvent) => {
-    onToggle(e, !toggle);
     setToggle((state) => !state);
   };
+  useEffect(() => {
+    if (onClick) onClick(label, toggle);
+  }, [toggle]);
   return (
     <StyledToggleTag active={toggle} onClick={onClickTag} {...restProps}>
       {label}
