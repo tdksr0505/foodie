@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import type { TRestaurantDetail } from '@/type';
 import * as Styled from '../styled/styledListPage';
@@ -7,10 +8,14 @@ import List from '../components/List';
 import Button from '../components/Button';
 
 export default function Home() {
-  const router = useRouter();
   const [fetchData, setFetchData] = useState<Array<TRestaurantDetail> | null>(null);
   const [filteredData, setFilteredData] = useState<Array<TRestaurantDetail> | null>(null);
+  const [filterOpen, setFilterOpen] = useState<boolean>(false);
 
+  const toggleFilter = () => {
+    // 小屏開關filter面板
+    setFilterOpen((filterOpen) => !filterOpen);
+  };
   useEffect(() => {
     const fetchData = async () => {
       await fetch(`/api/restaurant/`)
@@ -23,22 +28,33 @@ export default function Home() {
     fetchData();
   }, []);
 
-  const onClickAdd = () => {
-    router.push(`/restaurant/add`);
-  };
   return (
     <>
       <Styled.PageButtonArea>
-        <Button onClick={onClickAdd}>新增</Button>
+        <Link href="/restaurant/add">
+          <Button>新增</Button>
+        </Link>
       </Styled.PageButtonArea>
       <Styled.RestaurantListPageBox>
         <Styled.FilterBox>
-          <Filter fetchData={fetchData} setFilteredData={setFilteredData} />
+          <Filter
+            fetchData={fetchData}
+            setFilteredData={setFilteredData}
+            filterOpen={filterOpen}
+            setFilterOpen={setFilterOpen}
+          />
         </Styled.FilterBox>
         <Styled.ListBox>
           <List data={filteredData} />
         </Styled.ListBox>
       </Styled.RestaurantListPageBox>
+      <Styled.FilterButton
+        onClick={() => {
+          setFilterOpen(true);
+        }}
+      >
+        <Styled.FilterIcon />
+      </Styled.FilterButton>
     </>
   );
 }

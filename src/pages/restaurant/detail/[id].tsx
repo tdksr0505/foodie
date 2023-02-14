@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import type { TRestaurantFormData } from '@/type';
 import Button from '@/components/Button';
@@ -13,6 +14,7 @@ import {
   TopArea,
   DetailButtonArea,
   DetailTagBox,
+  DeleteButton,
 } from '@/styled/styledDetailPage';
 import { RateBox, Rate, Star } from '@/components/List/styledList';
 import { getStationName, getTagColor } from '../../../utils/mrtUtil';
@@ -41,7 +43,6 @@ export default function RestaurantDetail() {
       .then((res) => res.json())
       .then((response) => {
         if (response.code === 0) {
-          console.log(response.data.msg);
           router.push(`/`);
         }
       });
@@ -110,8 +111,17 @@ export default function RestaurantDetail() {
             </DataRow>
 
             <DetailButtonArea>
-              <Button onClick={onClickDelete}>刪除</Button>
-              <Button href={`/restaurant/edit/${id}`}>編輯</Button>
+              <div>
+                <Link href="/">
+                  <Button>返回列表</Button>
+                </Link>
+              </div>
+              <div>
+                <DeleteButton onClick={onClickDelete}>刪除</DeleteButton>
+                <Link href={`/restaurant/edit/${id}`}>
+                  <Button>編輯</Button>
+                </Link>
+              </div>
             </DetailButtonArea>
           </>
         )}

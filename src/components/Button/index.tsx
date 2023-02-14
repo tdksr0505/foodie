@@ -9,7 +9,10 @@ export default styled(Button)`
   background-color: #dda52e;
   color: #fff;
   font-size: 15px;
-  &:hover {
-    background-color: #ddbb70;
+  text-transform: none !important;
+  @media (hover: hover) {
+    &:hover {
+      background-color: #ddbb70;
+    }
   }
 `;

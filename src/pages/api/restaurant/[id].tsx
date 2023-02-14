@@ -26,7 +26,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   if (req.method === 'DELETE') {
     // DELETE 刪除資料
     const result = await restaurants?.deleteOne(query);
-    console.log(result);
     if (result.acknowledged) {
       res.status(200).json({
         code: 0,

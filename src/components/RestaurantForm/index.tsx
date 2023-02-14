@@ -67,7 +67,6 @@ export default ({ data, title, id, loading }: IRestaurantFormProps) => {
 
   const [formValue, setFormValue] = useState<TRestaurantFormData>(initailValue);
   const [mrtDefaultOption, setMrtDefaultOption] = useState<Array<TOption> | null>(null);
-  console.log(formValue);
   useEffect(() => {
     if (data) {
       setMrtDefaultOption(getMrtDefalutValue(data.mrt));
@@ -103,7 +102,6 @@ export default ({ data, title, id, loading }: IRestaurantFormProps) => {
     });
   };
   const onSubmit = () => {
-    console.log(formValue);
     const fetchUrl = id ? `/api/restaurant/${id}` : `/api/restaurant`;
     const returnUrl = id ? `/restaurant/detail/${id}` : `/`;
     fetch(fetchUrl, {
@@ -115,7 +113,7 @@ export default ({ data, title, id, loading }: IRestaurantFormProps) => {
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log(json.data.msg);
+        // console.log(json.data.msg);
         router.push(returnUrl);
       });
   };
@@ -217,7 +215,9 @@ export default ({ data, title, id, loading }: IRestaurantFormProps) => {
             </Styled.FormGroup>
 
             <Styled.ButtonArea>
-              <Button href={id ? `/restaurant/detail/${id}` : '/'}>返回</Button>
+              <Link href={id ? `/restaurant/detail/${id}` : '/'}>
+                <Styled.BackButton>返回</Styled.BackButton>
+              </Link>
               <Button onClick={onSubmit}>送出</Button>
             </Styled.ButtonArea>
           </>

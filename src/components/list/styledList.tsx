@@ -44,7 +44,7 @@ export const ListItem = styled.div`
   & + & {
     margin-top: 20px;
   }
-  @media screen and (min-width: 992px) {
+  @media (hover: hover) {
     &:hover {
       background-color: #fff0d7;
     }

@@ -8,9 +8,11 @@ import { foodTypeOptions } from '@/utils/foodTypeUtil';
 import { getFilterMrt, getLineName, getLineColor } from '@/utils/mrtUtil';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-// 依 捷運站
-// 依 捷運站
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+// 依 名稱
 // 依 類型
+// 依 捷運站
 // 依 有吃過沒吃過
 
 // 依 照分數
@@ -18,28 +20,40 @@ import Checkbox from '@mui/material/Checkbox';
 interface IFilterProps {
   fetchData: Array<TRestaurantDetail> | null;
   setFilteredData: React.Dispatch<React.SetStateAction<TRestaurantDetail[] | null>>;
+  filterOpen: boolean;
+  setFilterOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 interface IFilter {
   name: string;
   type: Array<string>;
   mrt: Array<string>;
+  isVisited: boolean | null;
 }
 
-const filterInitValue: IFilter = { name: '', type: [], mrt: [] };
-const Filter = ({ fetchData, setFilteredData }: IFilterProps) => {
+const filterInitValue: IFilter = { name: '', type: [], mrt: [], isVisited: null };
+const compareMrt = (filterMrt: Array<string>, listItemMrt: Array<string>) => {
+  //比較 filter mrt[] 和 list item的mrt[]
+  for (let itemMrt of listItemMrt) {
+    if (filterMrt.includes(itemMrt)) {
+      return true;
+    }
+  }
+  return false;
+};
+const Filter = ({ fetchData, setFilteredData, filterOpen, setFilterOpen }: IFilterProps) => {
   const [filter, setFilter] = useState<IFilter>(filterInitValue);
-  const [filterOpen, setFilterOpen] = useState<boolean>(false);
   const [filterMrtOption, setFilterMrtOption] = useState<{ [x: string]: TOption[] }>({});
 
   const handleReset = () => {
-    setFilter({ name: '', type: [], mrt: [] });
+    setFilter({ name: '', type: [], mrt: [], isVisited: null });
     setFilteredData(fetchData);
   };
 
   const handleSearch = () => {
     //點擊搜尋
     console.log(`搜尋條件`, filter);
-    if (filter.name === '' && filter.type.length === 0 && filter.mrt.length === 0) {
+    setFilterOpen(false);
+    if (filter.name === '' && filter.type.length === 0 && filter.mrt.length === 0 && filter.isVisited === null) {
       //無篩選條件
       handleReset();
       return;
@@ -48,12 +62,10 @@ const Filter = ({ fetchData, setFilteredData }: IFilterProps) => {
     const filterData = fetchData?.filter((elem) => {
       return (
         (filter.name === '' || elem.name.includes(filter.name)) &&
-        (filter.type.length === 0 || filter.type.includes(elem.type))
+        (filter.type.length === 0 || filter.type.includes(elem.type)) &&
+        (filter.mrt.length === 0 || compareMrt(filter.mrt, elem.mrt)) &&
+        (filter.isVisited === null || filter.isVisited === elem.isVisited)
       );
-      // if (filter.type.length > 0) {
-      //   console.log(`tttt`);
-      //   return filter.type.includes(elem.type);
-      // }
     });
     if (filterData) setFilteredData(filterData);
   };
@@ -89,6 +101,9 @@ const Filter = ({ fetchData, setFilteredData }: IFilterProps) => {
       setFilter({ ...filter, mrt: mrtValue });
     }
   };
+  const handleVisitedChange = (e: React.ChangeEvent<HTMLInputElement>, value: string) => {
+    setFilter({ ...filter, isVisited: value === 'true' ? true : false });
+  };
   useEffect(() => {
     // 生成資料有包含的捷運站
     const mrtStationsID = fetchData?.reduce((pre, cur) => {
@@ -104,18 +119,14 @@ const Filter = ({ fetchData, setFilteredData }: IFilterProps) => {
     }
   }, [fetchData]);
 
-  const toggleFilter = () => {
-    // 小屏開關filter面板
-    setFilterOpen((filterOpen) => !filterOpen);
-  };
-
   return (
     <>
-      <Styled.FilterButton onClick={toggleFilter}>
-        <Styled.FilterIcon />
-      </Styled.FilterButton>
       <Styled.Filter isOpen={filterOpen}>
-        <Styled.CloseBtnBox onClick={toggleFilter}>
+        <Styled.CloseBtnBox
+          onClick={() => {
+            setFilterOpen(false);
+          }}
+        >
           <Styled.CloseBtn />
         </Styled.CloseBtnBox>
         <Styled.InputBox>
@@ -163,6 +174,11 @@ const Filter = ({ fetchData, setFilteredData }: IFilterProps) => {
             </Styled.MrtLineBox>
           );
         })}
+        <Styled.FilterOptionTitle>吃過沒</Styled.FilterOptionTitle>
+        <RadioGroup row value={filter.isVisited} onChange={handleVisitedChange}>
+          <FormControlLabel value={true} control={<Radio />} label="吃過了" />
+          <FormControlLabel value={false} control={<Radio />} label="沒吃過" />
+        </RadioGroup>
         <Styled.ButtonBox>
           <Button onClick={handleReset}>Reset</Button>
           <Button onClick={handleSearch}>查詢</Button>

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Button from '@/components/Button';
+import FilterListIcon from '@mui/icons-material/FilterList';
 
 export const PageButtonArea = styled.div`
   margin-bottom: 10px;
@@ -9,7 +10,6 @@ export const PageButtonArea = styled.div`
   }
 `;
 export const FilterBox = styled.div`
-  z-index: 5;
   position: absolute;
   top: 0%;
   left: 0%;
@@ -31,6 +31,26 @@ export const ListBox = styled.div`
     padding-left: 20px;
   }
 `;
+export const FilterIcon = styled(FilterListIcon)`
+  color: #ffffff;
+  font-size: 35px;
+`;
+export const FilterButton = styled.div`
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #e4bc46;
+  text-align: center;
+  padding-top: 8px;
+  @media screen and (min-width: 992px) {
+    display: none;
+  }
+`;
+
 export const RestaurantListPageBox = styled.div`
   display: flex;
 `;

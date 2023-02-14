@@ -1,12 +1,19 @@
 import styled from 'styled-components';
 import { PageButtonArea } from './styledListPage';
 import TagBox from '@/components/TagBox';
+import Button from '@/components/Button';
 
 export const DetailTagBox = styled(TagBox)`
   margin-bottom: 10px;
 `;
 
+export const DeleteButton = styled(Button)`
+  margin-right: 10px;
+`;
+
 export const DetailButtonArea = styled(PageButtonArea)`
+  display: flex;
+  justify-content: space-between;
   margin-top: 25px;
   text-align: center;
 `;

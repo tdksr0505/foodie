@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 import { PageButtonArea } from '@/styled/styledListPage';
+import Button from '@/components/Button';
+
+export const BackButton = styled(Button)`
+  margin-right: 10px;
+`;
 
 export const ButtonArea = styled(PageButtonArea)`
   margin: 20px 0 0 0;

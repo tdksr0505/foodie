@@ -17,11 +17,12 @@ const StyledToggleTag = styled.div<IStyledToggleTagProps>`
   border: 1px solid ${DEFAULT_COLOR};
   border-radius: 30px;
   border-color: ${(props) => (props.active ? ACTIVE_COLOR : DEFAULT_COLOR)};
-
   cursor: pointer;
-  &:hover {
-    border-color: ${ACTIVE_COLOR};
-    color: ${ACTIVE_COLOR};
+  @media (hover: hover) {
+    &:hover {
+      border-color: ${ACTIVE_COLOR};
+      color: ${ACTIVE_COLOR};
+    }
   }
 `;
 

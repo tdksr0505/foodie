@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import TextField from '@/components/TextField';
 import Button from '@/components/Button';
 import BaseSearchIcon from '@mui/icons-material/Search';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import CloseIcon from '@mui/icons-material/Close';
 interface IFilterProps {
   isOpen: boolean;
@@ -13,6 +12,7 @@ interface IMrtLineNameProps {
 }
 
 export const Filter = styled.div<IFilterProps>`
+  z-index: 5;
   position: absolute;
   top: ${(props) => (props.isOpen ? '0%' : '100%')};
   left: 0;
@@ -44,25 +44,6 @@ export const SearchIcon = styled(BaseSearchIcon)`
   left: 10px;
   transform: translateY(-50%);
 `;
-export const FilterIcon = styled(FilterListIcon)`
-  color: #ffffff;
-  font-size: 35px;
-`;
-export const FilterButton = styled.div`
-  position: fixed;
-  left: 50%;
-  bottom: 20px;
-  transform: translateX(-50%);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #e4bc46;
-  text-align: center;
-  padding-top: 8px;
-  @media screen and (min-width: 992px) {
-    display: none;
-  }
-`;
 
 export const CloseBtnBox = styled.div`
   text-align: right;
@@ -73,7 +54,7 @@ export const CloseBtnBox = styled.div`
 `;
 export const CloseBtn = styled(CloseIcon)`
   color: #e4bc46;
-  font-size: 50px;
+  font-size: 38px;
 `;
 
 export const FilterOptionTitle = styled.div`
