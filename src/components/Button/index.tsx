@@ -12,7 +12,7 @@ export default styled(Button)`
   text-transform: none !important;
   @media (hover: hover) {
     &:hover {
-      background-color: #ddbb70;
+      background-color: #dda52e;
     }
   }
 `;

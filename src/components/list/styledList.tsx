@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import BaseTag from '../Tag';
 import StarIcon from '@mui/icons-material/Star';
 
 export const Title = styled.div`
@@ -63,4 +62,10 @@ export const RateBox = styled.div`
   display: flex;
   align-items: center;
 `;
-export const List = styled.div``;
+export const List = styled.div`
+  width: 100%;
+  flex: 1 1 auto;
+  @media screen and (min-width: 992px) {
+    padding-left: 20px;
+  }
+`;

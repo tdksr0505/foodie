@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import type { TRestaurantDetail } from '@/type';
@@ -36,17 +35,13 @@ export default function Home() {
         </Link>
       </Styled.PageButtonArea>
       <Styled.RestaurantListPageBox>
-        <Styled.FilterBox>
-          <Filter
-            fetchData={fetchData}
-            setFilteredData={setFilteredData}
-            filterOpen={filterOpen}
-            setFilterOpen={setFilterOpen}
-          />
-        </Styled.FilterBox>
-        <Styled.ListBox>
-          <List data={filteredData} />
-        </Styled.ListBox>
+        <Filter
+          fetchData={fetchData}
+          setFilteredData={setFilteredData}
+          filterOpen={filterOpen}
+          setFilterOpen={setFilterOpen}
+        />
+        <List data={filteredData} />
       </Styled.RestaurantListPageBox>
       <Styled.FilterButton
         onClick={() => {

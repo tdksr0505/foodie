@@ -13,7 +13,7 @@ interface IMrtLineNameProps {
 
 export const Filter = styled.div<IFilterProps>`
   z-index: 5;
-  position: absolute;
+  position: fixed;
   top: ${(props) => (props.isOpen ? '0%' : '100%')};
   left: 0;
   width: 100%;
@@ -23,6 +23,8 @@ export const Filter = styled.div<IFilterProps>`
   transition: top 0.2s;
   @media screen and (min-width: 992px) {
     position: static;
+    flex: 0 0 auto;
+    width: 300px;
     height: auto;
   }
 `;
