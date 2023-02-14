@@ -217,13 +217,7 @@ export default ({ data, title, id, loading }: IRestaurantFormProps) => {
             </Styled.FormGroup>
 
             <Styled.ButtonArea>
-              <Button
-                onClick={() => {
-                  router.push(id ? `/restaurant/detail/${id}` : '/');
-                }}
-              >
-                返回
-              </Button>
+              <Button href={id ? `/restaurant/detail/${id}` : '/'}>返回</Button>
               <Button onClick={onSubmit}>送出</Button>
             </Styled.ButtonArea>
           </>

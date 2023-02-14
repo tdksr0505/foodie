@@ -1,6 +1,5 @@
 import mrtStationInfo from '../config/mrtStation.json';
 import { TOption } from '@/type';
-import { off } from 'process';
 const MRT_TAG_CONFIG: { [x: string]: { font: string; bg: string } } = {
   BL: {
     font: '#ffffff',

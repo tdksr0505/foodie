@@ -35,9 +35,7 @@ export default function RestaurantDetail() {
 
     fetchData();
   }, [router.isReady]);
-  const onClickEdit = () => {
-    router.push(`/restaurant/edit/${id}`);
-  };
+
   const handleDelete = async () => {
     await fetch(`/api/restaurant/${id}`, { method: 'DELETE' })
       .then((res) => res.json())
@@ -113,7 +111,7 @@ export default function RestaurantDetail() {
 
             <DetailButtonArea>
               <Button onClick={onClickDelete}>刪除</Button>
-              <Button onClick={onClickEdit}>編輯</Button>
+              <Button href={`/restaurant/edit/${id}`}>編輯</Button>
             </DetailButtonArea>
           </>
         )}

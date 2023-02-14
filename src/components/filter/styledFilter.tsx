@@ -1,11 +1,17 @@
 import styled from 'styled-components';
 import TextField from '@/components/TextField';
+import Button from '@/components/Button';
 import BaseSearchIcon from '@mui/icons-material/Search';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import CloseIcon from '@mui/icons-material/Close';
 interface IFilterProps {
   isOpen: boolean;
 }
+
+interface IMrtLineNameProps {
+  color?: string;
+}
+
 export const Filter = styled.div<IFilterProps>`
   position: absolute;
   top: ${(props) => (props.isOpen ? '0%' : '100%')};
@@ -83,13 +89,22 @@ export const MrtLineBox = styled.div`
   }
 `;
 
-interface IMrtLineNameProps {
-  color?: string;
-}
 export const MrtLineName = styled.div<IMrtLineNameProps>`
   color: ${(props) => props.color};
 `;
 
 export const ToggleTagBox = styled.div`
   margin-bottom: 10px;
+`;
+
+export const ButtonBox = styled.div`
+  display: flex;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  ${Button} {
+    width: 50%;
+  }
+  ${Button}+ ${Button} {
+    margin-left: 10px;
+  }
 `;
