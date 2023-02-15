@@ -55,7 +55,7 @@ export const CloseBtnBox = styled.div`
   }
 `;
 export const CloseBtn = styled(CloseIcon)`
-  color: #e4bc46;
+  color: #82929f;
   font-size: 38px;
 `;
 

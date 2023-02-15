@@ -22,7 +22,7 @@ export const FilterButton = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #e4bc46;
+  background-color: #82929f;
   text-align: center;
   padding-top: 8px;
   @media screen and (min-width: 992px) {
