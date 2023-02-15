@@ -1,16 +1,13 @@
 import React, { createContext, useState } from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-
-interface ISnackbarProviderProps {
-  children: React.ReactNode;
-}
+import { TChildren } from '@/type';
 
 const contextDefaultValue = {
   showSnackbar: (msg: string) => {},
 };
 export const SnackbarContext = createContext(contextDefaultValue);
-export const SnackbarProvider = ({ children }: ISnackbarProviderProps) => {
+export const SnackbarProvider = ({ children }: TChildren) => {
   const [message, setMessage] = useState<string>('');
   const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
   const showSnackbar = (msg: string) => {

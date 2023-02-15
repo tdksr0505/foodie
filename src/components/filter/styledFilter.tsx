@@ -12,7 +12,7 @@ interface IMrtLineNameProps {
 }
 
 export const Filter = styled.div<IFilterProps>`
-  z-index: 5;
+  z-index: 2;
   position: fixed;
   top: ${(props) => (props.isOpen ? '0%' : '100%')};
   left: 0;

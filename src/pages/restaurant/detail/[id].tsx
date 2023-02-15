@@ -19,6 +19,7 @@ import {
 import { RateBox, Rate, Star } from '@/components/List/styledList';
 import { getStationName, getTagColor } from '../../../utils/mrtUtil';
 import { useSnackbar } from '@/hooks/useSnackbar';
+import { useLoading } from '@/hooks/useLoading';
 
 export default function RestaurantDetail() {
   const router = useRouter();
@@ -26,16 +27,18 @@ export default function RestaurantDetail() {
   const [detailData, setDetailData] = useState<TRestaurantFormData | null>(null);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const { showSnackbar } = useSnackbar();
+  const { setLoading } = useLoading();
 
   useEffect(() => {
     if (!router.isReady) return;
-
+    setLoading(true);
     const fetchData = async () => {
       await fetch(`/api/restaurant/${id}`)
         .then((res) => res.json())
         .then((response) => {
           setDetailData(response.data);
         });
+      setLoading(false);
     };
 
     fetchData();

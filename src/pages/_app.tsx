@@ -5,17 +5,20 @@ import GlobalStyles from '../styled/globalStyles';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '../config/theme';
 import { SnackbarProvider } from '../context/snackbarContext';
+import { LoadingProvider } from '../context/loadingContext';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <SnackbarProvider>
-          <GlobalStyles />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </SnackbarProvider>
+        <LoadingProvider>
+          <SnackbarProvider>
+            <GlobalStyles />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </SnackbarProvider>
+        </LoadingProvider>
       </ThemeProvider>
     </>
   );

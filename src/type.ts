@@ -29,3 +29,7 @@ export type TRestaurantFormData = {
   rate: string | null;
   canReserve: string;
 };
+
+export type TChildren = {
+  children: React.ReactNode;
+};
