@@ -6,7 +6,7 @@ export const Logo = styled.img`
 `;
 
 export const Header = styled.header`
-  z-index: 3;
+  z-index: 10;
   display: flex;
   align-items: center;
   position: sticky;
@@ -14,6 +14,6 @@ export const Header = styled.header`
   left: 0;
   height: 70px;
   padding: 0 30px;
-  background-color: #d6b657;
+  background-color: #82929f;
   box-shadow: 0 2px 5px rgb(0 0 0 / 15%);
 `;

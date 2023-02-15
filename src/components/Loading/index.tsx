@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const Container = styled.div`
-  z-index: 5;
+  z-index: 20;
   position: fixed;
   top: 0;
   left: 0;

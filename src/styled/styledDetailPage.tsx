@@ -21,7 +21,7 @@ export const DetailButtonArea = styled(PageButtonArea)`
 export const TopArea = styled.div`
   margin-bottom: 20px;
   padding-bottom: 15px;
-  border-bottom: 2px solid #f0c756;
+  border-bottom: 2px solid #82929f;
 `;
 
 export const Title = styled.div`

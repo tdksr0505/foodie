@@ -2,9 +2,6 @@ import styled from 'styled-components';
 import Button from '@/components/Button';
 import FilterListIcon from '@mui/icons-material/FilterList';
 
-interface IFilterBoxProps {
-  filterOpen: boolean;
-}
 export const PageButtonArea = styled.div`
   margin-bottom: 10px;
   text-align: right;

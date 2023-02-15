@@ -5,4 +5,5 @@ export const Container = styled(BaseContainer)``;
 
 export const Main = styled.main`
   padding: 20px 0;
+  position: relative;
 `;

@@ -7,12 +7,11 @@ const GlobalStyles = createGlobalStyle`
 }
 body {
   margin: 0;
-  background-image: linear-gradient(135deg, #fdfcfb 0%, #cdaf96 100%);
-  /* background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
+  /* background-image: linear-gradient(135deg, #fdfcfb 0%, #cdaf96 100%);
   background-repeat: no-repeat;
   background-position: top center;
   background-size: 100%;
-  background-attachment: fixed;
+  background-attachment: fixed; */
   a{
     text-decoration: none;
   }

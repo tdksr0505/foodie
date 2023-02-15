@@ -12,9 +12,9 @@ interface IMrtLineNameProps {
 }
 
 export const Filter = styled.div<IFilterProps>`
-  z-index: 2;
+  z-index: 4;
   position: fixed;
-  top: ${(props) => (props.isOpen ? '0%' : '100%')};
+  top: ${(props) => (props.isOpen ? '70px' : '100%')}; // open時到header高度
   left: 0;
   width: 100%;
   height: 100%;
