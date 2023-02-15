@@ -36,20 +36,26 @@ const MRT_LINE: { [x: string]: string } = {
   R: '淡水信義線',
 };
 
-const getAllStationOptions = (): Array<TOption> => {
-  const options: Array<TOption> = [];
+const allStationOptions: Array<TOption> = [];
+const allStations: { [x: string]: string } = {};
+
+const genStationInfo = () => {
   for (let lineInfo of mrtStationInfo) {
     for (let station of lineInfo.Stations) {
-      options?.push({ label: station.StationName, value: station.StationID });
+      allStationOptions?.push({ label: station.StationName, value: station.StationID });
+      allStations[station.StationID] = station.StationName;
     }
   }
-  return options;
 };
 
-export const allStationOptions = getAllStationOptions();
+export const getAllStationOptions = (): Array<TOption> => {
+  if (allStationOptions.length === 0) genStationInfo();
+  return allStationOptions;
+};
 
 export const getStationName = (StationID: string): string => {
-  return allStationOptions?.find((elem) => elem.value === StationID)?.label!;
+  if (allStationOptions.length === 0) genStationInfo();
+  return allStations[StationID];
 };
 export const getTagColor = (StationID: string): { fontColor: string; bgColor: string } => {
   for (let lineInfo of mrtStationInfo) {

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import TextField from '@/components/TextField';
 import Button from '@/components/Button';
 import WhiteBox from '@/components/WhiteBox';
-import { allStationOptions } from '../../utils/mrtUtil';
+import { getAllStationOptions } from '../../utils/mrtUtil';
 import * as Styled from './styledRestaurantForm';
 import RadioGroup from '@/components/RadioGroup';
 import { TOption, TRestaurantFormData } from '@/type';
@@ -12,7 +12,7 @@ import Select from '@/components/Select';
 import AutoComplete from '@/components/AutoComplete';
 import { foodTypeOptions } from '../../utils/foodTypeUtil';
 import { SelectChangeEvent } from '@mui/material/Select';
-import { useSnackbar } from '@/hooks/useSnackbar';
+import useSnackbar from '@/hooks/useSnackbar';
 
 interface IRestaurantFormProps {
   data?: TRestaurantFormData;
@@ -69,7 +69,7 @@ export default ({ data, title, id, loading }: IRestaurantFormProps) => {
   const [formValue, setFormValue] = useState<TRestaurantFormData>(initailValue);
   const [mrtDefaultOption, setMrtDefaultOption] = useState<Array<TOption> | null>(null);
   const { showSnackbar } = useSnackbar();
-
+  const allStationOptions = getAllStationOptions();
   useEffect(() => {
     if (data) {
       setMrtDefaultOption(getMrtDefalutValue(data.mrt));
