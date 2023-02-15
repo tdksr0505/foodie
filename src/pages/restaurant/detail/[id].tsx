@@ -18,11 +18,14 @@ import {
 } from '@/styled/styledDetailPage';
 import { RateBox, Rate, Star } from '@/components/List/styledList';
 import { getStationName, getTagColor } from '../../../utils/mrtUtil';
+import { useSnackbar } from '@/hooks/useSnackbar';
+
 export default function RestaurantDetail() {
   const router = useRouter();
   const { id } = router.query;
   const [detailData, setDetailData] = useState<TRestaurantFormData | null>(null);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
+  const { showSnackbar } = useSnackbar();
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -43,6 +46,7 @@ export default function RestaurantDetail() {
       .then((res) => res.json())
       .then((response) => {
         if (response.code === 0) {
+          showSnackbar(response.data.msg);
           router.push(`/`);
         }
       });

@@ -12,6 +12,7 @@ import Select from '@/components/Select';
 import AutoComplete from '@/components/AutoComplete';
 import { foodTypeOptions } from '../../utils/foodTypeUtil';
 import { SelectChangeEvent } from '@mui/material/Select';
+import { useSnackbar } from '@/hooks/useSnackbar';
 
 interface IRestaurantFormProps {
   data?: TRestaurantFormData;
@@ -67,6 +68,8 @@ export default ({ data, title, id, loading }: IRestaurantFormProps) => {
 
   const [formValue, setFormValue] = useState<TRestaurantFormData>(initailValue);
   const [mrtDefaultOption, setMrtDefaultOption] = useState<Array<TOption> | null>(null);
+  const { showSnackbar } = useSnackbar();
+
   useEffect(() => {
     if (data) {
       setMrtDefaultOption(getMrtDefalutValue(data.mrt));
@@ -114,6 +117,7 @@ export default ({ data, title, id, loading }: IRestaurantFormProps) => {
       .then((response) => response.json())
       .then((json) => {
         // console.log(json.data.msg);
+        showSnackbar(json.data.msg);
         router.push(returnUrl);
       });
   };

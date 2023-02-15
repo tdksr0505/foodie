@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     if (result.acknowledged) {
       res.status(200).json({
         code: 0,
-        data: { msg: '新增成功' },
+        data: { msg: '已成功新增' },
       });
     } else {
       res.status(200).json({

@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     if (result.acknowledged) {
       res.status(200).json({
         code: 0,
-        data: { msg: '刪除成功' },
+        data: { msg: '已成功刪除' },
       });
     }
   }

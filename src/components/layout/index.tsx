@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../Header';
 import * as Styled from './styledLayout';
+import { SnackbarProvider } from '../../context/snackbarContext';
 
 interface ILayoutProps {
   children: React.ReactNode;
@@ -8,14 +9,14 @@ interface ILayoutProps {
 const Layout = ({ children }: ILayoutProps) => {
   return (
     <>
-      <div>
+      <SnackbarProvider>
         <Header />
         <Styled.Container>
           <Styled.Main>
             <div>{children}</div>
           </Styled.Main>
         </Styled.Container>
-      </div>
+      </SnackbarProvider>
     </>
   );
 };
