@@ -1,6 +1,6 @@
 import mrtStationInfo from '../config/mrtStation.json';
 import { TOption } from '@/type';
-const MRT_TAG_CONFIG: { [x: string]: { font: string; bg: string } } = {
+const MRT_COLOR_CONFIG: { [x: string]: { font: string; bg: string } } = {
   BL: {
     font: '#ffffff',
     bg: '#0070bd',
@@ -35,6 +35,7 @@ const MRT_LINE: { [x: string]: string } = {
   Y: '環狀線',
   R: '淡水信義線',
 };
+
 const getAllStationOptions = (): Array<TOption> => {
   const options: Array<TOption> = [];
   for (let lineInfo of mrtStationInfo) {
@@ -44,6 +45,7 @@ const getAllStationOptions = (): Array<TOption> => {
   }
   return options;
 };
+
 export const allStationOptions = getAllStationOptions();
 
 export const getStationName = (StationID: string): string => {
@@ -52,12 +54,12 @@ export const getStationName = (StationID: string): string => {
 export const getTagColor = (StationID: string): { fontColor: string; bgColor: string } => {
   for (let lineInfo of mrtStationInfo) {
     if (lineInfo.Stations.find((elem) => elem.StationID === StationID)) {
-      const fontColor = MRT_TAG_CONFIG[lineInfo.LineID as keyof typeof MRT_TAG_CONFIG].font;
-      const bgColor = MRT_TAG_CONFIG[lineInfo.LineID as keyof typeof MRT_TAG_CONFIG].bg;
+      const fontColor = MRT_COLOR_CONFIG[lineInfo.LineID as keyof typeof MRT_COLOR_CONFIG].font;
+      const bgColor = MRT_COLOR_CONFIG[lineInfo.LineID as keyof typeof MRT_COLOR_CONFIG].bg;
       return { fontColor, bgColor };
     }
   }
-  return { fontColor: MRT_TAG_CONFIG.BL.font, bgColor: MRT_TAG_CONFIG.BL.bg };
+  return { fontColor: MRT_COLOR_CONFIG.BL.font, bgColor: MRT_COLOR_CONFIG.BL.bg };
 };
 export const getFilterMrt = (StationIDArray: Array<string>) => {
   const filterMrt: { [x: string]: TOption[] } = {};
@@ -84,8 +86,8 @@ export const getLineName = (lineID: string) => {
 };
 
 export const getLineColor = (lineID: string) => {
-  if (lineID in MRT_TAG_CONFIG) {
-    return { fontColor: MRT_TAG_CONFIG[lineID].font, bgColor: MRT_TAG_CONFIG[lineID].bg };
+  if (lineID in MRT_COLOR_CONFIG) {
+    return { fontColor: MRT_COLOR_CONFIG[lineID].font, bgColor: MRT_COLOR_CONFIG[lineID].bg };
   }
-  return { fontColor: MRT_TAG_CONFIG.BL.font, bgColor: MRT_TAG_CONFIG.BL.bg };
+  return { fontColor: MRT_COLOR_CONFIG.BL.font, bgColor: MRT_COLOR_CONFIG.BL.bg };
 };

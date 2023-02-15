@@ -5,7 +5,7 @@ import * as Styled from '../styled/styledListPage';
 import Filter from '../components/Filter';
 import List from '../components/List';
 import Button from '../components/Button';
-import { useLoading } from '../hooks/useLoading';
+import useLoading from '../hooks/useLoading';
 
 export default function Home() {
   const [fetchData, setFetchData] = useState<Array<TRestaurantDetail> | null>(null);

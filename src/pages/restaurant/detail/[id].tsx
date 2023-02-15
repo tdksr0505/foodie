@@ -6,20 +6,11 @@ import Button from '@/components/Button';
 import WhiteBox from '@/components/WhiteBox';
 import Tag from '@/components/Tag';
 import Dialog from '@/components/Dialog';
-import {
-  DataRow,
-  DataLabel,
-  DataValue,
-  Title,
-  TopArea,
-  DetailButtonArea,
-  DetailTagBox,
-  DeleteButton,
-} from '@/styled/styledDetailPage';
+import * as Styled from '@/styled/styledDetailPage';
 import { RateBox, Rate, Star } from '@/components/List/styledList';
 import { getStationName, getTagColor } from '../../../utils/mrtUtil';
-import { useSnackbar } from '@/hooks/useSnackbar';
-import { useLoading } from '@/hooks/useLoading';
+import useSnackbar from '@/hooks/useSnackbar';
+import useLoading from '@/hooks/useLoading';
 
 export default function RestaurantDetail() {
   const router = useRouter();
@@ -62,9 +53,9 @@ export default function RestaurantDetail() {
       <WhiteBox>
         {detailData && (
           <>
-            <TopArea>
-              <Title>{detailData.name}</Title>
-              <DetailTagBox>
+            <Styled.TopArea>
+              <Styled.Title>{detailData.name}</Styled.Title>
+              <Styled.DetailTagBox>
                 {detailData.mrt.map((stationID) => {
                   const { fontColor, bgColor } = getTagColor(stationID);
                   const stationName = getStationName(stationID);
@@ -74,62 +65,62 @@ export default function RestaurantDetail() {
                     </Tag>
                   );
                 })}
-              </DetailTagBox>
+              </Styled.DetailTagBox>
               <RateBox>
                 <Star />
                 <Rate>{detailData.rate}</Rate>
               </RateBox>
-            </TopArea>
-            <DataRow>
-              <DataLabel>地址：</DataLabel>
-              <DataValue>
+            </Styled.TopArea>
+            <Styled.DataRow>
+              <Styled.DataLabel>地址：</Styled.DataLabel>
+              <Styled.DataValue>
                 <div>{detailData.address}</div>
-              </DataValue>
-            </DataRow>
-            <DataRow>
-              <DataLabel>電話：</DataLabel>
-              <DataValue>
+              </Styled.DataValue>
+            </Styled.DataRow>
+            <Styled.DataRow>
+              <Styled.DataLabel>電話：</Styled.DataLabel>
+              <Styled.DataValue>
                 <div>{detailData.tel}</div>
-              </DataValue>
-            </DataRow>
-            <DataRow>
-              <DataLabel>餐廳類型：</DataLabel>
-              <DataValue>
+              </Styled.DataValue>
+            </Styled.DataRow>
+            <Styled.DataRow>
+              <Styled.DataLabel>餐廳類型：</Styled.DataLabel>
+              <Styled.DataValue>
                 <div>{detailData.type}</div>
-              </DataValue>
-            </DataRow>
-            <DataRow>
-              <DataLabel>是否可訂位：</DataLabel>
-              <DataValue>
+              </Styled.DataValue>
+            </Styled.DataRow>
+            <Styled.DataRow>
+              <Styled.DataLabel>是否可訂位：</Styled.DataLabel>
+              <Styled.DataValue>
                 <div>{detailData.canReserve ? '可訂位' : '不可訂位'}</div>
-              </DataValue>
-            </DataRow>
-            <DataRow>
-              <DataLabel>是否吃過：</DataLabel>
-              <DataValue>
+              </Styled.DataValue>
+            </Styled.DataRow>
+            <Styled.DataRow>
+              <Styled.DataLabel>是否吃過：</Styled.DataLabel>
+              <Styled.DataValue>
                 <div>{detailData.isVisited ? '已吃過' : '沒吃過'}</div>
-              </DataValue>
-            </DataRow>
-            <DataRow>
-              <DataLabel>是否回訪：</DataLabel>
-              <DataValue>
+              </Styled.DataValue>
+            </Styled.DataRow>
+            <Styled.DataRow>
+              <Styled.DataLabel>是否回訪：</Styled.DataLabel>
+              <Styled.DataValue>
                 <div>{detailData.isReturnVisited ? '可回訪' : '不用回訪'}</div>
-              </DataValue>
-            </DataRow>
+              </Styled.DataValue>
+            </Styled.DataRow>
 
-            <DetailButtonArea>
+            <Styled.DetailButtonArea>
               <div>
                 <Link href="/">
                   <Button>返回列表</Button>
                 </Link>
               </div>
               <div>
-                <DeleteButton onClick={onClickDelete}>刪除</DeleteButton>
+                <Styled.DeleteButton onClick={onClickDelete}>刪除</Styled.DeleteButton>
                 <Link href={`/restaurant/edit/${id}`}>
                   <Button>編輯</Button>
                 </Link>
               </div>
-            </DetailButtonArea>
+            </Styled.DetailButtonArea>
           </>
         )}
       </WhiteBox>

@@ -3,7 +3,7 @@ import Header from '../Header';
 import * as Styled from './styledLayout';
 
 interface ILayoutProps {
-  children: React.ReactNode;
+  children: React.ReactElement;
 }
 const Layout = ({ children }: ILayoutProps) => {
   return (

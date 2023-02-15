@@ -31,5 +31,5 @@ export type TRestaurantFormData = {
 };
 
 export type TChildren = {
-  children: React.ReactNode;
+  children: React.ReactElement;
 };
