@@ -41,6 +41,7 @@ const compareMrt = (filterMrt: Array<string>, listItemMrt: Array<string>) => {
   return false;
 };
 const Filter = ({ fetchData, setFilteredData, filterOpen, setFilterOpen }: IFilterProps) => {
+  console.log(`filter fetchData`, fetchData);
   const [filter, setFilter] = useState<IFilter>(filterInitValue);
   const [filterMrtOption, setFilterMrtOption] = useState<{ [x: string]: TOption[] }>({});
 

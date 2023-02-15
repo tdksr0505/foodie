@@ -12,24 +12,23 @@ export default function Home() {
   const [filteredData, setFilteredData] = useState<Array<TRestaurantDetail> | null>(null);
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
   const { setLoading } = useLoading();
-
-  const toggleFilter = () => {
-    // 小屏開關filter面板
-    setFilterOpen((filterOpen) => !filterOpen);
-  };
   useEffect(() => {
-    setLoading(true);
     const fetchData = async () => {
-      await fetch(`/api/restaurant/`)
+      setLoading(true);
+      await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/restaurant/`)
         .then((res) => res.json())
         .then((response) => {
+          console.log(`response`, response);
           setFetchData(response.data.restaurant);
-          setFilteredData(response.data.restaurant);
           setLoading(false);
         });
     };
     fetchData();
   }, []);
+  useEffect(() => {
+    console.log(`setFilteredData`);
+    setFilteredData(fetchData);
+  }, [fetchData]);
 
   return (
     <>
@@ -45,7 +44,7 @@ export default function Home() {
           filterOpen={filterOpen}
           setFilterOpen={setFilterOpen}
         />
-        <List data={filteredData} />
+        <List filteredData={filteredData} />
       </Styled.RestaurantListPageBox>
       <Styled.FilterButton
         onClick={() => {

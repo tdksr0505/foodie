@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     //query
     const restaurant = await restaurants?.find().toArray();
     res.status(200).json({
-      code: 1,
+      code: 0,
       data: { restaurant },
     });
   }

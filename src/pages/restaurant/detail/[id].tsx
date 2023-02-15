@@ -24,7 +24,7 @@ export default function RestaurantDetail() {
     if (!router.isReady) return;
     setLoading(true);
     const fetchData = async () => {
-      await fetch(`/api/restaurant/${id}`)
+      await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/restaurant/${id}`)
         .then((res) => res.json())
         .then((response) => {
           setDetailData(response.data);

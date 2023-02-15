@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import * as Styled from './styledList';
 // import fakeData from '@/../fakeData.json';
@@ -7,10 +7,18 @@ import TagBox from '@/components/TagBox';
 import Tag from '@/components/Tag';
 import { getStationName, getTagColor } from '../../utils/mrtUtil';
 interface IListProps {
-  data: Array<TRestaurantDetail> | null;
+  filteredData: Array<TRestaurantDetail> | null;
 }
 
-const List = ({ data }: IListProps) => {
+const List = ({ filteredData }: IListProps) => {
+  const [data, setData] = useState<Array<TRestaurantDetail> | null>(null);
+  useEffect(() => {
+    console.log(`list: prop is change`);
+    console.log(filteredData);
+
+    setData(filteredData);
+  }, [filteredData]);
+  console.log(`list data`, data);
   const BASE_DETAIL_URL = '/restaurant/detail/';
   return (
     <Styled.List>
