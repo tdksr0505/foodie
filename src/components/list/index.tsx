@@ -7,18 +7,10 @@ import TagBox from '@/components/TagBox';
 import Tag from '@/components/Tag';
 import { getStationName, getTagColor } from '../../utils/mrtUtil';
 interface IListProps {
-  filteredData: Array<TRestaurantDetail> | null;
+  data: Array<TRestaurantDetail> | null;
 }
 
-const List = ({ filteredData }: IListProps) => {
-  const [data, setData] = useState<Array<TRestaurantDetail> | null>(null);
-  useEffect(() => {
-    console.log(`list: prop is change`);
-    console.log(filteredData);
-
-    setData(filteredData);
-  }, [filteredData]);
-  console.log(`list data`, data);
+const List = ({ data }: IListProps) => {
   const BASE_DETAIL_URL = '/restaurant/detail/';
   return (
     <Styled.List>

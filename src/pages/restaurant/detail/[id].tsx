@@ -36,7 +36,7 @@ export default function RestaurantDetail() {
   }, [router.isReady]);
 
   const handleDelete = async () => {
-    await fetch(`/api/restaurant/${id}`, { method: 'DELETE' })
+    await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/restaurant/${id}`, { method: 'DELETE' })
       .then((res) => res.json())
       .then((response) => {
         if (response.code === 0) {

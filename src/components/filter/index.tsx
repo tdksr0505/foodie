@@ -41,7 +41,6 @@ const compareMrt = (filterMrt: Array<string>, listItemMrt: Array<string>) => {
   return false;
 };
 const Filter = ({ fetchData, setFilteredData, filterOpen, setFilterOpen }: IFilterProps) => {
-  console.log(`filter fetchData`, fetchData);
   const [filter, setFilter] = useState<IFilter>(filterInitValue);
   const [filterMrtOption, setFilterMrtOption] = useState<{ [x: string]: TOption[] }>({});
 
@@ -107,6 +106,7 @@ const Filter = ({ fetchData, setFilteredData, filterOpen, setFilterOpen }: IFilt
   };
   useEffect(() => {
     // 生成資料有包含的捷運站
+    console.log(`fetchData`, fetchData);
     const mrtStationsID = fetchData?.reduce((pre, cur) => {
       return [...pre, ...cur.mrt];
     }, [] as Array<string>);

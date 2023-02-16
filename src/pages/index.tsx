@@ -18,7 +18,6 @@ export default function Home() {
       await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/restaurant/`)
         .then((res) => res.json())
         .then((response) => {
-          console.log(`response`, response);
           setFetchData(response.data.restaurant);
           setLoading(false);
         });
@@ -26,7 +25,6 @@ export default function Home() {
     fetchData();
   }, []);
   useEffect(() => {
-    console.log(`setFilteredData`);
     setFilteredData(fetchData);
   }, [fetchData]);
 
@@ -44,7 +42,7 @@ export default function Home() {
           filterOpen={filterOpen}
           setFilterOpen={setFilterOpen}
         />
-        <List filteredData={filteredData} />
+        <List data={filteredData} />
       </Styled.RestaurantListPageBox>
       <Styled.FilterButton
         onClick={() => {

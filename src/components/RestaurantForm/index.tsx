@@ -51,6 +51,7 @@ const canReserveConfig: Array<TOption> = [
   },
 ];
 
+const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
 export default ({ data, title, id, loading }: IRestaurantFormProps) => {
   const router = useRouter();
   const initailValue: TRestaurantFormData = {
@@ -105,7 +106,7 @@ export default ({ data, title, id, loading }: IRestaurantFormProps) => {
     });
   };
   const onSubmit = () => {
-    const fetchUrl = id ? `/api/restaurant/${id}` : `/api/restaurant`;
+    const fetchUrl = id ? `${BASE_API_URL}/api/restaurant/${id}` : `${BASE_API_URL}/api/restaurant`;
     const returnUrl = id ? `/restaurant/detail/${id}` : `/`;
     fetch(fetchUrl, {
       method: 'POST',
