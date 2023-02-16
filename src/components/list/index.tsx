@@ -20,7 +20,7 @@ const List = ({ data }: IListProps) => {
             <Styled.ListItem key={item._id}>
               <Link href={BASE_DETAIL_URL + item._id}>
                 <Styled.ListItemBox>
-                  {item.isVisited && <Styled.VisitMark>done</Styled.VisitMark>}
+                  {item.isVisited && <Styled.PostTag>done</Styled.PostTag>}
                   <Styled.Title>{item.name}</Styled.Title>
                   <Styled.RateBox>
                     <Styled.Star />

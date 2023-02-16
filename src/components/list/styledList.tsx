@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import StarIcon from '@mui/icons-material/Star';
+import BasePostTag from '@/components/PostTag';
 
 export const Title = styled.div`
   font-size: 20px;
@@ -14,15 +15,10 @@ export const SimpleAddress = styled.div`
   margin-bottom: 8px;
 `;
 
-export const VisitMark = styled.div`
+export const PostTag = styled(BasePostTag)`
   position: absolute;
   top: 10px;
-  right: 20px;
-  border: 2px solid #ff0000;
-  padding: 2px;
-  color: #ff0000;
-  font-weight: bold;
-  font-size: 18px;
+  right: 4px;
   transform: rotate(35deg);
 `;
 
