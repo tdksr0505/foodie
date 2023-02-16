@@ -18,7 +18,6 @@ interface IRestaurantFormProps {
   data?: TRestaurantFormData;
   title?: string;
   id?: string | string[];
-  loading?: boolean;
 }
 const isVisitedConfig: Array<TOption> = [
   {
@@ -52,7 +51,7 @@ const canReserveConfig: Array<TOption> = [
 ];
 
 const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
-export default ({ data, title, id, loading }: IRestaurantFormProps) => {
+export default ({ data, title, id }: IRestaurantFormProps) => {
   const router = useRouter();
   const initailValue: TRestaurantFormData = {
     name: null,
@@ -130,7 +129,7 @@ export default ({ data, title, id, loading }: IRestaurantFormProps) => {
   return (
     <>
       <WhiteBox>
-        {!loading || data ? (
+        {data ? (
           <>
             {title && <Styled.PageTitle>{title}</Styled.PageTitle>}
             <Styled.FormGroup>

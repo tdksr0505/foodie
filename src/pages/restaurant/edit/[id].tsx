@@ -2,17 +2,16 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import type { TRestaurantFormData } from '@/type';
 import RestaurantForm from '@/components/RestaurantForm';
-
+import useLoading from '@/hooks/useLoading';
 export default function RestaurantDetail() {
   const router = useRouter();
   const { id } = router.query;
   const [detailData, setDetailData] = useState<TRestaurantFormData | undefined>(undefined);
-  const [loading, setLoading] = useState<boolean>(false);
-
+  const { setLoading } = useLoading();
   useEffect(() => {
     if (!router.isReady) return;
-    setLoading(true);
     const fetchData = async () => {
+      setLoading(true);
       await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/restaurant/${id}`)
         .then((res) => res.json())
         .then((response) => {
@@ -27,7 +26,7 @@ export default function RestaurantDetail() {
   }, [router.isReady]);
   return (
     <>
-      <RestaurantForm title="Edit" data={detailData} id={id} loading={loading}></RestaurantForm>
+      <RestaurantForm title="Edit" data={detailData} id={id}></RestaurantForm>
     </>
   );
 }
