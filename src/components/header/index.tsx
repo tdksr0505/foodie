@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Styled from './styledHeader';
 import Link from 'next/link';
-import logo from '../../assets/foodie_logo.png';
+import logo from '../../assets/logo.png';
 
 const Header = () => {
   return (

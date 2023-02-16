@@ -38,9 +38,21 @@ export const ListItem = styled.div`
   & + & {
     margin-top: 20px;
   }
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: #ebb950;
+    width: 100%;
+    height: 0px;
+    transition: height 0.3s;
+  }
   @media (hover: hover) {
     &:hover {
-      background-color: #d2e6fc;
+      &:before {
+        height: 8px;
+      }
     }
   }
 `;
