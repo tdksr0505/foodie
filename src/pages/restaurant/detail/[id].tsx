@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import type { TRestaurantFormData } from '@/type';
 import Button from '@/components/Button';
 import WhiteBox from '@/components/WhiteBox';
@@ -10,31 +10,13 @@ import * as Styled from '@/styled/styledDetailPage';
 import { RateBox, Rate, Star } from '@/components/List/styledList';
 import { getStationName, getTagColor } from '../../../utils/mrtUtil';
 import useSnackbar from '@/hooks/useSnackbar';
-import useLoading from '@/hooks/useLoading';
 
-export default function RestaurantDetail() {
+export default function RestaurantDetail({ detailData }: { detailData: TRestaurantFormData }) {
   const router = useRouter();
   const { id } = router.query;
-  const [detailData, setDetailData] = useState<TRestaurantFormData | null>(null);
+  console.log(detailData);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const { showSnackbar } = useSnackbar();
-  const { setLoading } = useLoading();
-
-  useEffect(() => {
-    if (!router.isReady) return;
-    setLoading(true);
-    const fetchData = async () => {
-      await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/restaurant/${id}`)
-        .then((res) => res.json())
-        .then((response) => {
-          setDetailData(response.data);
-        });
-      setLoading(false);
-    };
-
-    fetchData();
-  }, [router.isReady]);
-
   const handleDelete = async () => {
     await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/restaurant/${id}`, { method: 'DELETE' })
       .then((res) => res.json())
@@ -56,15 +38,16 @@ export default function RestaurantDetail() {
             <Styled.TopArea>
               <Styled.Title>{detailData.name}</Styled.Title>
               <Styled.DetailTagBox>
-                {detailData.mrt.map((stationID) => {
-                  const { fontColor, bgColor } = getTagColor(stationID);
-                  const stationName = getStationName(stationID);
-                  return (
-                    <Tag key={stationID} fontColor={fontColor} bgColor={bgColor}>
-                      {stationName}
-                    </Tag>
-                  );
-                })}
+                {detailData.mrt &&
+                  detailData.mrt.map((stationID) => {
+                    const { fontColor, bgColor } = getTagColor(stationID);
+                    const stationName = getStationName(stationID);
+                    return (
+                      <Tag key={stationID} fontColor={fontColor} bgColor={bgColor}>
+                        {stationName}
+                      </Tag>
+                    );
+                  })}
               </Styled.DetailTagBox>
               <RateBox>
                 <Star />
@@ -127,4 +110,12 @@ export default function RestaurantDetail() {
       <Dialog title={'確定要刪除餐廳嗎?'} handleAgree={handleDelete} open={openDialog} setOpen={setOpenDialog} />
     </>
   );
+}
+export async function getServerSideProps(context: any) {
+  const id = context.params.id;
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/restaurant/${id}`);
+  const result = await res.json();
+  return {
+    props: { detailData: result.data },
+  };
 }

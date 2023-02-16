@@ -35,7 +35,7 @@ export default styled.div<ITagProps>`
     content: '';
     position: absolute;
     top: 14px;
-    left: 3px;
+    left: -1px;
     float: left;
     width: 5px;
     height: 5px;
