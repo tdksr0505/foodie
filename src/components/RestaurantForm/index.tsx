@@ -13,6 +13,7 @@ import AutoComplete from '@/components/AutoComplete';
 import { foodTypeOptions } from '../../utils/foodTypeUtil';
 import { SelectChangeEvent } from '@mui/material/Select';
 import useSnackbar from '@/hooks/useSnackbar';
+import useLoading from '@/hooks/useLoading';
 
 interface IRestaurantFormProps {
   data?: TRestaurantFormData;
@@ -69,6 +70,8 @@ export default ({ data, title, id }: IRestaurantFormProps) => {
   const [formValue, setFormValue] = useState<TRestaurantFormData>(initailValue);
   const [mrtDefaultOption, setMrtDefaultOption] = useState<Array<TOption> | null>(null);
   const { showSnackbar } = useSnackbar();
+  const { setLoading } = useLoading();
+
   const allStationOptions = getAllStationOptions();
   useEffect(() => {
     if (data) {
@@ -100,13 +103,13 @@ export default ({ data, title, id }: IRestaurantFormProps) => {
     setMrtDefaultOption(value as Array<TOption>);
     setFormValue({
       ...formValue,
-      // @ts-ignore
       mrt: storeValue,
     });
   };
   const onSubmit = () => {
     const fetchUrl = id ? `${BASE_API_URL}/api/restaurant/${id}` : `${BASE_API_URL}/api/restaurant`;
     const returnUrl = id ? `/restaurant/detail/${id}` : `/`;
+    setLoading(true);
     fetch(fetchUrl, {
       method: 'POST',
       headers: {
@@ -116,7 +119,7 @@ export default ({ data, title, id }: IRestaurantFormProps) => {
     })
       .then((response) => response.json())
       .then((json) => {
-        // console.log(json.data.msg);
+        setLoading(false);
         showSnackbar(json.data.msg);
         router.push(returnUrl);
       });
@@ -129,7 +132,7 @@ export default ({ data, title, id }: IRestaurantFormProps) => {
   return (
     <>
       <WhiteBox>
-        {data ? (
+        {(id && data) || !id ? (
           <>
             {title && <Styled.PageTitle>{title}</Styled.PageTitle>}
             <Styled.FormGroup>

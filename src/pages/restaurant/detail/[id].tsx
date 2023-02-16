@@ -10,6 +10,7 @@ import * as Styled from '@/styled/styledDetailPage';
 import { RateBox, Rate, Star } from '@/components/List/styledList';
 import { getStationName, getTagColor } from '../../../utils/mrtUtil';
 import useSnackbar from '@/hooks/useSnackbar';
+import useLoading from '@/hooks/useLoading';
 
 export default function RestaurantDetail({ detailData }: { detailData: TRestaurantFormData }) {
   const router = useRouter();
@@ -17,11 +18,15 @@ export default function RestaurantDetail({ detailData }: { detailData: TRestaura
   console.log(detailData);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const { showSnackbar } = useSnackbar();
+  const { setLoading } = useLoading();
+
   const handleDelete = async () => {
+    setLoading(true);
     await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/restaurant/${id}`, { method: 'DELETE' })
       .then((res) => res.json())
       .then((response) => {
         if (response.code === 0) {
+          setLoading(false);
           showSnackbar(response.data.msg);
           router.push(`/`);
         }
