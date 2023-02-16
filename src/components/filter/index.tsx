@@ -123,63 +123,65 @@ const Filter = ({ fetchData, setFilteredData, filterOpen, setFilterOpen }: IFilt
   return (
     <>
       <Styled.Filter isOpen={filterOpen}>
-        <Styled.CloseBtnBox
-          onClick={() => {
-            setFilterOpen(false);
-          }}
-        >
-          <Styled.CloseBtn />
-        </Styled.CloseBtnBox>
-        <Styled.InputBox>
-          <Styled.SearchInput name="name" value={filter.name} onChange={onChangeFilter} />
-          <Styled.SearchIcon />
-        </Styled.InputBox>
+        <Styled.FilterMainBox>
+          <Styled.CloseBtnBox
+            onClick={() => {
+              setFilterOpen(false);
+            }}
+          >
+            <Styled.CloseBtn />
+          </Styled.CloseBtnBox>
+          <Styled.InputBox>
+            <Styled.SearchInput name="name" value={filter.name} onChange={onChangeFilter} />
+            <Styled.SearchIcon />
+          </Styled.InputBox>
 
-        <Styled.FilterOptionTitle>類型</Styled.FilterOptionTitle>
-        <Styled.ToggleTagBox>
-          {foodTypeOptions.map((elem) => {
+          <Styled.FilterOptionTitle>類型</Styled.FilterOptionTitle>
+          <Styled.ToggleTagBox>
+            {foodTypeOptions.map((elem) => {
+              return (
+                <ToggleTag
+                  key={elem.value}
+                  name={elem.value}
+                  label={elem.label}
+                  value={filter.type.includes(elem.value)}
+                  onClick={handleFoodTypeChange}
+                />
+              );
+            })}
+          </Styled.ToggleTagBox>
+          <Styled.FilterOptionTitle>捷運站</Styled.FilterOptionTitle>
+
+          {Object.entries(filterMrtOption).map((lineInfo) => {
+            const lineName = getLineName(lineInfo[0]);
+            const { fontColor, bgColor } = getLineColor(lineInfo[0]);
             return (
-              <ToggleTag
-                key={elem.value}
-                name={elem.value}
-                label={elem.label}
-                value={filter.type.includes(elem.value)}
-                onClick={handleFoodTypeChange}
-              />
+              <Styled.MrtLineBox key={lineInfo[0]}>
+                <div>
+                  <Tag fontColor={fontColor} bgColor={bgColor}>
+                    {lineName}
+                  </Tag>
+                </div>
+                {lineInfo[1].map((station) => {
+                  return (
+                    <FormControlLabel
+                      key={station.value}
+                      control={<Checkbox checked={filter.mrt.includes(station.value)} />}
+                      label={station.label}
+                      name={station.value}
+                      onChange={handleMrtChange}
+                    />
+                  );
+                })}
+              </Styled.MrtLineBox>
             );
           })}
-        </Styled.ToggleTagBox>
-        <Styled.FilterOptionTitle>捷運站</Styled.FilterOptionTitle>
-
-        {Object.entries(filterMrtOption).map((lineInfo) => {
-          const lineName = getLineName(lineInfo[0]);
-          const { fontColor, bgColor } = getLineColor(lineInfo[0]);
-          return (
-            <Styled.MrtLineBox key={lineInfo[0]}>
-              <div>
-                <Tag fontColor={fontColor} bgColor={bgColor}>
-                  {lineName}
-                </Tag>
-              </div>
-              {lineInfo[1].map((station) => {
-                return (
-                  <FormControlLabel
-                    key={station.value}
-                    control={<Checkbox checked={filter.mrt.includes(station.value)} />}
-                    label={station.label}
-                    name={station.value}
-                    onChange={handleMrtChange}
-                  />
-                );
-              })}
-            </Styled.MrtLineBox>
-          );
-        })}
-        <Styled.FilterOptionTitle>吃過沒</Styled.FilterOptionTitle>
-        <RadioGroup row value={filter.isVisited} onChange={handleVisitedChange}>
-          <FormControlLabel value={true} control={<Radio />} label="吃過了" />
-          <FormControlLabel value={false} control={<Radio />} label="沒吃過" />
-        </RadioGroup>
+          <Styled.FilterOptionTitle mt>吃過沒</Styled.FilterOptionTitle>
+          <RadioGroup row value={filter.isVisited} onChange={handleVisitedChange}>
+            <FormControlLabel value={true} control={<Radio />} label="吃過了" />
+            <FormControlLabel value={false} control={<Radio />} label="沒吃過" />
+          </RadioGroup>
+        </Styled.FilterMainBox>
         <Styled.ButtonBox>
           <Button onClick={handleReset}>Reset</Button>
           <Button onClick={handleSearch}>查詢</Button>

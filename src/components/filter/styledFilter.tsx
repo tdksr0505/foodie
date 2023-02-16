@@ -14,10 +14,10 @@ interface IMrtLineNameProps {
 export const Filter = styled.div<IFilterProps>`
   z-index: 4;
   position: fixed;
-  top: ${(props) => (props.isOpen ? '70px' : '100%')}; // open時到header高度
+  top: ${(props) => (props.isOpen ? '60px' : '100%')}; // open時到header高度
   left: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 60px);
   padding: 20px 20px;
   background-color: #fff;
   transition: top 0.2s;
@@ -59,11 +59,12 @@ export const CloseBtn = styled(CloseIcon)`
   font-size: 38px;
 `;
 
-export const FilterOptionTitle = styled.div`
+export const FilterOptionTitle = styled.div<{ mt: boolean }>`
   color: #717171;
   padding-bottom: 5px;
   border-bottom: 1px solid #acabab;
   margin-bottom: 10px;
+  margin-top: ${(props) => props.mt && '6px'};
 `;
 
 export const MrtLineBox = styled.div`
@@ -80,14 +81,30 @@ export const ToggleTagBox = styled.div`
   margin-bottom: 10px;
 `;
 
+export const FilterMainBox = styled.div`
+  height: calc(100% - 70px);
+  overflow-y: auto;
+`;
 export const ButtonBox = styled.div`
+  position: absolute;
+  bottom: 0px;
+  left: 0;
   display: flex;
+  width: 100%;
+  padding: 10px 20px 0px 20px;
   margin-top: 30px;
-  margin-bottom: 10px;
+  border-top: 1px solid #82929f;
+  background-color: #fff;
+  height: 70px;
   ${Button} {
     width: 50%;
   }
   ${Button}+ ${Button} {
     margin-left: 10px;
+  }
+  @media screen and (min-width: 992px) {
+    position: static;
+    height: auto;
+    border-top: none;
   }
 `;

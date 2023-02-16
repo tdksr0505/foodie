@@ -21,6 +21,7 @@ export default function RestaurantDetail({ detailData }: { detailData: TRestaura
   const { setLoading } = useLoading();
 
   const handleDelete = async () => {
+    setOpenDialog(false);
     setLoading(true);
     await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/restaurant/${id}`, { method: 'DELETE' })
       .then((res) => res.json())
