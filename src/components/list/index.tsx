@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import * as Styled from './styledList';
-// import fakeData from '@/../fakeData.json';
 import type { TRestaurantDetail } from '@/type';
 import TagBox from '@/components/TagBox';
 import Tag from '@/components/Tag';

@@ -1,9 +1,7 @@
 import styled from 'styled-components';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
 import { TOption } from '@/type';
 import TextField from '@mui/material/TextField';
-import Autocomplete, { AutocompleteChangeReason } from '@mui/material/Autocomplete';
+import Autocomplete from '@mui/material/Autocomplete';
 
 const StyledAutocomplete = styled(Autocomplete)`
   width: 100%;

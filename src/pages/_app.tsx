@@ -14,11 +14,13 @@ export default function App({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         <LoadingProvider>
           <SnackbarProvider>
-            <GlobalStyles />
-            <Background />
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
+            <>
+              <GlobalStyles />
+              <Background />
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </>
           </SnackbarProvider>
         </LoadingProvider>
       </ThemeProvider>

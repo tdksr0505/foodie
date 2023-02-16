@@ -29,7 +29,6 @@ export const ListItem = styled.div`
   position: relative;
   width: 100%;
   background-color: #fff;
-  /* box-shadow: 0px 5px 9px -3px rgba(110, 106, 106, 0.75); */
   cursor: pointer;
   &:focus-visible,
   &:focus,
