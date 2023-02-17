@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import type { TRestaurantDetail } from '@/type';
-import * as Styled from '../styled/styledListPage';
+import * as Styled from '../styles/styledListPage';
 import Filter from '../components/Filter';
 import List from '../components/List';
 import Button from '../components/Button';

@@ -51,7 +51,7 @@ const Filter = ({ fetchData, setFilteredData, filterOpen, setFilterOpen }: IFilt
 
   const handleSearch = () => {
     //點擊搜尋
-    console.log(`搜尋條件`, filter);
+    // console.log(`搜尋條件`, filter);
     setFilterOpen(false);
     if (filter.name === '' && filter.type.length === 0 && filter.mrt.length === 0 && filter.isVisited === null) {
       //無篩選條件
@@ -106,7 +106,6 @@ const Filter = ({ fetchData, setFilteredData, filterOpen, setFilterOpen }: IFilt
   };
   useEffect(() => {
     // 生成資料有包含的捷運站
-    console.log(`fetchData`, fetchData);
     const mrtStationsID = fetchData?.reduce((pre, cur) => {
       return [...pre, ...cur.mrt];
     }, [] as Array<string>);

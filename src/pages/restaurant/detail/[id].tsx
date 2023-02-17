@@ -6,7 +6,7 @@ import Button from '@/components/Button';
 import WhiteBox from '@/components/WhiteBox';
 import Tag from '@/components/Tag';
 import Dialog from '@/components/Dialog';
-import * as Styled from '@/styled/styledDetailPage';
+import * as Styled from '@/styles/styledDetailPage';
 import { RateBox, Rate, Star } from '@/components/List/styledList';
 import { getStationName, getTagColor } from '../../../utils/mrtUtil';
 import useSnackbar from '@/hooks/useSnackbar';
