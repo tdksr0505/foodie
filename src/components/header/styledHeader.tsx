@@ -10,11 +10,11 @@ export const Logo = styled.img`
   }
 `;
 
-export const LoginButotn = styled(Button)`
-  background-color: #123786;
+export const LoginButton = styled(Button)`
+  background-color: #4462a3;
   @media (hover: hover) {
     &:hover {
-      background-color: #3e5587;
+      background-color: #5d73a3;
     }
   }
 `;
