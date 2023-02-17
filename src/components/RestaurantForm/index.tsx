@@ -14,6 +14,7 @@ import { foodTypeOptions } from '../../utils/foodTypeUtil';
 import { SelectChangeEvent } from '@mui/material/Select';
 import useSnackbar from '@/hooks/useSnackbar';
 import useLoading from '@/hooks/useLoading';
+import * as Form from '@/styles/styledFormPage';
 
 interface IRestaurantFormProps {
   data?: TRestaurantFormData;
@@ -80,7 +81,7 @@ export default ({ data, title, id }: IRestaurantFormProps) => {
       setFormValue(data);
     }
   }, [data]);
-  const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>, newValue: string) => {
+  const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let target = e.target as HTMLInputElement;
     let value: boolean | string = e.target.value;
     if (e.target.type === 'radio') {
@@ -136,98 +137,98 @@ export default ({ data, title, id }: IRestaurantFormProps) => {
         {(id && data) || !id ? (
           <>
             {title && <Styled.PageTitle>{title}</Styled.PageTitle>}
-            <Styled.FormGroup>
-              <Styled.Label>餐廳名稱</Styled.Label>
-              <Styled.RightBox>
+            <Form.FormGroup>
+              <Form.Label>餐廳名稱</Form.Label>
+              <Form.RightBox>
                 <TextField name="name" value={data?.name || ''} onChange={handleValueChange} />
-              </Styled.RightBox>
-            </Styled.FormGroup>
-            <Styled.FormGroup>
-              <Styled.Label>評分</Styled.Label>
-              <Styled.RightBox>
+              </Form.RightBox>
+            </Form.FormGroup>
+            <Form.FormGroup>
+              <Form.Label>評分</Form.Label>
+              <Form.RightBox>
                 <TextField name="rate" value={formValue?.rate || ''} onChange={handleValueChange} />
-              </Styled.RightBox>
-            </Styled.FormGroup>
-            <Styled.FormGroup>
-              <Styled.Label>簡易地址</Styled.Label>
-              <Styled.RightBox>
+              </Form.RightBox>
+            </Form.FormGroup>
+            <Form.FormGroup>
+              <Form.Label>簡易地址</Form.Label>
+              <Form.RightBox>
                 <TextField name="simpleAddress" value={formValue?.simpleAddress || ''} onChange={handleValueChange} />
-              </Styled.RightBox>
-            </Styled.FormGroup>
-            <Styled.FormGroup>
-              <Styled.Label>地址</Styled.Label>
-              <Styled.RightBox>
+              </Form.RightBox>
+            </Form.FormGroup>
+            <Form.FormGroup>
+              <Form.Label>地址</Form.Label>
+              <Form.RightBox>
                 <TextField name="address" value={formValue?.address || ''} onChange={handleValueChange} />
-              </Styled.RightBox>
-            </Styled.FormGroup>
-            <Styled.FormGroup>
-              <Styled.Label>電話</Styled.Label>
-              <Styled.RightBox>
+              </Form.RightBox>
+            </Form.FormGroup>
+            <Form.FormGroup>
+              <Form.Label>電話</Form.Label>
+              <Form.RightBox>
                 <TextField name="tel" value={formValue?.tel || ''} onChange={handleValueChange} />
-              </Styled.RightBox>
-            </Styled.FormGroup>
-            <Styled.FormGroup>
-              <Styled.Label>餐廳類型</Styled.Label>
-              <Styled.RightBox>
+              </Form.RightBox>
+            </Form.FormGroup>
+            <Form.FormGroup>
+              <Form.Label>餐廳類型</Form.Label>
+              <Form.RightBox>
                 <Select
                   options={foodTypeOptions}
                   name="type"
                   value={formValue?.type || ''}
                   handleChange={handleSelectChange}
                 />
-              </Styled.RightBox>
-            </Styled.FormGroup>
-            <Styled.FormGroup>
-              <Styled.Label>最近捷運站</Styled.Label>
-              <Styled.RightBox>
+              </Form.RightBox>
+            </Form.FormGroup>
+            <Form.FormGroup>
+              <Form.Label>最近捷運站</Form.Label>
+              <Form.RightBox>
                 <AutoComplete
                   options={allStationOptions}
                   name="mrt"
                   handleChange={handleMrtChange}
                   value={mrtDefaultOption || []}
                 />
-              </Styled.RightBox>
-            </Styled.FormGroup>
-            <Styled.FormGroup>
-              <Styled.Label>是否可訂位</Styled.Label>
-              <Styled.RightBox>
+              </Form.RightBox>
+            </Form.FormGroup>
+            <Form.FormGroup>
+              <Form.Label>是否可訂位</Form.Label>
+              <Form.RightBox>
                 <RadioGroup
                   name={'canReserve'}
                   radiosConfig={canReserveConfig}
                   value={formValue?.canReserve.toString()}
                   handleChange={handleValueChange}
                 ></RadioGroup>
-              </Styled.RightBox>
-            </Styled.FormGroup>
-            <Styled.FormGroup>
-              <Styled.Label>是否吃過</Styled.Label>
-              <Styled.RightBox>
+              </Form.RightBox>
+            </Form.FormGroup>
+            <Form.FormGroup>
+              <Form.Label>是否吃過</Form.Label>
+              <Form.RightBox>
                 <RadioGroup
                   name={'isVisited'}
                   radiosConfig={isVisitedConfig}
                   value={formValue?.isVisited.toString()}
                   handleChange={handleValueChange}
                 ></RadioGroup>
-              </Styled.RightBox>
-            </Styled.FormGroup>
-            <Styled.FormGroup>
-              <Styled.Label>是否回訪</Styled.Label>
-              <Styled.RightBox>
+              </Form.RightBox>
+            </Form.FormGroup>
+            <Form.FormGroup>
+              <Form.Label>是否回訪</Form.Label>
+              <Form.RightBox>
                 <RadioGroup
                   name={'isReturnVisited'}
                   radiosConfig={isReturnVisitedConfig}
                   value={formValue?.isReturnVisited.toString()}
                   handleChange={handleValueChange}
                 ></RadioGroup>
-              </Styled.RightBox>
-            </Styled.FormGroup>
+              </Form.RightBox>
+            </Form.FormGroup>
 
-            <Styled.ButtonArea>
+            <Form.ButtonArea>
               <Link href={id ? `/restaurant/detail/${id}` : '/'}>
                 <Styled.BackButton>返回</Styled.BackButton>
               </Link>
               <Button onClick={onSubmit}>送出</Button>
-            </Styled.ButtonArea>
+            </Form.ButtonArea>
           </>
         ) : (
           <div>loading...</div>

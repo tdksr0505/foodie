@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Button from '../../components/Button';
 
 export const Logo = styled.img`
   width: 160px;
@@ -9,10 +10,20 @@ export const Logo = styled.img`
   }
 `;
 
+export const LoginButotn = styled(Button)`
+  background-color: #123786;
+  @media (hover: hover) {
+    &:hover {
+      background-color: #3e5587;
+    }
+  }
+`;
+
 export const Header = styled.header`
   z-index: 10;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   position: sticky;
   top: 0;
   left: 0;

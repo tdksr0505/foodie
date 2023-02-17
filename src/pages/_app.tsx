@@ -5,6 +5,7 @@ import NProgress from 'nprogress';
 import Router from 'next/router';
 import Layout from '../components/Layout';
 import Background from '../components/Background';
+import Gotop from '../components/Gotop';
 import GlobalStyles from '../styles/globalStyles';
 import { SnackbarProvider } from '../context/snackbarContext';
 import { LoadingProvider } from '../context/loadingContext';
@@ -22,6 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <Layout>
               <Component {...pageProps} />
             </Layout>
+            <Gotop />
           </>
         </SnackbarProvider>
       </LoadingProvider>

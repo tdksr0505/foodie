@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import type { TRestaurantDetail } from '@/type';
-import * as Styled from '../styles/styledListPage';
+import * as ListStyled from '../styles/styledListPage';
 import Filter from '../components/Filter';
 import List from '../components/List';
 import Button from '../components/Button';
@@ -30,12 +30,12 @@ export default function Home() {
 
   return (
     <>
-      <Styled.PageButtonArea>
+      <ListStyled.PageButtonArea>
         <Link href="/restaurant/add">
           <Button>新增</Button>
         </Link>
-      </Styled.PageButtonArea>
-      <Styled.RestaurantListPageBox>
+      </ListStyled.PageButtonArea>
+      <ListStyled.RestaurantListPageBox>
         <Filter
           fetchData={fetchData}
           setFilteredData={setFilteredData}
@@ -43,14 +43,14 @@ export default function Home() {
           setFilterOpen={setFilterOpen}
         />
         <List data={filteredData} />
-      </Styled.RestaurantListPageBox>
-      <Styled.FilterButton
+      </ListStyled.RestaurantListPageBox>
+      <ListStyled.FilterButton
         onClick={() => {
           setFilterOpen(true);
         }}
       >
-        <Styled.FilterIcon />
-      </Styled.FilterButton>
+        <ListStyled.FilterIcon />
+      </ListStyled.FilterButton>
     </>
   );
 }
