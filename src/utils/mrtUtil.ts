@@ -1,4 +1,4 @@
-import mrtStationInfo from '../config/mrtStation.json';
+import mrtStation from '../config/mrtStation.json';
 import { TOption } from '@/type';
 const MRT_COLOR_CONFIG: { [x: string]: { font: string; bg: string } } = {
   BL: {
@@ -36,51 +36,38 @@ const MRT_LINE: { [x: string]: string } = {
   R: '淡水信義線',
 };
 
-const allStationOptions: Array<TOption> = [];
-const allStations: { [x: string]: string } = {};
-
-const genStationInfo = () => {
-  for (let lineInfo of mrtStationInfo) {
-    for (let station of lineInfo.Stations) {
-      allStationOptions?.push({ label: station.StationName, value: station.StationID });
-      allStations[station.StationID] = station.StationName;
-    }
+const getMrtStationsOptions = (): TOption[] => {
+  const stationOptions: TOption[] = [];
+  for (const [stationID, stationInfo] of Object.entries(mrtStation)) {
+    stationOptions.push({ label: stationInfo.name, value: stationID });
   }
+  return stationOptions;
 };
 
-export const getAllStationOptions = (): Array<TOption> => {
-  if (allStationOptions.length === 0) genStationInfo();
-  return allStationOptions;
-};
+const mrtStationOptions = getMrtStationsOptions();
 
-export const getStationName = (StationID: string): string => {
-  if (allStationOptions.length === 0) genStationInfo();
-  return allStations[StationID];
+export { mrtStationOptions };
+
+export const getStationName = (StationID: string) => {
+  return mrtStation[StationID as keyof typeof mrtStation].name;
 };
 export const getTagColor = (StationID: string): { fontColor: string; bgColor: string } => {
-  for (let lineInfo of mrtStationInfo) {
-    if (lineInfo.Stations.find((elem) => elem.StationID === StationID)) {
-      const fontColor = MRT_COLOR_CONFIG[lineInfo.LineID as keyof typeof MRT_COLOR_CONFIG].font;
-      const bgColor = MRT_COLOR_CONFIG[lineInfo.LineID as keyof typeof MRT_COLOR_CONFIG].bg;
-      return { fontColor, bgColor };
-    }
-  }
-  return { fontColor: MRT_COLOR_CONFIG.BL.font, bgColor: MRT_COLOR_CONFIG.BL.bg };
+  const lineID = mrtStation[StationID as keyof typeof mrtStation].line;
+  return {
+    fontColor: MRT_COLOR_CONFIG[lineID].font,
+    bgColor: MRT_COLOR_CONFIG[lineID].bg,
+  };
 };
 export const getFilterMrt = (StationIDArray: Array<string>) => {
   const filterMrt: { [x: string]: TOption[] } = {};
-  for (let lineInfo of mrtStationInfo) {
-    let lineId = lineInfo.LineID;
-    for (let station of lineInfo.Stations) {
-      if (StationIDArray.includes(station.StationID)) {
-        if (lineId in filterMrt) {
-          filterMrt[lineId].push({ label: station.StationName, value: station.StationID });
-        } else {
-          filterMrt[lineId] = [{ label: station.StationName, value: station.StationID }];
-        }
-      }
+  StationIDArray.forEach((stationID) => {
+    const lineID = mrtStation[stationID as keyof typeof mrtStation].line;
+    if (lineID in filterMrt) {
+      filterMrt[lineID].push({ label: mrtStation[stationID as keyof typeof mrtStation].name, value: stationID });
+    } else {
+      filterMrt[lineID] = [{ label: mrtStation[stationID as keyof typeof mrtStation].name, value: stationID }];
     }
-  }
+  });
   return filterMrt;
 };
 

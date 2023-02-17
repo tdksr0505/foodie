@@ -32,4 +32,5 @@ export const FilterButton = styled.div`
 
 export const RestaurantListPageBox = styled.div`
   display: flex;
+  align-items: flex-start;
 `;

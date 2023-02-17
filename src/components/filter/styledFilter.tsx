@@ -84,6 +84,9 @@ export const ToggleTagBox = styled.div`
 export const FilterMainBox = styled.div`
   height: calc(100% - 70px);
   overflow-y: auto;
+  @media screen and (min-width: 992px) {
+    height: auto;
+  }
 `;
 export const ButtonBox = styled.div`
   position: absolute;

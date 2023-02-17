@@ -4,7 +4,7 @@ import Link from 'next/link';
 import TextField from '@/components/TextField';
 import Button from '@/components/Button';
 import WhiteBox from '@/components/WhiteBox';
-import { getAllStationOptions } from '../../utils/mrtUtil';
+import { mrtStationOptions } from '../../utils/mrtUtil';
 import * as Styled from './styledRestaurantForm';
 import RadioGroup from '@/components/RadioGroup';
 import { TOption, TRestaurantFormData } from '@/type';
@@ -51,7 +51,7 @@ const canReserveConfig: Array<TOption> = [
     label: '不可預訂',
   },
 ];
-
+console.log(mrtStationOptions);
 const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
 export default ({ data, title, id }: IRestaurantFormProps) => {
   const router = useRouter();
@@ -73,7 +73,6 @@ export default ({ data, title, id }: IRestaurantFormProps) => {
   const { showSnackbar } = useSnackbar();
   const { setLoading } = useLoading();
 
-  const allStationOptions = getAllStationOptions();
   useEffect(() => {
     if (data) {
       const mrtDefaultValue = getMrtDefalutValue(data.mrt);
@@ -127,7 +126,7 @@ export default ({ data, title, id }: IRestaurantFormProps) => {
       });
   };
   const getMrtDefalutValue = (mrtStations: Array<string>): Array<TOption> => {
-    return allStationOptions.filter((elem) => {
+    return mrtStationOptions.filter((elem) => {
       return mrtStations.includes(elem.value);
     });
   };
@@ -140,7 +139,7 @@ export default ({ data, title, id }: IRestaurantFormProps) => {
             <Form.FormGroup>
               <Form.Label>餐廳名稱</Form.Label>
               <Form.RightBox>
-                <TextField name="name" value={data?.name || ''} onChange={handleValueChange} />
+                <TextField name="name" value={formValue?.name || ''} onChange={handleValueChange} />
               </Form.RightBox>
             </Form.FormGroup>
             <Form.FormGroup>
@@ -182,7 +181,7 @@ export default ({ data, title, id }: IRestaurantFormProps) => {
               <Form.Label>最近捷運站</Form.Label>
               <Form.RightBox>
                 <AutoComplete
-                  options={allStationOptions}
+                  options={mrtStationOptions}
                   name="mrt"
                   handleChange={handleMrtChange}
                   value={mrtDefaultOption || []}
