@@ -75,7 +75,8 @@ export default ({ data, title, id }: IRestaurantFormProps) => {
   const allStationOptions = getAllStationOptions();
   useEffect(() => {
     if (data) {
-      setMrtDefaultOption(getMrtDefalutValue(data.mrt));
+      const mrtDefaultValue = getMrtDefalutValue(data.mrt);
+      setMrtDefaultOption(mrtDefaultValue);
       setFormValue(data);
     }
   }, [data]);
@@ -138,7 +139,7 @@ export default ({ data, title, id }: IRestaurantFormProps) => {
             <Styled.FormGroup>
               <Styled.Label>餐廳名稱</Styled.Label>
               <Styled.RightBox>
-                <TextField name="name" value={formValue?.name || ''} onChange={handleValueChange} />
+                <TextField name="name" value={data?.name || ''} onChange={handleValueChange} />
               </Styled.RightBox>
             </Styled.FormGroup>
             <Styled.FormGroup>

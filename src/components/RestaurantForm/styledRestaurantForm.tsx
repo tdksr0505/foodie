@@ -42,7 +42,7 @@ export const FormGroup = styled.div`
 `;
 
 export const PageTitle = styled.div`
-  color: #d6b657;
+  color: #5e70a3;
   text-align: center;
   font-size: 30px;
   margin-bottom: 20px;

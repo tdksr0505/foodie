@@ -3,7 +3,7 @@ import RestaurantForm from '@/components/RestaurantForm';
 export default () => {
   return (
     <>
-      <RestaurantForm title="New"></RestaurantForm>
+      <RestaurantForm title="New" />
     </>
   );
 };

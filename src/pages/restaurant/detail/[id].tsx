@@ -15,7 +15,6 @@ import useLoading from '@/hooks/useLoading';
 export default function RestaurantDetail({ detailData }: { detailData: TRestaurantFormData }) {
   const router = useRouter();
   const { id } = router.query;
-  console.log(detailData);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const { showSnackbar } = useSnackbar();
   const { setLoading } = useLoading();
