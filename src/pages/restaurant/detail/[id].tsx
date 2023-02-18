@@ -11,8 +11,10 @@ import { RateBox, Rate, Star } from '@/components/List/styledList';
 import { getStationName, getTagColor } from '../../../utils/mrtUtil';
 import useSnackbar from '@/hooks/useSnackbar';
 import useLoading from '@/hooks/useLoading';
+import useAuth from '@/hooks/useAuth';
 
 export default function RestaurantDetail({ detailData }: { detailData: TRestaurantFormData }) {
+  const { auth } = useAuth();
   const router = useRouter();
   const { id } = router.query;
   const [openDialog, setOpenDialog] = useState<boolean>(false);
@@ -24,10 +26,10 @@ export default function RestaurantDetail({ detailData }: { detailData: TRestaura
     setLoading(true);
     await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/restaurant/${id}`, { method: 'DELETE' })
       .then((res) => res.json())
-      .then((response) => {
-        if (response.code === 0) {
+      .then((result) => {
+        if (result.code === 0) {
           setLoading(false);
-          showSnackbar(response.data.msg);
+          showSnackbar(result.data.msg);
           router.push(`/`);
         }
       });
@@ -98,14 +100,18 @@ export default function RestaurantDetail({ detailData }: { detailData: TRestaura
 
             <Detail.DetailButtonArea>
               <div>
-                <Link href="/">
-                  <Button>返回列表</Button>
-                </Link>
+                {auth && (
+                  <>
+                    <Detail.DeleteButton onClick={onClickDelete}>刪除</Detail.DeleteButton>
+                    <Link href={`/restaurant/edit/${id}`}>
+                      <Button>編輯</Button>
+                    </Link>
+                  </>
+                )}
               </div>
               <div>
-                <Detail.DeleteButton onClick={onClickDelete}>刪除</Detail.DeleteButton>
-                <Link href={`/restaurant/edit/${id}`}>
-                  <Button>編輯</Button>
+                <Link href="/">
+                  <Button>返回列表</Button>
                 </Link>
               </div>
             </Detail.DetailButtonArea>

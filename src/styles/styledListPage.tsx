@@ -3,7 +3,7 @@ import Button from '@/components/Button';
 import FilterListIcon from '@mui/icons-material/FilterList';
 
 export const PageButtonArea = styled.div`
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   text-align: right;
   ${Button} + ${Button} {
     margin-left: 10px;

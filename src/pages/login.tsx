@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import TextField from '@/components/TextField';
 import WhiteBox from '@/components/WhiteBox';
-import * as FormStyled from '@/styles/styledFormPage';
+import * as Form from '@/styles/styledFormPage';
 import Button from '@/components/Button';
+import useSnackbar from '@/hooks/useSnackbar';
+import { useRouter } from 'next/router';
+import useAuth from '@/hooks/useAuth';
 
 interface IFormValue {
   account: string;
@@ -13,18 +16,31 @@ const initFormValue = {
   password: '',
 };
 export default () => {
+  const { login } = useAuth();
+  const router = useRouter();
+  const { showSnackbar } = useSnackbar();
   const [formValue, setFormValue] = useState<IFormValue>(initFormValue);
-  const handleLogin = () => {
-    fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/login`, {
+  const handleLogin = async () => {
+    await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        account: formValue.account,
-        password: formValue.password,
-      }),
-    });
+      body: JSON.stringify({ account: formValue.account, password: formValue.password }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.code === 0) {
+          login({ account: result.data.account, token: result.data.token });
+          router.push(`/`);
+        } else {
+          setFormValue({
+            ...formValue,
+            password: '',
+          });
+        }
+        showSnackbar(result.data.msg);
+      });
   };
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
@@ -38,21 +54,22 @@ export default () => {
   return (
     <>
       <WhiteBox>
-        <FormStyled.FormGroup>
-          <FormStyled.Label>帳號：</FormStyled.Label>
-          <FormStyled.RightBox>
-            <TextField name="account" onChange={handleValueChange} />
-          </FormStyled.RightBox>
-        </FormStyled.FormGroup>
-        <FormStyled.FormGroup>
-          <FormStyled.Label>密碼：</FormStyled.Label>
-          <FormStyled.RightBox>
-            <TextField name="password" onChange={handleValueChange} />
-          </FormStyled.RightBox>
-        </FormStyled.FormGroup>
-        <FormStyled.ButtonArea center>
+        <Form.FormTitle>登入</Form.FormTitle>
+        <Form.FormGroup>
+          <Form.Label>帳號：</Form.Label>
+          <Form.RightBox>
+            <TextField name="account" value={formValue.account} onChange={handleValueChange} />
+          </Form.RightBox>
+        </Form.FormGroup>
+        <Form.FormGroup>
+          <Form.Label>密碼：</Form.Label>
+          <Form.RightBox>
+            <TextField name="password" value={formValue.password} onChange={handleValueChange} />
+          </Form.RightBox>
+        </Form.FormGroup>
+        <Form.ButtonArea center>
           <Button onClick={handleLogin}>登入</Button>
-        </FormStyled.ButtonArea>
+        </Form.ButtonArea>
       </WhiteBox>
     </>
   );

@@ -19,6 +19,18 @@ export const LoginButton = styled(Button)`
   }
 `;
 
+export const Account = styled.div`
+  margin-right: 15px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+`;
+
+export const RightBox = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const Header = styled.header`
   z-index: 10;
   display: flex;

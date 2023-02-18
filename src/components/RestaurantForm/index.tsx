@@ -51,7 +51,6 @@ const canReserveConfig: Array<TOption> = [
     label: '不可預訂',
   },
 ];
-console.log(mrtStationOptions);
 const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
 export default ({ data, title, id }: IRestaurantFormProps) => {
   const router = useRouter();
@@ -118,10 +117,10 @@ export default ({ data, title, id }: IRestaurantFormProps) => {
       },
       body: JSON.stringify(formValue),
     })
-      .then((response) => response.json())
-      .then((json) => {
+      .then((res) => res.json())
+      .then((result) => {
         setLoading(false);
-        showSnackbar(json.data.msg);
+        showSnackbar(result.data.msg);
         router.push(returnUrl);
       });
   };
@@ -135,7 +134,7 @@ export default ({ data, title, id }: IRestaurantFormProps) => {
       <WhiteBox>
         {(id && data) || !id ? (
           <>
-            {title && <Styled.PageTitle>{title}</Styled.PageTitle>}
+            {title && <Form.FormTitle>{title}</Form.FormTitle>}
             <Form.FormGroup>
               <Form.Label>餐廳名稱</Form.Label>
               <Form.RightBox>
