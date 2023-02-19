@@ -14,4 +14,7 @@ export default styled.div<ITagProps>`
   font-size: 16px;
   background-color: ${(props) => (props.bgColor ? props.bgColor : DEFAULT_BG)};
   color: ${(props) => (props.fontColor ? props.fontColor : DEFAULT_FONT)};
+  & + & {
+    margin-left: 10px;
+  }
 `;
