@@ -13,7 +13,7 @@ const BgImg = styled.img`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
 `;
 
 const Mask = styled.div`

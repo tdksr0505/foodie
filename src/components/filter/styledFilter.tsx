@@ -71,6 +71,7 @@ export const FilterOptionTitle = styled.div<{ mt?: boolean }>`
   border-bottom: 1px solid #acabab;
   margin-bottom: 10px;
   margin-top: ${(props) => props.mt && '6px'};
+  font-weight: bold;
 `;
 
 export const MrtLineBox = styled.div`

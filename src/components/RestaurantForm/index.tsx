@@ -221,7 +221,7 @@ export default ({ data, title, id }: IRestaurantFormProps) => {
               </Form.RightBox>
             </Form.FormGroup>
 
-            <Form.ButtonArea>
+            <Form.ButtonArea center>
               <Link href={id ? `/restaurant/detail/${id}` : '/'}>
                 <Styled.BackButton>返回</Styled.BackButton>
               </Link>
