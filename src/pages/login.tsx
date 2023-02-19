@@ -64,7 +64,7 @@ export default () => {
         <Form.FormGroup>
           <Form.Label>密碼：</Form.Label>
           <Form.RightBox>
-            <TextField name="password" value={formValue.password} onChange={handleValueChange} />
+            <TextField type="password" name="password" value={formValue.password} onChange={handleValueChange} />
           </Form.RightBox>
         </Form.FormGroup>
         <Form.ButtonArea center>
