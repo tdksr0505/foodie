@@ -1,4 +1,5 @@
 import { AuthContext } from '../context/authContext';
 import { useContext } from 'react';
 
-export default () => useContext(AuthContext);
+const useAuth = () => useContext(AuthContext);
+export default useAuth;

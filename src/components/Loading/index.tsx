@@ -55,7 +55,7 @@ const Loader = styled.div`
   }
 `;
 
-export default () => {
+const Loading = () => {
   return (
     <>
       <Container>
@@ -67,3 +67,5 @@ export default () => {
     </>
   );
 };
+
+export default Loading;

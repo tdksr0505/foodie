@@ -16,7 +16,7 @@ const initFormValue = {
   account: '',
   password: '',
 };
-export default () => {
+const LoginPage = () => {
   const { login } = useAuth();
   const router = useRouter();
   const { showSnackbar } = useSnackbar();
@@ -78,3 +78,5 @@ export default () => {
     </>
   );
 };
+
+export default LoginPage;

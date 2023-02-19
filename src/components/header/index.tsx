@@ -6,7 +6,7 @@ import useAuth from '@/hooks/useAuth';
 import { useRouter } from 'next/router';
 import useSnackbar from '@/hooks/useSnackbar';
 
-export default () => {
+const Header = () => {
   const router = useRouter();
   const { user, logout, auth } = useAuth();
   const { showSnackbar } = useSnackbar();
@@ -33,3 +33,5 @@ export default () => {
     </Styled.Header>
   );
 };
+
+export default Header;

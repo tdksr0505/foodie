@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import TextField from '@mui/material/TextField';
 const StyledInput = styled.input`
   outline: none;
   border: 1px solid #514e4e;
@@ -11,6 +10,8 @@ const StyledInput = styled.input`
   font-size: 16px;
 `;
 
-export default (props: any) => {
+const TextField = (props: any) => {
   return <StyledInput {...props} autoComplete="off" />;
 };
+
+export default TextField;

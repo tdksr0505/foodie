@@ -8,7 +8,7 @@ import useLoading from '../hooks/useLoading';
 import useAuth from '@/hooks/useAuth';
 import { useDispatch } from 'react-redux';
 import { initList } from '@/reducers/listSlice';
-export default function Home() {
+const IndexPage = () => {
   const dispatch = useDispatch();
   const { auth } = useAuth();
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
@@ -24,7 +24,7 @@ export default function Home() {
         });
     };
     fetchData();
-  }, []);
+  }, [dispatch, setLoading]);
 
   return (
     <>
@@ -48,4 +48,6 @@ export default function Home() {
       </ListStyled.FilterButton>
     </>
   );
-}
+};
+
+export default IndexPage;

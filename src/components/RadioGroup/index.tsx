@@ -12,7 +12,7 @@ interface IRadiosProps {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>, value: string) => void;
 }
 
-export default (props: IRadiosProps) => {
+const MyRadioGroup = (props: IRadiosProps) => {
   return (
     <RadioGroup row name={props.name} onChange={props.handleChange} value={props.value}>
       {props.radiosConfig &&
@@ -22,3 +22,5 @@ export default (props: IRadiosProps) => {
     </RadioGroup>
   );
 };
+
+export default MyRadioGroup;

@@ -25,13 +25,13 @@ const Mask = styled.div`
   background-color: #000;
   opacity: 0.5;
 `;
-export default () => {
+const Background = () => {
   return (
-    <>
-      <Container>
-        <BgImg src={bgImg.src} />
-        <Mask />
-      </Container>
-    </>
+    <Container>
+      <BgImg src={bgImg.src} />
+      <Mask />
+    </Container>
   );
 };
+
+export default Background;

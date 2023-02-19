@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as Styled from './styledFilter';
+import { TOption } from '@/type';
 import Button from '@/components/Button';
 import ToggleTag from '@/components/ToggleTag';
 import Tag from '@/components/Tag';

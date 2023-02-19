@@ -18,7 +18,7 @@ interface ISelectProps {
   name: string;
   handleChange: (e: SelectChangeEvent<unknown>) => void;
 }
-export default ({ name, ...props }: ISelectProps) => {
+const MySelect = ({ name, ...props }: ISelectProps) => {
   return (
     <StyledSelect name={name} value={props.value} onChange={props.handleChange}>
       {props.options.map((option: TOption) => (
@@ -29,3 +29,5 @@ export default ({ name, ...props }: ISelectProps) => {
     </StyledSelect>
   );
 };
+
+export default MySelect;

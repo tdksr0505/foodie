@@ -1,4 +1,5 @@
 import { LoadingContext } from '../context/loadingContext';
 import { useContext } from 'react';
 
-export default () => useContext(LoadingContext);
+const useLoading = () => useContext(LoadingContext);
+export default useLoading;

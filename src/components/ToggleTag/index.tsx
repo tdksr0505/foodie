@@ -32,7 +32,7 @@ interface IToggleTagProps {
   onClick?: (e: React.SyntheticEvent, value: boolean) => void;
   [x: string]: unknown;
 }
-export default ({ label, value, onClick, ...restProps }: IToggleTagProps) => {
+const ToggleTag = ({ label, value, onClick, ...restProps }: IToggleTagProps) => {
   const [toggle, setToggle] = useState<boolean>(value || false);
   const [clickEvent, setClickEvent] = useState<React.SyntheticEvent | null>(null);
   const onClickTag = (e: React.SyntheticEvent) => {
@@ -41,7 +41,7 @@ export default ({ label, value, onClick, ...restProps }: IToggleTagProps) => {
   };
   useEffect(() => {
     if (onClick && clickEvent) onClick(clickEvent, toggle);
-  }, [clickEvent]);
+  }, [clickEvent, onClick, toggle]);
   useEffect(() => {
     if (value !== undefined) setToggle(value);
   }, [value]);
@@ -51,3 +51,5 @@ export default ({ label, value, onClick, ...restProps }: IToggleTagProps) => {
     </StyledToggleTag>
   );
 };
+
+export default ToggleTag;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-const Gotop = styled.div`
+const StyledGotop = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,10 +27,12 @@ const scrollTop = () => {
     behavior: 'smooth',
   });
 };
-export default () => {
+const Gotop = () => {
   return (
-    <Gotop onClick={scrollTop}>
+    <StyledGotop onClick={scrollTop}>
       <Icon />
-    </Gotop>
+    </StyledGotop>
   );
 };
+
+export default Gotop;

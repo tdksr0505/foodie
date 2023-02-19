@@ -1,9 +1,11 @@
 import RestaurantForm from '@/components/RestaurantForm';
 
-export default () => {
+const AddPage = () => {
   return (
     <>
       <RestaurantForm title="New" />
     </>
   );
 };
+
+export default AddPage;

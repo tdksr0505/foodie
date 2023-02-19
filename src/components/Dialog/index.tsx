@@ -9,7 +9,7 @@ interface IDialog {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-export default ({ title, handleAgree, open, setOpen }: IDialog) => {
+const MyDialog = ({ title, handleAgree, open, setOpen }: IDialog) => {
   const handleClose = () => {
     setOpen(false);
   };
@@ -25,3 +25,5 @@ export default ({ title, handleAgree, open, setOpen }: IDialog) => {
     </>
   );
 };
+
+export default MyDialog;

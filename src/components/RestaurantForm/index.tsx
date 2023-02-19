@@ -52,7 +52,7 @@ const canReserveConfig: Array<TOption> = [
   },
 ];
 const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
-export default ({ data, title, id }: IRestaurantFormProps) => {
+const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
   const router = useRouter();
   const initailValue: TRestaurantFormData = {
     name: null,
@@ -235,3 +235,5 @@ export default ({ data, title, id }: IRestaurantFormProps) => {
     </>
   );
 };
+
+export default RestaurantForm;

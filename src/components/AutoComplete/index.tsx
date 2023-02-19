@@ -20,7 +20,7 @@ interface ISelectProps {
   name: string;
   handleChange: (e: React.SyntheticEvent, value: unknown) => void;
 }
-export default ({ name, ...props }: ISelectProps) => {
+const AutoComplete = ({ name, ...props }: ISelectProps) => {
   return (
     <StyledAutocomplete
       multiple
@@ -38,3 +38,5 @@ export default ({ name, ...props }: ISelectProps) => {
     />
   );
 };
+
+export default AutoComplete;

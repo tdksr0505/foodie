@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from '../../components/Button';
+import Button from '../Button';
 
 export const Logo = styled.img`
   width: 160px;
