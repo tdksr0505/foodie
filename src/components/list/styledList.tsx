@@ -28,7 +28,7 @@ export const ListItemBox = styled.div`
 export const ListItem = styled.div`
   position: relative;
   width: 100%;
-  background-color: #fff;
+  background-color: #ffffff;
   cursor: pointer;
   &:focus-visible,
   &:focus,

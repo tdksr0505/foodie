@@ -12,14 +12,15 @@ interface IMrtLineNameProps {
 }
 
 export const Filter = styled.div<IFilterProps>`
+  display: flex;
+  flex-direction: column;
   z-index: 4;
   position: fixed;
   top: ${(props) => (props.isOpen ? '60px' : '100%')}; // open時到header高度
   left: 0;
-  width: 100%;
   height: calc(100% - 60px);
-  padding: 20px 20px;
-  background-color: #fff;
+  width: 100%;
+  background-color: #ffffff;
   transition: top 0.2s;
   @media screen and (min-width: 992px) {
     position: static;
@@ -48,8 +49,13 @@ export const SearchIcon = styled(BaseSearchIcon)`
 `;
 
 export const CloseBtnBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 0 auto;
   text-align: right;
-  margin-bottom: 10px;
+  height: 52px;
+  border-bottom: 2px solid #82929f;
   @media screen and (min-width: 992px) {
     display: none;
   }
@@ -81,33 +87,27 @@ export const ToggleTagBox = styled.div`
   margin-bottom: 10px;
 `;
 
-export const FilterMainBox = styled.div`
-  height: calc(100% - 70px);
+export const FilterOptions = styled.div`
+  padding: 20px;
   overflow-y: auto;
   @media screen and (min-width: 992px) {
     height: auto;
   }
 `;
 export const ButtonBox = styled.div`
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-  display: flex;
   width: 100%;
-  padding: 10px 20px 0px 20px;
-  margin-top: 30px;
+  padding: 20px 20px;
   border-top: 1px solid #82929f;
   background-color: #fff;
+  text-align: center;
   height: 70px;
-  ${Button} {
-    width: 50%;
-  }
   ${Button}+ ${Button} {
     margin-left: 10px;
   }
   @media screen and (min-width: 992px) {
-    position: static;
     height: auto;
     border-top: none;
+    padding-top: 0;
   }
 `;
+export const InnerBox = styled.div``;

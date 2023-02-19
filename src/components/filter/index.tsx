@@ -82,14 +82,14 @@ const Filter = ({ filterOpen, setFilterOpen }: IFilterProps) => {
   return (
     <>
       <Styled.Filter isOpen={filterOpen}>
-        <Styled.FilterMainBox>
-          <Styled.CloseBtnBox
-            onClick={() => {
-              setFilterOpen(false);
-            }}
-          >
-            <Styled.CloseBtn />
-          </Styled.CloseBtnBox>
+        <Styled.CloseBtnBox
+          onClick={() => {
+            setFilterOpen(false);
+          }}
+        >
+          <Styled.CloseBtn />
+        </Styled.CloseBtnBox>
+        <Styled.FilterOptions>
           <Styled.InputBox>
             <Styled.SearchInput name="name" value={filter.name} onChange={handleKeywordChange} />
             <Styled.SearchIcon />
@@ -140,10 +140,9 @@ const Filter = ({ filterOpen, setFilterOpen }: IFilterProps) => {
             <FormControlLabel value={true} control={<Radio />} label="吃過了" />
             <FormControlLabel value={false} control={<Radio />} label="沒吃過" />
           </RadioGroup>
-        </Styled.FilterMainBox>
+        </Styled.FilterOptions>
         <Styled.ButtonBox>
           <Button onClick={handleReset}>Reset</Button>
-          <Button>查詢</Button>
         </Styled.ButtonBox>
       </Styled.Filter>
     </>
