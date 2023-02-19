@@ -7,7 +7,7 @@ interface ITagProps {
 const DEFAULT_BG = '#ab8a46';
 const DEFAULT_FONT = '#FFF';
 
-export default styled.div<ITagProps>`
+const Tag = styled.div<ITagProps>`
   display: inline-block;
   padding: 2px 6px;
   border-radius: 4px;
@@ -18,3 +18,5 @@ export default styled.div<ITagProps>`
     margin-left: 10px;
   }
 `;
+
+export default Tag;
