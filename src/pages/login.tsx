@@ -4,6 +4,7 @@ import WhiteBox from '@/components/WhiteBox';
 import * as Form from '@/styles/styledFormPage';
 import Button from '@/components/Button';
 import useSnackbar from '@/hooks/useSnackbar';
+import useLoading from '@/hooks/useLoading';
 import { useRouter } from 'next/router';
 import useAuth from '@/hooks/useAuth';
 
@@ -19,8 +20,10 @@ export default () => {
   const { login } = useAuth();
   const router = useRouter();
   const { showSnackbar } = useSnackbar();
+  const { setLoading } = useLoading();
   const [formValue, setFormValue] = useState<IFormValue>(initFormValue);
   const handleLogin = async () => {
+    setLoading(true);
     await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/login`, {
       method: 'POST',
       headers: {
@@ -39,6 +42,7 @@ export default () => {
             password: '',
           });
         }
+        setLoading(false);
         showSnackbar(result.data.msg);
       });
   };

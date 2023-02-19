@@ -16,7 +16,7 @@ export const Filter = styled.div<IFilterProps>`
   flex-direction: column;
   z-index: 4;
   position: fixed;
-  top: ${(props) => (props.isOpen ? '60px' : '100%')}; // open時到header高度
+  top: ${(props) => (props.isOpen ? '60px' : '200%')}; // open時到header高度
   left: 0;
   height: calc(100% - 60px);
   width: 100%;

@@ -17,7 +17,7 @@ const Gotop = styled.div`
 `;
 
 const Icon = styled(KeyboardArrowUpIcon)`
-  font-size: 35px;
+  font-size: 40px;
   color: #fff;
 `;
 

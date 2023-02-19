@@ -28,6 +28,7 @@ export const Title = styled.div`
   font-size: 22px;
   color: #464646;
   margin-bottom: 10px;
+  font-weight: bold;
 `;
 export const DataRow = styled.div`
   font-size: 16px;
@@ -40,10 +41,13 @@ export const DataRow = styled.div`
 `;
 export const DataLabel = styled.div`
   flex: 0 0 auto;
-  width: 96px;
-  color: #646b73;
+  color: #005ed8;
+  font-size: 18px;
   @media screen and (min-width: 992px) {
+    width: 108px;
     text-align: right;
   }
 `;
-export const DataValue = styled.div``;
+export const DataValue = styled.div`
+  font-size: 17px;
+`;

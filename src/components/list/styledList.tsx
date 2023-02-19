@@ -4,6 +4,7 @@ import BasePostTag from '@/components/PostTag';
 
 export const Title = styled.div`
   font-size: 20px;
+  font-weight: bold;
   color: #464646;
   margin-bottom: 6px;
 `;

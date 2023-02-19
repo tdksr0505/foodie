@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app';
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/nprogress.css';
 import NProgress from 'nprogress';
 import Router from 'next/router';
@@ -16,7 +16,15 @@ import store from '../store';
 NProgress.configure({ showSpinner: false });
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
+const GOTOP_THRESHOLD = 250;
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+  const [showGotop, setShowGotop] = useState<boolean>(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowGotop(window.top!.scrollY >= GOTOP_THRESHOLD);
+    };
+    window.addEventListener('scroll', handleScroll);
+  }, []);
   return (
     <>
       <ReduxProvider store={store}>
@@ -29,7 +37,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
                 <Layout>
                   <Component {...pageProps} />
                 </Layout>
-                <Gotop />
+                {showGotop && <Gotop />}
               </>
             </AuthProvider>
           </SnackbarProvider>

@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Head from 'next/head';
 import { useState } from 'react';
 import type { TRestaurantFormData } from '@/type';
 import Button from '@/components/Button';
@@ -39,6 +40,10 @@ export default function RestaurantDetail({ detailData }: { detailData: TRestaura
   };
   return (
     <>
+      <Head>
+        <title>My page title</title>
+        <meta name="format-detection" content="telephone=no"></meta>
+      </Head>
       <WhiteBox>
         {detailData && (
           <>
