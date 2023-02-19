@@ -1,17 +1,16 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import type { TRestaurantDetail } from '@/type';
 import * as ListStyled from '../styles/styledListPage';
 import Filter from '../components/Filter';
 import List from '../components/List';
 import Button from '../components/Button';
 import useLoading from '../hooks/useLoading';
 import useAuth from '@/hooks/useAuth';
-
+import { useDispatch } from 'react-redux';
+import { initList } from '@/reducers/listSlice';
 export default function Home() {
+  const dispatch = useDispatch();
   const { auth } = useAuth();
-  const [fetchData, setFetchData] = useState<Array<TRestaurantDetail> | null>(null);
-  const [filteredData, setFilteredData] = useState<Array<TRestaurantDetail> | null>(null);
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
   const { setLoading } = useLoading();
   useEffect(() => {
@@ -20,15 +19,12 @@ export default function Home() {
       await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/restaurant/`)
         .then((res) => res.json())
         .then((result) => {
-          setFetchData(result.data.restaurant);
+          dispatch(initList(result.data.restaurant));
           setLoading(false);
         });
     };
     fetchData();
   }, []);
-  useEffect(() => {
-    setFilteredData(fetchData);
-  }, [fetchData]);
 
   return (
     <>
@@ -40,13 +36,8 @@ export default function Home() {
         </ListStyled.PageButtonArea>
       )}
       <ListStyled.RestaurantListPageBox>
-        <Filter
-          fetchData={fetchData}
-          setFilteredData={setFilteredData}
-          filterOpen={filterOpen}
-          setFilterOpen={setFilterOpen}
-        />
-        <List data={filteredData} />
+        <Filter filterOpen={filterOpen} setFilterOpen={setFilterOpen} />
+        <List />
       </ListStyled.RestaurantListPageBox>
       <ListStyled.FilterButton
         onClick={() => {

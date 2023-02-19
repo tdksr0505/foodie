@@ -1,15 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
 import * as Styled from './styledList';
-import type { TRestaurantDetail } from '@/type';
 import TagBox from '@/components/TagBox';
 import Tag from '@/components/Tag';
 import { getStationName, getTagColor } from '../../utils/mrtUtil';
-interface IListProps {
-  data: Array<TRestaurantDetail> | null;
-}
-
-const List = ({ data }: IListProps) => {
+import { useSelector } from 'react-redux';
+import type { RootState } from '@/store';
+const List = () => {
+  const state = useSelector((state: RootState) => state.list);
+  const data = state.filteredList;
   const BASE_DETAIL_URL = '/restaurant/detail/';
   return (
     <Styled.List>

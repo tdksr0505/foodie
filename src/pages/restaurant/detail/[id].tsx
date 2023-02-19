@@ -102,10 +102,10 @@ export default function RestaurantDetail({ detailData }: { detailData: TRestaura
               <div>
                 {auth && (
                   <>
-                    <Detail.DeleteButton onClick={onClickDelete}>刪除</Detail.DeleteButton>
                     <Link href={`/restaurant/edit/${id}`}>
                       <Button>編輯</Button>
                     </Link>
+                    <Detail.DeleteButton onClick={onClickDelete}>刪除</Detail.DeleteButton>
                   </>
                 )}
               </div>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import * as Styled from './styledFilter';
-import type { TRestaurantDetail, TOption } from '@/type';
 import Button from '@/components/Button';
 import ToggleTag from '@/components/ToggleTag';
 import Tag from '@/components/Tag';
@@ -10,73 +9,33 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-// 依 名稱
-// 依 類型
-// 依 捷運站
-// 依 有吃過沒吃過
-
-// 依 照分數
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilter } from '@/reducers/listSlice';
+import type { RootState } from '@/store';
 
 interface IFilterProps {
-  fetchData: Array<TRestaurantDetail> | null;
-  setFilteredData: React.Dispatch<React.SetStateAction<TRestaurantDetail[] | null>>;
   filterOpen: boolean;
   setFilterOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-interface IFilter {
-  name: string;
-  type: Array<string>;
-  mrt: Array<string>;
-  isVisited: boolean | null;
-}
 
-const filterInitValue: IFilter = { name: '', type: [], mrt: [], isVisited: null };
-const compareMrt = (filterMrt: Array<string>, listItemMrt: Array<string>) => {
-  //比較 filter mrt[] 和 list item的mrt[]
-  for (let itemMrt of listItemMrt) {
-    if (filterMrt.includes(itemMrt)) {
-      return true;
-    }
-  }
-  return false;
-};
-const Filter = ({ fetchData, setFilteredData, filterOpen, setFilterOpen }: IFilterProps) => {
-  const [filter, setFilter] = useState<IFilter>(filterInitValue);
+const Filter = ({ filterOpen, setFilterOpen }: IFilterProps) => {
+  const state = useSelector((state: RootState) => state.list);
+  const filter = state.filter;
+  const dispatch = useDispatch();
   const [filterMrtOption, setFilterMrtOption] = useState<{ [x: string]: TOption[] }>({});
 
   const handleReset = () => {
-    setFilter({ name: '', type: [], mrt: [], isVisited: null });
-    setFilteredData(fetchData);
+    dispatch(setFilter({ name: '', type: [], mrt: [], isVisited: null }));
   };
 
-  const handleSearch = () => {
-    //點擊搜尋
-    // console.log(`搜尋條件`, filter);
-    setFilterOpen(false);
-    if (filter.name === '' && filter.type.length === 0 && filter.mrt.length === 0 && filter.isVisited === null) {
-      //無篩選條件
-      handleReset();
-      return;
-    }
-
-    const filterData = fetchData?.filter((elem) => {
-      return (
-        (filter.name === '' || elem.name.includes(filter.name)) &&
-        (filter.type.length === 0 || filter.type.includes(elem.type)) &&
-        (filter.mrt.length === 0 || compareMrt(filter.mrt, elem.mrt)) &&
-        (filter.isVisited === null || filter.isVisited === elem.isVisited)
-      );
-    });
-    if (filterData) setFilteredData(filterData);
-  };
-  const onChangeFilter = (e: any) => {
-    setFilter({ ...filter, [e.target.name]: e.target.value });
+  const handleKeywordChange = (e: any) => {
+    dispatch(setFilter({ ...state.filter, [e.target.name]: e.target.value }));
   };
 
   const handleFoodTypeChange = (e: React.SyntheticEvent, value: boolean) => {
     // 點擊餐廳類型事件
     const name = (e.target as Element).getAttribute('name');
-    const foodTypeValue = filter.type;
+    const foodTypeValue = [...filter.type];
     if (name) {
       const isNameExist = foodTypeValue.includes(name);
       if (value && !isNameExist) {
@@ -84,13 +43,13 @@ const Filter = ({ fetchData, setFilteredData, filterOpen, setFilterOpen }: IFilt
       } else if (!value && isNameExist) {
         foodTypeValue.splice(foodTypeValue.indexOf(name), 1);
       }
-      setFilter({ ...filter, type: foodTypeValue });
+      dispatch(setFilter({ ...filter, type: foodTypeValue }));
     }
   };
 
   const handleMrtChange = (e: React.SyntheticEvent<Element, Event>, checked: boolean) => {
     // 點擊捷運站事件
-    const mrtValue = filter.mrt;
+    const mrtValue = [...filter.mrt];
     const name = (e.target as Element).getAttribute('name');
     if (name) {
       if (checked && !mrtValue.includes(name)) {
@@ -98,15 +57,16 @@ const Filter = ({ fetchData, setFilteredData, filterOpen, setFilterOpen }: IFilt
       } else if (!checked && mrtValue.includes(name)) {
         mrtValue.splice(mrtValue.indexOf(name), 1);
       }
-      setFilter({ ...filter, mrt: mrtValue });
+      dispatch(setFilter({ ...filter, mrt: mrtValue }));
     }
   };
   const handleVisitedChange = (e: React.ChangeEvent<HTMLInputElement>, value: string) => {
-    setFilter({ ...filter, isVisited: value === 'true' ? true : false });
+    dispatch(setFilter({ ...filter, isVisited: value === 'true' ? true : false }));
   };
   useEffect(() => {
     // 生成資料有包含的捷運站
-    const mrtStationsID = fetchData?.reduce((pre, cur) => {
+    const fetchList = state.fetchList;
+    const mrtStationsID = fetchList?.reduce((pre, cur) => {
       return [...pre, ...cur.mrt];
     }, [] as Array<string>);
 
@@ -117,7 +77,7 @@ const Filter = ({ fetchData, setFilteredData, filterOpen, setFilterOpen }: IFilt
       });
       setFilterMrtOption(getFilterMrt(duplicateID));
     }
-  }, [fetchData]);
+  }, [state.fetchList]);
 
   return (
     <>
@@ -131,7 +91,7 @@ const Filter = ({ fetchData, setFilteredData, filterOpen, setFilterOpen }: IFilt
             <Styled.CloseBtn />
           </Styled.CloseBtnBox>
           <Styled.InputBox>
-            <Styled.SearchInput name="name" value={filter.name} onChange={onChangeFilter} />
+            <Styled.SearchInput name="name" value={filter.name} onChange={handleKeywordChange} />
             <Styled.SearchIcon />
           </Styled.InputBox>
 
@@ -183,7 +143,7 @@ const Filter = ({ fetchData, setFilteredData, filterOpen, setFilterOpen }: IFilt
         </Styled.FilterMainBox>
         <Styled.ButtonBox>
           <Button onClick={handleReset}>Reset</Button>
-          <Button onClick={handleSearch}>查詢</Button>
+          <Button>查詢</Button>
         </Styled.ButtonBox>
       </Styled.Filter>
     </>

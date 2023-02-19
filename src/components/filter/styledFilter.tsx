@@ -59,7 +59,7 @@ export const CloseBtn = styled(CloseIcon)`
   font-size: 38px;
 `;
 
-export const FilterOptionTitle = styled.div<{ mt: boolean }>`
+export const FilterOptionTitle = styled.div<{ mt?: boolean }>`
   color: #717171;
   padding-bottom: 5px;
   border-bottom: 1px solid #acabab;

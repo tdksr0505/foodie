@@ -8,7 +8,7 @@ export const DetailTagBox = styled(TagBox)`
 `;
 
 export const DeleteButton = styled(Button)`
-  margin-right: 10px;
+  margin-left: 10px;
 `;
 
 export const DetailButtonArea = styled(PageButtonArea)`
