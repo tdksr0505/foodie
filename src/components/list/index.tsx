@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import * as Styled from './styledList';
 import TagBox from '@/components/TagBox';
-import Tag from '@/components/Label';
+import Tag from '@/components/Tag';
 import { getStationName, getTagColor } from '../../utils/mrtUtil';
 import { useSelector } from 'react-redux';
 import type { RootState } from '@/store';

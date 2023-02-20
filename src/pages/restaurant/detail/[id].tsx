@@ -5,7 +5,7 @@ import { useState } from 'react';
 import type { TRestaurantFormData } from '@/type';
 import Button from '@/components/Button';
 import WhiteBox from '@/components/WhiteBox';
-import Tag from '@/components/Label';
+import Tag from '@/components/Tag';
 import Dialog from '@/components/Dialog';
 import * as Detail from '@/styles/styledDetailPage';
 import { RateBox, Rate, Star } from '@/components/List/styledList';
