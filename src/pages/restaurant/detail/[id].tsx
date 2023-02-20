@@ -8,7 +8,7 @@ import WhiteBox from '@/components/WhiteBox';
 import Tag from '@/components/Tag';
 import Dialog from '@/components/Dialog';
 import * as Detail from '@/styles/styledDetailPage';
-import { RateBox, Rate, Star } from '@/components/TmpList/styledList';
+import { RateBox, Rate, Star } from '@/components/List/styledList';
 import { getStationName, getTagColor } from '../../../utils/mrtUtil';
 import useSnackbar from '@/hooks/useSnackbar';
 import useLoading from '@/hooks/useLoading';

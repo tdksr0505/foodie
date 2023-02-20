@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../TmpHeader';
+import Header from '../Header';
 import * as Styled from './styledLayout';
 
 interface ILayoutProps {
