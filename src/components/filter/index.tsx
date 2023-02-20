@@ -3,7 +3,7 @@ import * as Styled from './styledFilter';
 import { TOption } from '@/type';
 import Button from '@/components/Button';
 import ToggleTag from '@/components/ToggleTag';
-import Tag from '@/components/Tag';
+import Tag from '@/components/Label';
 import { foodTypeOptions } from '@/utils/foodTypeUtil';
 import { getFilterMrt, getLineName, getLineColor } from '@/utils/mrtUtil';
 import FormControlLabel from '@mui/material/FormControlLabel';
