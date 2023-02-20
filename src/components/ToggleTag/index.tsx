@@ -41,7 +41,7 @@ const ToggleTag = ({ label, value, onClick, ...restProps }: IToggleTagProps) => 
   };
   useEffect(() => {
     if (onClick && clickEvent) onClick(clickEvent, toggle);
-  }, [clickEvent, onClick, toggle]);
+  }, [clickEvent]);
   useEffect(() => {
     if (value !== undefined) setToggle(value);
   }, [value]);
