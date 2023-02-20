@@ -11,9 +11,9 @@ const Container = styled.div`
 
 const BgImg = styled.img`
   position: absolute;
-  top: 50%;
+  top: 0%;
   left: 50%;
-  transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, 0, 0);
 `;
 
 const Mask = styled.div`
