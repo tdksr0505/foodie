@@ -12,8 +12,8 @@ export const PageButtonArea = styled.div`
 
 export const FilterIcon = styled(FilterListIcon)`
   color: #ffffff;
-  font-size: 35px;
 `;
+
 export const FilterButton = styled.div`
   position: fixed;
   left: 50%;
@@ -25,6 +25,9 @@ export const FilterButton = styled.div`
   background-color: #82929f;
   text-align: center;
   padding-top: 8px;
+  ${FilterIcon} {
+    font-size: 35px;
+  }
   @media screen and (min-width: 992px) {
     display: none;
   }

@@ -11,25 +11,6 @@ interface IMrtLineNameProps {
   color?: string;
 }
 
-export const Filter = styled.div<IFilterProps>`
-  display: flex;
-  flex-direction: column;
-  z-index: 4;
-  position: fixed;
-  top: ${(props) => (props.isOpen ? '60px' : '200%')}; // open時到header高度
-  left: 0;
-  height: calc(100% - 60px);
-  width: 100%;
-  background-color: #ffffff;
-  transition: top 0.2s;
-  @media screen and (min-width: 992px) {
-    position: static;
-    flex: 0 0 auto;
-    width: 300px;
-    height: auto;
-  }
-`;
-
 export const InputBox = styled.div`
   position: relative;
   margin-bottom: 20px;
@@ -63,7 +44,6 @@ export const CloseBtnBox = styled.div`
 export const CloseBtn = styled(CloseIcon)`
   color: #82929f;
   padding-right: 15px;
-  font-size: 55px;
 `;
 
 export const FilterOptionTitle = styled.div<{ mt?: boolean }>`
@@ -124,4 +104,25 @@ export const ButtonBox = styled.div`
     padding-top: 0;
   }
 `;
-export const InnerBox = styled.div``;
+
+export const Filter = styled.div<IFilterProps>`
+  display: flex;
+  flex-direction: column;
+  z-index: 4;
+  position: fixed;
+  top: ${(props) => (props.isOpen ? '60px' : '200%')}; // open時到header高度
+  left: 0;
+  height: calc(100% - 60px);
+  width: 100%;
+  background-color: #ffffff;
+  transition: top 0.2s;
+  ${CloseBtn} {
+    font-size: 55px;
+  }
+  @media screen and (min-width: 992px) {
+    position: static;
+    flex: 0 0 auto;
+    width: 300px;
+    height: auto;
+  }
+`;
