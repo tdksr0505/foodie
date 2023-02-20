@@ -62,7 +62,8 @@ export const CloseBtnBox = styled.div`
 `;
 export const CloseBtn = styled(CloseIcon)`
   color: #82929f;
-  font-size: 38px;
+  padding-right: 15px;
+  font-size: 55px;
 `;
 
 export const FilterOptionTitle = styled.div<{ mt?: boolean }>`
@@ -95,7 +96,16 @@ export const FilterOptions = styled.div`
     height: auto;
   }
 `;
+
+export const MobileConfirmButton = styled(Button)`
+  @media screen and (min-width: 992px) {
+    display: none;
+  }
+`;
+
 export const ButtonBox = styled.div`
+  display: flex;
+  justify-content: center;
   width: 100%;
   padding: 20px 20px;
   border-top: 1px solid #82929f;
@@ -104,6 +114,9 @@ export const ButtonBox = styled.div`
   height: 70px;
   ${Button}+ ${Button} {
     margin-left: 10px;
+  }
+  ${Button} {
+    width: 50%;
   }
   @media screen and (min-width: 992px) {
     height: auto;

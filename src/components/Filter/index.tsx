@@ -80,14 +80,13 @@ const Filter = ({ filterOpen, setFilterOpen }: IFilterProps) => {
     }
   }, [state.fetchList]);
 
+  const handleFilterClose = () => {
+    setFilterOpen(false);
+  };
   return (
     <>
       <Styled.Filter isOpen={filterOpen}>
-        <Styled.CloseBtnBox
-          onClick={() => {
-            setFilterOpen(false);
-          }}
-        >
+        <Styled.CloseBtnBox onClick={handleFilterClose}>
           <Styled.CloseBtn />
         </Styled.CloseBtnBox>
         <Styled.FilterOptions>
@@ -144,6 +143,7 @@ const Filter = ({ filterOpen, setFilterOpen }: IFilterProps) => {
         </Styled.FilterOptions>
         <Styled.ButtonBox>
           <Button onClick={handleReset}>Reset</Button>
+          <Styled.MobileConfirmButton onClick={handleFilterClose}>確認</Styled.MobileConfirmButton>
         </Styled.ButtonBox>
       </Styled.Filter>
     </>
