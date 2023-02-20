@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/nprogress.css';
 import NProgress from 'nprogress';
 import Router from 'next/router';
-import Layout from '../components/Layout';
+import Layout from '../components/TmpLayout';
 import Background from '../components/Background';
 import Gotop from '../components/Gotop';
 import GlobalStyles from '../styles/globalStyles';

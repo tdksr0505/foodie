@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import * as ListStyled from '../styles/styledListPage';
-import Filter from '../components/Filter';
+import Filter from '../components/TmpFilter';
 import List from '../components/TmpList';
 import Button from '../components/Button';
 import useLoading from '../hooks/useLoading';
