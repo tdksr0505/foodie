@@ -1,31 +1,19 @@
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as ListStyled from '../styles/styledListPage';
 import Filter from '../components/Filter';
 import List from '../components/List';
 import Button from '../components/Button';
-import useLoading from '../hooks/useLoading';
 import useAuth from '@/hooks/useAuth';
 import { useDispatch } from 'react-redux';
 import { initList } from '@/reducers/listSlice';
-const IndexPage = () => {
+import type { TRestaurantFormData } from '@/type';
+
+const IndexPage = ({ listData }: { listData: TRestaurantFormData[] }) => {
   const dispatch = useDispatch();
   const { auth } = useAuth();
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
-  const { setLoading } = useLoading();
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/restaurant/`)
-        .then((res) => res.json())
-        .then((result) => {
-          dispatch(initList(result.data.restaurant));
-          setLoading(false);
-        });
-    };
-    fetchData();
-  }, [dispatch, setLoading]);
-
+  dispatch(initList(listData));
   return (
     <>
       {auth && (
@@ -51,3 +39,10 @@ const IndexPage = () => {
 };
 
 export default IndexPage;
+export async function getServerSideProps(context: any) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/restaurant/`);
+  const result = await res.json();
+  return {
+    props: { listData: result.data.restaurant },
+  };
+}
