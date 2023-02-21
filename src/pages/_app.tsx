@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app';
+import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import '../styles/nprogress.css';
 import NProgress from 'nprogress';
@@ -27,6 +28,9 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
   }, []);
   return (
     <>
+      <Head>
+        <title>MoguMogu</title>
+      </Head>
       <ReduxProvider store={store}>
         <LoadingProvider>
           <SnackbarProvider>

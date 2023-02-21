@@ -40,10 +40,6 @@ export default function RestaurantDetail({ detailData }: { detailData: TRestaura
   };
   return (
     <>
-      <Head>
-        <title>My page title</title>
-        <meta name="format-detection" content="telephone=no"></meta>
-      </Head>
       <WhiteBox>
         {detailData && (
           <>
