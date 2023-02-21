@@ -7,13 +7,8 @@ const Container = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-`;
-
-const BgImg = styled.img`
-  position: absolute;
-  top: 0%;
-  left: 50%;
-  transform: translate3d(-50%, 0, 0);
+  background: url(${bgImg.src}) top center no-repeat;
+  background-size: 1920px auto;
 `;
 
 const Mask = styled.div`
@@ -28,7 +23,6 @@ const Mask = styled.div`
 const Background = () => {
   return (
     <Container>
-      <BgImg src={bgImg.src} />
       <Mask />
     </Container>
   );
