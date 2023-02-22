@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as ListStyled from '../styles/styledListPage';
 import Filter from '../components/Filter';
 import List from '../components/List';
@@ -13,7 +13,10 @@ const IndexPage = ({ listData }: { listData: TRestaurantFormData[] }) => {
   const dispatch = useDispatch();
   const { auth } = useAuth();
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
-  dispatch(initList(listData));
+  useEffect(() => {
+    dispatch(initList(listData));
+  }, []);
+
   return (
     <>
       {auth && (
