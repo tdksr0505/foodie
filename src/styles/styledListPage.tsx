@@ -1,16 +1,39 @@
 import styled from 'styled-components';
 import Button from '@/components/Button';
-import FilterListIcon from '@mui/icons-material/FilterList';
-
+import TuneIcon from '@mui/icons-material/Tune';
+import BaseAddIcon from '@mui/icons-material/Add';
 export const PageButtonArea = styled.div`
-  margin-bottom: 20px;
   text-align: right;
   ${Button} + ${Button} {
     margin-left: 10px;
   }
 `;
 
-export const FilterIcon = styled(FilterListIcon)`
+export const AddIcon = styled(BaseAddIcon)`
+  color: #ffffff;
+`;
+
+export const AddButton = styled(Button)`
+  display: flex;
+  align-items: center;
+  ${AddIcon} {
+    font-size: 25px;
+  }
+`;
+
+export const CountBox = styled.div`
+  padding: 8px 15px;
+  background-color: #fff;
+  color: #464646;
+`;
+
+export const ListTopArea = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+`;
+
+export const FilterIcon = styled(TuneIcon)`
   color: #ffffff;
 `;
 

@@ -34,7 +34,7 @@ const LoginPage = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.code === 0) {
-          login({ account: result.data.account, token: result.data.token });
+          login({ account: result.data.account, token: result.data.token, name: result.data.name });
           router.push(`/`);
         } else {
           setFormValue({

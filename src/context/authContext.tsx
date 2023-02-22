@@ -3,12 +3,13 @@ import { TChildren } from '@/type';
 import { useCookies } from 'react-cookie';
 interface IUser {
   account: string;
+  name: string;
   token: string;
 }
 const AUTH_KEY = 'auth';
 const LOGIN_KEY = 'isLogin';
 const contextDefaultValue = {
-  user: { account: '', token: '' },
+  user: { account: '', token: '', name: '' },
   login: (user: IUser) => {},
   logout: () => {},
   auth: false,
@@ -42,6 +43,7 @@ export const AuthProvider = ({ children }: TChildren) => {
     setUser({
       account: data.account,
       token: data.token,
+      name: data.name,
     });
     setCookie(LOGIN_KEY, 1, { path: '/' });
   };
@@ -49,6 +51,7 @@ export const AuthProvider = ({ children }: TChildren) => {
     setUser({
       account: '',
       token: '',
+      name: '',
     });
     setCookie(LOGIN_KEY, 0, { path: '/' });
   };

@@ -22,7 +22,7 @@ const Header = () => {
       </Link>
       {auth ? (
         <Styled.RightBox>
-          <Styled.Account>{user.account}</Styled.Account>
+          <Styled.Account>{user.name}</Styled.Account>
           <Styled.LoginButton onClick={handleLogout}>登出</Styled.LoginButton>
         </Styled.RightBox>
       ) : (
