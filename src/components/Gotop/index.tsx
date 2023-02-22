@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
+const Icon = styled(KeyboardArrowUpIcon)`
+  color: #fff;
+`;
+
 const StyledGotop = styled.div`
   display: flex;
   justify-content: center;
@@ -14,11 +18,9 @@ const StyledGotop = styled.div`
   background-color: #196ea8;
   border-radius: 50%;
   cursor: pointer;
-`;
-
-const Icon = styled(KeyboardArrowUpIcon)`
-  font-size: 40px;
-  color: #fff;
+  ${Icon} {
+    font-size: 40px;
+  }
 `;
 
 const scrollTop = () => {
