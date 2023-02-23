@@ -44,7 +44,7 @@ export const ListItem = styled.div`
     position: absolute;
     left: 0;
     bottom: 0;
-    background: #ebb950;
+    background: #f7bed8;
     width: 100%;
     height: 0px;
     transition: height 0.3s;
