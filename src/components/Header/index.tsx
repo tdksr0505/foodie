@@ -5,6 +5,7 @@ import logo from '../../assets/logo.png';
 import useAuth from '@/hooks/useAuth';
 import { useRouter } from 'next/router';
 import useSnackbar from '@/hooks/useSnackbar';
+import Button from '../Button';
 
 const Header = () => {
   const router = useRouter();
@@ -23,11 +24,11 @@ const Header = () => {
       {auth ? (
         <Styled.RightBox>
           <Styled.Account>{user.name}</Styled.Account>
-          <Styled.LoginButton onClick={handleLogout}>登出</Styled.LoginButton>
+          <Button onClick={handleLogout}>登出</Button>
         </Styled.RightBox>
       ) : (
         <Link href="/login">
-          <Styled.LoginButton>登入</Styled.LoginButton>
+          <Button>登入</Button>
         </Link>
       )}
     </Styled.Header>

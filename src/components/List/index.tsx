@@ -3,7 +3,7 @@ import Link from 'next/link';
 import * as Styled from './styledList';
 import TagBox from '@/components/TagBox';
 import Tag from '@/components/Tag';
-import { getStationName, getTagColor } from '../../utils/mrtUtil';
+import { getStationName, getStationColor } from '../../utils/mrtUtil';
 import { useSelector } from 'react-redux';
 import type { RootState } from '@/store';
 const List = () => {
@@ -27,7 +27,7 @@ const List = () => {
                   <Styled.SimpleAddress>{item.simpleAddress}</Styled.SimpleAddress>
                   <TagBox>
                     {item.mrt.map((stationID) => {
-                      const { fontColor, bgColor } = getTagColor(stationID);
+                      const { fontColor, bgColor } = getStationColor(stationID);
                       const stationName = getStationName(stationID);
                       return (
                         <Tag key={stationID} fontColor={fontColor} bgColor={bgColor}>

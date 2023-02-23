@@ -9,7 +9,7 @@ import Tag from '@/components/Tag';
 import Dialog from '@/components/Dialog';
 import * as Detail from '@/styles/styledDetailPage';
 import { RateBox, Rate, Star } from '@/components/List/styledList';
-import { getStationName, getTagColor } from '../../../utils/mrtUtil';
+import { getStationName, getStationColor } from '../../../utils/mrtUtil';
 import useSnackbar from '@/hooks/useSnackbar';
 import useLoading from '@/hooks/useLoading';
 import useAuth from '@/hooks/useAuth';
@@ -48,7 +48,7 @@ export default function RestaurantDetail({ detailData }: { detailData: TRestaura
               <Detail.DetailTagBox>
                 {detailData.mrt &&
                   detailData.mrt.map((stationID) => {
-                    const { fontColor, bgColor } = getTagColor(stationID);
+                    const { fontColor, bgColor } = getStationColor(stationID);
                     const stationName = getStationName(stationID);
                     return (
                       <Tag key={stationID} fontColor={fontColor} bgColor={bgColor}>

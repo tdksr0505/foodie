@@ -51,7 +51,7 @@ export { mrtStationOptions };
 export const getStationName = (StationID: string) => {
   return mrtStation[StationID as keyof typeof mrtStation].name;
 };
-export const getTagColor = (StationID: string): { fontColor: string; bgColor: string } => {
+export const getStationColor = (StationID: string): { fontColor: string; bgColor: string } => {
   const lineID = mrtStation[StationID as keyof typeof mrtStation].line;
   return {
     fontColor: MRT_COLOR_CONFIG[lineID].font,
