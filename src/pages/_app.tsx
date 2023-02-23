@@ -30,6 +30,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
     <>
       <Head>
         <title>MoguMogu</title>
+        <link rel="apple-touch-icon" href="/favicon.ico" />
       </Head>
       <ReduxProvider store={store}>
         <LoadingProvider>
