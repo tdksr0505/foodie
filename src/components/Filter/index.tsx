@@ -143,7 +143,7 @@ const Filter = ({ filterOpen, setFilterOpen }: IFilterProps) => {
         </Styled.FilterOptions>
         <Styled.ButtonBox>
           <Button onClick={handleReset}>Reset</Button>
-          <Styled.MobileConfirmButton onClick={handleFilterClose}>確認</Styled.MobileConfirmButton>
+          <Styled.MobileConfirmButton onClick={handleFilterClose}>Ok</Styled.MobileConfirmButton>
         </Styled.ButtonBox>
       </Styled.Filter>
     </>

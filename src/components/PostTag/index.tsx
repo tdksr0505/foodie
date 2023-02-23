@@ -4,7 +4,7 @@ interface ITagProps {
   fontColor?: string;
   bgColor?: string;
 }
-const DEFAULT_BG = '#eea052';
+const DEFAULT_BG = '#947a63';
 const DEFAULT_FONT = '#FFF';
 
 export default styled.div<ITagProps>`

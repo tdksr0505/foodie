@@ -16,12 +16,14 @@ export const AddIcon = styled(BaseAddIcon)`
 export const AddButton = styled(Button)`
   display: flex;
   align-items: center;
+  height: 100%;
   ${AddIcon} {
     font-size: 25px;
   }
 `;
 
 export const CountBox = styled.div`
+  height: 100%;
   padding: 8px 15px;
   background-color: #fff;
   color: #464646;
@@ -30,6 +32,7 @@ export const CountBox = styled.div`
 export const ListTopArea = styled.div`
   display: flex;
   justify-content: space-between;
+  height: 40px;
   margin-bottom: 15px;
 `;
 
@@ -45,7 +48,7 @@ export const FilterButton = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #82929f;
+  background-color: #f7bed8;
   text-align: center;
   padding-top: 8px;
   ${FilterIcon} {

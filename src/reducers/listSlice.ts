@@ -36,6 +36,7 @@ const listSlice = createSlice({
       state.filteredList = action.payload;
     },
     setFilter(state, action) {
+      console.log(`setFilter`, action.payload);
       state.filter = action.payload;
 
       //篩選列表
