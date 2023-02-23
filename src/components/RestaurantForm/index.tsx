@@ -15,6 +15,7 @@ import { SelectChangeEvent } from '@mui/material/Select';
 import useSnackbar from '@/hooks/useSnackbar';
 import useLoading from '@/hooks/useLoading';
 import * as Form from '@/styles/styledFormPage';
+import Slider from '@mui/material/Slider';
 
 interface IRestaurantFormProps {
   data?: TRestaurantFormData;
@@ -106,6 +107,14 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
       mrt: storeValue,
     });
   };
+
+  const handleRateChange = (event: Event, value: number | number[]) => {
+    setFormValue({
+      ...formValue,
+      rate: value.toString(),
+    });
+  };
+
   const onSubmit = () => {
     const fetchUrl = id ? `${BASE_API_URL}/api/restaurant/${id}` : `${BASE_API_URL}/api/restaurant`;
     const returnUrl = id ? `/restaurant/detail/${id}` : `/`;
@@ -144,7 +153,15 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
             <Form.FormGroup>
               <Form.Label>評分</Form.Label>
               <Form.RightBox>
-                <TextField name="rate" value={formValue?.rate || ''} onChange={handleValueChange} />
+                <Slider
+                  valueLabelDisplay="on"
+                  step={0.1}
+                  marks
+                  min={3.5}
+                  max={5}
+                  value={parseFloat(formValue.rate || '3.5')}
+                  onChange={handleRateChange}
+                />
               </Form.RightBox>
             </Form.FormGroup>
             <Form.FormGroup>
