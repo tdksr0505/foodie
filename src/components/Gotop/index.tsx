@@ -15,7 +15,7 @@ const StyledGotop = styled.div`
   width: 50px;
   height: 50px;
   color: #fff;
-  background-color: #f7bed8;
+  background-color: #f0a4c6;
   border-radius: 50%;
   cursor: pointer;
   ${Icon} {
