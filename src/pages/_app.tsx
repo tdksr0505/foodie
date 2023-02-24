@@ -13,13 +13,11 @@ import { LoadingProvider } from '../context/loadingContext';
 import { AuthProvider } from '../context/authContext';
 import { Provider as ReduxProvider } from 'react-redux';
 import store from '../store';
-import useGotop from '../hooks/useGotop';
 
 NProgress.configure({ showSpinner: false });
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
-  const { showGotop } = useGotop();
   return (
     <>
       <Head>
@@ -36,7 +34,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
                 <Layout>
                   <Component {...pageProps} />
                 </Layout>
-                {showGotop && <Gotop />}
+                <Gotop />
               </>
             </AuthProvider>
           </SnackbarProvider>
