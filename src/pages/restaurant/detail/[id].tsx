@@ -127,6 +127,12 @@ export async function getServerSideProps(context: any) {
   const id = context.params.id;
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/restaurant/${id}`);
   const result = await res.json();
+  console.log(result);
+  if (!result.data) {
+    const { res } = context;
+    res.writeHead(301, { Location: '/' });
+    res.end();
+  }
   return {
     props: { detailData: result.data },
   };
