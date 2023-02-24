@@ -3,7 +3,7 @@ export default styled.button`
   width: auto;
   height: 35px;
   padding: 2px 18px;
-  background-color: #f7bed8;
+  background-color: #f0a4c6;
   color: #fff;
   font-size: 15px;
   font-weight: bold;
@@ -13,7 +13,7 @@ export default styled.button`
   cursor: pointer;
   @media (hover: hover) {
     &:hover {
-      background-color: #f097bf;
+      background-color: #eab4cd;
     }
   }
 `;

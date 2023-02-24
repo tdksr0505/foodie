@@ -48,7 +48,7 @@ export const FilterButton = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #f7bed8;
+  background-color: #f0a4c6;
   text-align: center;
   padding-top: 8px;
   ${FilterIcon} {
