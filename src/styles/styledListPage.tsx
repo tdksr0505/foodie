@@ -39,6 +39,7 @@ export const ListTopArea = styled.div`
 `;
 
 export const FilterIcon = styled(TuneIcon)`
+  font-size: 35px !important;
   color: #ffffff;
 `;
 
@@ -53,9 +54,6 @@ export const FilterButton = styled.div`
   background-color: #f0a4c6;
   text-align: center;
   padding-top: 8px;
-  ${FilterIcon} {
-    font-size: 35px;
-  }
   @media screen and (min-width: 992px) {
     display: none;
   }

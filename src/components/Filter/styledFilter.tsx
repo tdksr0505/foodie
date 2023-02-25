@@ -42,8 +42,9 @@ export const CloseBtnBox = styled.div`
   }
 `;
 export const CloseBtn = styled(CloseIcon)`
-  color: #f0a4c6;
   padding-right: 15px;
+  color: #f0a4c6;
+  font-size: 55px !important;
 `;
 
 export const FilterOptionTitle = styled.div<{ mt?: boolean }>`
@@ -116,9 +117,6 @@ export const Filter = styled.div<IFilterProps>`
   width: 100%;
   background-color: #ffffff;
   transition: top 0.2s;
-  ${CloseBtn} {
-    font-size: 55px;
-  }
   @media screen and (min-width: 992px) {
     position: static;
     flex: 0 0 auto;

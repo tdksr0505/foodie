@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 const Icon = styled(KeyboardArrowUpIcon)`
   color: #fff;
-  font-size: 40px;
+  font-size: 40px !important;
 `;
 
 interface IGotopProps {
