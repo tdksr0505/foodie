@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 const Icon = styled(KeyboardArrowUpIcon)`
   color: #fff;
+  font-size: 40px;
 `;
 
 interface IGotopProps {
@@ -23,9 +24,6 @@ const StyledGotop = styled.div<IGotopProps>`
   border-radius: 50%;
   visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
   cursor: pointer;
-  ${Icon} {
-    font-size: 40px;
-  }
 `;
 
 const scrollTop = () => {
