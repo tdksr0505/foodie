@@ -72,7 +72,7 @@ const LoginPage = () => {
           </Form.RightBox>
         </Form.FormGroup>
         <Form.ButtonArea center>
-          <Button onClick={handleLogin}>登入</Button>
+          <Button onClick={handleLogin}>送出</Button>
         </Form.ButtonArea>
       </WhiteBox>
     </>

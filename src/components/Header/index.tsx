@@ -24,11 +24,11 @@ const Header = () => {
       {auth ? (
         <Styled.RightBox>
           <Styled.Account>{user.name}</Styled.Account>
-          <Button onClick={handleLogout}>登出</Button>
+          <Button onClick={handleLogout}>logout</Button>
         </Styled.RightBox>
       ) : (
         <Link href="/login">
-          <Button>登入</Button>
+          <Button>login</Button>
         </Link>
       )}
     </Styled.Header>
