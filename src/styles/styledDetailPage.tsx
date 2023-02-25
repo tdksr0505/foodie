@@ -41,7 +41,8 @@ export const DataRow = styled.div`
 `;
 export const DataLabel = styled.div`
   flex: 0 0 auto;
-  color: #005ed8;
+  color: #ec6fa7;
+  font-weight: bold;
   font-size: 18px;
   @media screen and (min-width: 992px) {
     width: 108px;

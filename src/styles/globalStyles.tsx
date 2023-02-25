@@ -7,7 +7,6 @@ const GlobalStyles = createGlobalStyle`
 }
 body {
   margin: 0;
-  background-color: #000;
   a{
     text-decoration: none;
   }

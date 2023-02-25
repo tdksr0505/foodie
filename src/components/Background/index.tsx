@@ -7,6 +7,7 @@ const Container = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
+  background-color: #8cc0ef;
 `;
 
 const BgImg = styled.img`

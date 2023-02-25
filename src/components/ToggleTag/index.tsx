@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const DEFAULT_COLOR = '#aaaaaa';
-const ACTIVE_COLOR = '#0e94d3';
+const ACTIVE_COLOR = '#f0a4c6';
 
 interface IStyledToggleTagProps {
   active: boolean;

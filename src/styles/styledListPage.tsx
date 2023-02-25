@@ -23,10 +23,12 @@ export const AddButton = styled(Button)`
 `;
 
 export const CountBox = styled.div`
+  min-width: 110px;
   height: 100%;
   padding: 8px 15px;
   background-color: #fff;
   color: #464646;
+  font-weight: bold;
 `;
 
 export const ListTopArea = styled.div`

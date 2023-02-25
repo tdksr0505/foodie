@@ -36,13 +36,13 @@ export const CloseBtnBox = styled.div`
   flex: 0 0 auto;
   text-align: right;
   height: 52px;
-  border-bottom: 2px solid #82929f;
+  border-bottom: 2px solid #f0a4c6;
   @media screen and (min-width: 992px) {
     display: none;
   }
 `;
 export const CloseBtn = styled(CloseIcon)`
-  color: #82929f;
+  color: #f0a4c6;
   padding-right: 15px;
 `;
 
@@ -88,7 +88,7 @@ export const ButtonBox = styled.div`
   justify-content: center;
   width: 100%;
   padding: 20px 20px;
-  border-top: 1px solid #82929f;
+  border-top: 1px solid #f0a4c6;
   background-color: #fff;
   text-align: center;
   height: 70px;
