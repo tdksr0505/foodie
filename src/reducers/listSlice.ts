@@ -27,6 +27,20 @@ const compareMrt = (filterMrt: Array<string>, listItemMrt: Array<string>) => {
   }
   return false;
 };
+const filterList = (fetchList: TRestaurantDetail[] | null, filter: IFilter) => {
+  if (fetchList) {
+    return fetchList.filter((elem) => {
+      return (
+        (filter.name === '' || elem.name.includes(filter.name)) &&
+        (filter.type.length === 0 || filter.type.includes(elem.type)) &&
+        (filter.mrt.length === 0 || compareMrt(filter.mrt, elem.mrt)) &&
+        (filter.isVisited === null || filter.isVisited === elem.isVisited)
+      );
+    });
+  } else {
+    return null;
+  }
+};
 const listSlice = createSlice({
   name: 'list',
   initialState: initialState,
@@ -34,22 +48,14 @@ const listSlice = createSlice({
     initList(state, action) {
       state.fetchList = action.payload;
       state.filteredList = action.payload;
+      state.filteredList = filterList(state.fetchList, state.filter);
     },
     setFilter(state, action) {
       console.log(`setFilter`, action.payload);
       state.filter = action.payload;
 
       //篩選列表
-      if (state.fetchList) {
-        state.filteredList = state.fetchList.filter((elem) => {
-          return (
-            (state.filter.name === '' || elem.name.includes(state.filter.name)) &&
-            (state.filter.type.length === 0 || state.filter.type.includes(elem.type)) &&
-            (state.filter.mrt.length === 0 || compareMrt(state.filter.mrt, elem.mrt)) &&
-            (state.filter.isVisited === null || state.filter.isVisited === elem.isVisited)
-          );
-        });
-      }
+      state.filteredList = filterList(state.fetchList, state.filter);
     },
   },
 });
