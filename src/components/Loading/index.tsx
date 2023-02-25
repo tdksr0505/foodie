@@ -50,7 +50,7 @@ const Loader = styled.div`
     height: 80px;
     border-radius: 50%;
     border: 5px solid #bbb;
-    border-top: 5px solid #5862ef;
+    border-top: 5px solid #f0a4c6;
     animation: ${loaderAnimation} 1s linear infinite;
   }
 `;

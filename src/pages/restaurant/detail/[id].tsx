@@ -45,9 +45,9 @@ export default function RestaurantDetail({ detailData }: { detailData: TRestaura
           <>
             <Detail.TopArea>
               <Detail.Title>{detailData.name}</Detail.Title>
-              <Detail.DetailTagBox>
-                {detailData.mrt &&
-                  detailData.mrt.map((stationID) => {
+              {detailData.mrt.length > 0 && (
+                <Detail.DetailTagBox>
+                  {detailData.mrt.map((stationID) => {
                     const { fontColor, bgColor } = getStationColor(stationID);
                     const stationName = getStationName(stationID);
                     return (
@@ -56,7 +56,8 @@ export default function RestaurantDetail({ detailData }: { detailData: TRestaura
                       </Tag>
                     );
                   })}
-              </Detail.DetailTagBox>
+                </Detail.DetailTagBox>
+              )}
               <RateBox>
                 <Star />
                 <Rate>{detailData.rate}</Rate>

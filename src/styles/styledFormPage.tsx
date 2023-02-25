@@ -40,7 +40,7 @@ export const FormGroup = styled.div`
 `;
 
 export const FormTitle = styled.div`
-  color: #5e70a3;
+  color: #947a63;
   text-align: center;
   font-size: 30px;
   margin-bottom: 20px;
