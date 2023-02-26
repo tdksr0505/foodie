@@ -1,12 +1,5 @@
 import styled from 'styled-components';
 
-interface ITagProps {
-  fontColor?: string;
-  bgColor?: string;
-}
-const DEFAULT_BG = '#ab8a46';
-const DEFAULT_FONT = '#FFF';
-
 export default styled.div`
   background-color: #fff;
   max-width: 800px;

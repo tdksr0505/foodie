@@ -3,6 +3,7 @@ import TextField from '@/components/TextField';
 import Button from '@/components/Button';
 import BaseSearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
+import { fadeInRight } from '@/styles/animation';
 interface IFilterProps {
   isOpen: boolean;
 }
@@ -122,5 +123,6 @@ export const Filter = styled.div<IFilterProps>`
     flex: 0 0 auto;
     width: 300px;
     height: auto;
+    animation: ${fadeInRight} 0.3s linear;
   }
 `;
