@@ -15,14 +15,16 @@ const StyledGotop = styled.div<IGotopProps>`
   justify-content: center;
   align-items: center;
   position: fixed;
-  bottom: 30px;
+  bottom: 40px;
   right: 30px;
   width: 50px;
   height: 50px;
   color: #fff;
   background-color: #f0a4c6;
   border-radius: 50%;
-  visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
+  opacity: ${(props) => (props.visible ? '1' : '0')};
+  transform: ${(props) => (props.visible ? 'translateY(0px)' : 'translateY(10px)')};
+  transition: all 0.5s;
   cursor: pointer;
 `;
 
