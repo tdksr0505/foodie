@@ -47,10 +47,6 @@ export const FilterIcon = styled(TuneIcon)`
 `;
 
 export const FilterButton = styled.div`
-  position: fixed;
-  left: 50%;
-  bottom: 20px;
-  transform: translateX(-50%);
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -58,6 +54,13 @@ export const FilterButton = styled.div`
   text-align: center;
   padding-top: 8px;
   animation: ${fadeInUp} 0.3s linear;
+`;
+
+export const FilterButtonBox = styled.div`
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
   @media screen and (min-width: 992px) {
     display: none;
   }

@@ -37,13 +37,15 @@ const IndexPage = ({ listData }: { listData: TRestaurantFormData[] }) => {
         <Filter filterOpen={filterOpen} setFilterOpen={setFilterOpen} />
         <List />
       </ListStyled.RestaurantListPageBox>
-      <ListStyled.FilterButton
-        onClick={() => {
-          setFilterOpen(true);
-        }}
-      >
-        <ListStyled.FilterIcon />
-      </ListStyled.FilterButton>
+      <ListStyled.FilterButtonBox>
+        <ListStyled.FilterButton
+          onClick={() => {
+            setFilterOpen(true);
+          }}
+        >
+          <ListStyled.FilterIcon />
+        </ListStyled.FilterButton>
+      </ListStyled.FilterButtonBox>
     </>
   );
 };
