@@ -23,7 +23,7 @@ const StyledGotop = styled.div<IGotopProps>`
   background-color: #f0a4c6;
   border-radius: 50%;
   opacity: ${(props) => (props.visible ? '1' : '0')};
-  transform: ${(props) => (props.visible ? 'translateY(0px)' : 'translateY(10px)')};
+  transform: ${(props) => (props.visible ? 'translateY(0)' : 'translateY(100%)')};
   transition: all 0.5s;
   cursor: pointer;
 `;

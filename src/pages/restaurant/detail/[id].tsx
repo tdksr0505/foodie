@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import Head from 'next/head';
 import { useState } from 'react';
 import type { TRestaurantFormData } from '@/type';
 import Button from '@/components/Button';

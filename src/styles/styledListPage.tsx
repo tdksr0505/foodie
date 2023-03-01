@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Button from '@/components/Button';
 import TuneIcon from '@mui/icons-material/Tune';
 import BaseAddIcon from '@mui/icons-material/Add';
-import { fadeInRight } from '@/styles/animation';
+import { fadeInRight, fadeInUp } from '@/styles/animation';
 
 export const PageButtonArea = styled.div`
   text-align: right;
@@ -57,6 +57,7 @@ export const FilterButton = styled.div`
   background-color: #f0a4c6;
   text-align: center;
   padding-top: 8px;
+  animation: ${fadeInUp} 0.3s linear;
   @media screen and (min-width: 992px) {
     display: none;
   }
