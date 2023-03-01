@@ -53,7 +53,7 @@ export const FilterButton = styled.div`
   background-color: #f0a4c6;
   text-align: center;
   padding-top: 8px;
-  animation: ${fadeInUp} 0.3s linear;
+  animation: ${fadeInUp} 1s linear;
 `;
 
 export const FilterButtonBox = styled.div`
