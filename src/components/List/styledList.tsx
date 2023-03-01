@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import StarIcon from '@mui/icons-material/Star';
 import BasePostTag from '@/components/PostTag';
-import { fadeInUp } from '@/styles/animation';
 
 export const Title = styled.div`
   font-size: 20px;
@@ -33,7 +32,6 @@ export const ListItem = styled.div`
   width: 100%;
   background-color: #ffffff;
   box-shadow: 0px 5px 9px -3px rgba(110, 106, 106, 0.75);
-  animation: ${fadeInUp} 0.3s linear;
   cursor: pointer;
   &:focus-visible,
   &:focus,
