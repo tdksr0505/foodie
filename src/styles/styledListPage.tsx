@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Button from '@/components/Button';
 import TuneIcon from '@mui/icons-material/Tune';
 import BaseAddIcon from '@mui/icons-material/Add';
-import { fadeInRight, fadeInUp } from '@/styles/animation';
+import { fadeInUp } from '@/styles/animation';
 
 export const PageButtonArea = styled.div`
   text-align: right;
@@ -31,7 +31,6 @@ export const CountBox = styled.div`
   background-color: #fff;
   color: #464646;
   font-weight: bold;
-  animation: ${fadeInRight} 0.3s linear;
 `;
 
 export const ListTopArea = styled.div`
