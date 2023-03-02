@@ -47,13 +47,10 @@ const listSlice = createSlice({
   reducers: {
     initList(state, action) {
       state.fetchList = action.payload;
-      state.filteredList = action.payload;
       state.filteredList = filterList(state.fetchList, state.filter);
     },
     setFilter(state, action) {
-      console.log(`setFilter`, action.payload);
       state.filter = action.payload;
-
       //篩選列表
       state.filteredList = filterList(state.fetchList, state.filter);
     },
