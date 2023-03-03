@@ -1,7 +1,7 @@
-import type { TRestaurantFormData } from '@/type';
+import type { TRestaurantDetail } from '@/type';
 import RestaurantForm from '@/components/RestaurantForm';
 
-export default function RestaurantDetail({ id, detailData }: { id: string; detailData: TRestaurantFormData }) {
+export default function RestaurantDetail({ id, detailData }: { id: string; detailData: TRestaurantDetail }) {
   return <RestaurantForm title="Edit" data={detailData} id={id} />;
 }
 
