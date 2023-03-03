@@ -92,13 +92,14 @@ export default function RestaurantDetail({ detailData }: { detailData: TRestaura
                 <div>{detailData.isVisited ? '已吃過' : '沒吃過'}</div>
               </Detail.DataValue>
             </Detail.DataRow>
-            <Detail.DataRow>
-              <Detail.DataLabel>是否回訪：</Detail.DataLabel>
-              <Detail.DataValue>
-                <div>{detailData.isReturnVisited ? '可回訪' : '不用回訪'}</div>
-              </Detail.DataValue>
-            </Detail.DataRow>
-
+            {detailData.isReturnVisited !== null && (
+              <Detail.DataRow>
+                <Detail.DataLabel>是否回訪：</Detail.DataLabel>
+                <Detail.DataValue>
+                  <div>{detailData.isReturnVisited ? '可回訪' : '不用回訪'}</div>
+                </Detail.DataValue>
+              </Detail.DataRow>
+            )}
             <Detail.DetailButtonArea>
               <div>
                 {auth && (
