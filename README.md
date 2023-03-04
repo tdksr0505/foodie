@@ -8,7 +8,7 @@
 
 -收藏紀錄 想吃/已吃過 的餐廳<br> -可以從離餐廳最近捷運站及餐廳類型去做篩選查詢
 
-## 前端技術
+## Frontend
 
 -Nextjs<br>
 -Typescript<br>
@@ -16,7 +16,7 @@
 -Styled-component<br>
 -Material-UI<br>
 
-## 後端技術
+## Backend
 
 -Nodejs<br>
 -Express<br>
