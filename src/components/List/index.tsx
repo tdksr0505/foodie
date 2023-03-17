@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import * as Styled from './styledList';
 import TagBox from '@/components/TagBox';
@@ -6,10 +6,42 @@ import Tag from '@/components/Tag';
 import { getStationName, getStationColor } from '../../utils/mrtUtil';
 import { useSelector } from 'react-redux';
 import type { RootState } from '@/store';
+import type { TRestaurantDetail } from '@/type';
+interface IList {
+  list: TRestaurantDetail[];
+  setListCount: React.Dispatch<React.SetStateAction<number>>;
+}
+const List = ({ list, setListCount }: IList) => {
+  const [data, setData] = useState<TRestaurantDetail[]>(list);
+  const filter = useSelector((state: RootState) => state.filter).filter;
+  const compareMrt = (filterMrt: Array<string>, listItemMrt: Array<string>) => {
+    //比較 filter mrt[] 和 list item的mrt[]
+    for (let itemMrt of listItemMrt) {
+      if (filterMrt.includes(itemMrt)) {
+        return true;
+      }
+    }
+    return false;
+  };
+  const filterList = () => {
+    if (list) {
+      const result = list.filter((elem) => {
+        return (
+          (filter.name === '' || elem.name.includes(filter.name)) &&
+          (filter.type.length === 0 || filter.type.includes(elem.type)) &&
+          (filter.mrt.length === 0 || compareMrt(filter.mrt, elem.mrt)) &&
+          (filter.isVisited === null || filter.isVisited === elem.isVisited)
+        );
+      });
+      setData(result);
+      setListCount(result.length);
+    }
+  };
 
-const List = () => {
-  const state = useSelector((state: RootState) => state.list);
-  const data = state.filteredList;
+  useEffect(() => {
+    filterList();
+  }, [filter]);
+
   const BASE_DETAIL_URL = '/restaurant/detail/';
   return (
     <Styled.List>

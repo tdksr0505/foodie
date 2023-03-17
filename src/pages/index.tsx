@@ -1,27 +1,19 @@
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import * as ListStyled from '../styles/styledListPage';
 import Filter from '../components/Filter';
 import List from '../components/List';
 import useAuth from '@/hooks/useAuth';
-import { useDispatch, useSelector } from 'react-redux';
-import { initList } from '@/reducers/listSlice';
-import type { TRestaurantFormData } from '@/type';
-import type { RootState } from '@/store';
+import type { TRestaurantDetail } from '@/type';
 
-const IndexPage = ({ listData }: { listData: TRestaurantFormData[] }) => {
-  const dispatch = useDispatch();
-  const state = useSelector((state: RootState) => state.list);
+const IndexPage = ({ listData }: { listData: TRestaurantDetail[] }) => {
   const { auth } = useAuth();
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
-  useEffect(() => {
-    dispatch(initList(listData));
-  }, []);
-
+  const [listCount, setListCount] = useState<number>(0);
   return (
     <>
       <ListStyled.ListTopArea>
-        <ListStyled.CountBox>筆數：{state.filteredList?.length}</ListStyled.CountBox>
+        <ListStyled.CountBox>筆數：{listCount}</ListStyled.CountBox>
         {auth && (
           <ListStyled.PageButtonArea>
             <Link href="/restaurant/add">
@@ -34,8 +26,8 @@ const IndexPage = ({ listData }: { listData: TRestaurantFormData[] }) => {
       </ListStyled.ListTopArea>
 
       <ListStyled.RestaurantListPageBox>
-        <Filter filterOpen={filterOpen} setFilterOpen={setFilterOpen} />
-        <List />
+        <Filter filterOpen={filterOpen} setFilterOpen={setFilterOpen} listData={listData} />
+        <List list={listData} setListCount={setListCount} />
       </ListStyled.RestaurantListPageBox>
       <ListStyled.FilterButtonBox>
         <ListStyled.FilterButton

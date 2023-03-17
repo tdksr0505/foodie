@@ -11,17 +11,18 @@ import Checkbox from '@mui/material/Checkbox';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from '@/reducers/listSlice';
+import { setFilter } from '@/reducers/filterSlice';
 import type { RootState } from '@/store';
+import type { TRestaurantDetail } from '@/type';
 
 interface IFilterProps {
   filterOpen: boolean;
   setFilterOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  listData: TRestaurantDetail[];
 }
 
-const Filter = ({ filterOpen, setFilterOpen }: IFilterProps) => {
-  const state = useSelector((state: RootState) => state.list);
-  const filter = state.filter;
+const Filter = ({ filterOpen, setFilterOpen, listData }: IFilterProps) => {
+  const filter = useSelector((state: RootState) => state.filter).filter;
   const dispatch = useDispatch();
   const [filterMrtOption, setFilterMrtOption] = useState<{ [x: string]: TOption[] }>({});
 
@@ -30,7 +31,7 @@ const Filter = ({ filterOpen, setFilterOpen }: IFilterProps) => {
   };
 
   const handleKeywordChange = (e: any) => {
-    dispatch(setFilter({ ...state.filter, [e.target.name]: e.target.value }));
+    dispatch(setFilter({ ...filter, [e.target.name]: e.target.value }));
   };
 
   const handleFoodTypeChange = (e: React.SyntheticEvent, value: boolean) => {
@@ -66,8 +67,7 @@ const Filter = ({ filterOpen, setFilterOpen }: IFilterProps) => {
   };
   useEffect(() => {
     // 生成資料有包含的捷運站
-    const fetchList = state.fetchList;
-    const mrtStationsID = fetchList?.reduce((pre, cur) => {
+    const mrtStationsID = listData?.reduce((pre, cur) => {
       return [...pre, ...cur.mrt];
     }, [] as Array<string>);
 
@@ -78,7 +78,7 @@ const Filter = ({ filterOpen, setFilterOpen }: IFilterProps) => {
       });
       setFilterMrtOption(getFilterMrt(duplicateID));
     }
-  }, [state.fetchList]);
+  }, [listData]);
 
   const handleFilterClose = () => {
     setFilterOpen(false);
