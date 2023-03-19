@@ -67,7 +67,7 @@ export default function RestaurantDetail({ detailData }: { detailData: TRestaura
               <Detail.DataValue>
                 <div>
                   {detailData.address}
-                  <Detail.MapLink href={`https://www.google.com/maps?q=${detailData.address}`} target="_blank">
+                  <Detail.MapLink href={`https://www.google.com/maps?q=${detailData.name}`} target="_blank">
                     &nbsp;(開啟地圖)
                   </Detail.MapLink>
                 </div>
