@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { PageButtonArea } from './styledListPage';
 import TagBox from '@/components/TagBox';
 import Button from '@/components/Button';
+import Link from 'next/link';
 
 export const DetailTagBox = styled(TagBox)`
   margin-bottom: 10px;
@@ -51,4 +52,8 @@ export const DataLabel = styled.div`
 `;
 export const DataValue = styled.div`
   font-size: 17px;
+`;
+
+export const MapLink = styled(Link)`
+  color: #284ecc;
 `;
