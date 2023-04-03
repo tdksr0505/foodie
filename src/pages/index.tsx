@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as ListStyled from '../styles/styledListPage';
 import Filter from '../components/Filter';
 import List from '../components/List';
@@ -10,6 +10,10 @@ const IndexPage = ({ listData }: { listData: TRestaurantDetail[] }) => {
   const { auth } = useAuth();
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
   const [listCount, setListCount] = useState<number>(0);
+
+  useEffect(() => {
+    document.body.style.overflow = filterOpen ? 'hidden' : 'initial';
+  }, [filterOpen]);
   return (
     <>
       <ListStyled.ListTopArea>
