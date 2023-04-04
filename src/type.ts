@@ -5,7 +5,7 @@ export type TRestaurantDetail = {
   address: string;
   tel: string;
   type: string;
-  mrt: Array<string>;
+  mrt: string[];
   isVisited: boolean;
   isReturnVisited: boolean | null;
   rate: string;
@@ -23,7 +23,7 @@ export type TRestaurantFormData = {
   address: string | null;
   tel: string | null;
   type: string | null;
-  mrt: Array<string>;
+  mrt: string[];
   isVisited: string;
   isReturnVisited: string | null;
   rate: string | null;

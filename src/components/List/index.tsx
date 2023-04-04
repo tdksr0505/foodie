@@ -14,7 +14,7 @@ interface IList {
 const List = ({ list, setListCount }: IList) => {
   const [data, setData] = useState<TRestaurantDetail[]>(list);
   const filter = useSelector((state: RootState) => state.filter).filter;
-  const compareMrt = (filterMrt: Array<string>, listItemMrt: Array<string>) => {
+  const compareMrt = (filterMrt: string[], listItemMrt: string[]) => {
     //比較 filter mrt[] 和 list item的mrt[]
     for (let itemMrt of listItemMrt) {
       if (filterMrt.includes(itemMrt)) {

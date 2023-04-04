@@ -22,7 +22,7 @@ interface IRestaurantFormProps {
   title?: string;
   id?: string | string[];
 }
-const isVisitedConfig: Array<TOption> = [
+const isVisitedConfig: TOption[] = [
   {
     value: 'true',
     label: '吃過',
@@ -32,7 +32,7 @@ const isVisitedConfig: Array<TOption> = [
     label: '沒吃過',
   },
 ];
-const isReturnVisitedConfig: Array<TOption> = [
+const isReturnVisitedConfig: TOption[] = [
   {
     value: 'true',
     label: '可回訪',
@@ -42,7 +42,7 @@ const isReturnVisitedConfig: Array<TOption> = [
     label: '不用回訪',
   },
 ];
-const canReserveConfig: Array<TOption> = [
+const canReserveConfig: TOption[] = [
   {
     value: 'true',
     label: '可訂位',
@@ -69,7 +69,7 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
   };
 
   const [formValue, setFormValue] = useState<TRestaurantFormData>(initailValue);
-  const [mrtDefaultOption, setMrtDefaultOption] = useState<Array<TOption> | null>(null);
+  const [mrtDefaultOption, setMrtDefaultOption] = useState<TOption[] | null>(null);
   const { showSnackbar } = useSnackbar();
   const { setLoading } = useLoading();
 
@@ -102,10 +102,10 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
     });
   };
   const handleMrtChange = (e: React.SyntheticEvent, value: unknown) => {
-    let storeValue = (value as Array<TOption>).map((elem) => {
+    let storeValue = (value as TOption[]).map((elem) => {
       return elem.value;
     });
-    setMrtDefaultOption(value as Array<TOption>);
+    setMrtDefaultOption(value as TOption[]);
     setFormValue({
       ...formValue,
       mrt: storeValue,
@@ -144,7 +144,7 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
         router.push(returnUrl);
       });
   };
-  const getMrtDefalutValue = (mrtStations: Array<string>): Array<TOption> => {
+  const getMrtDefalutValue = (mrtStations: string[]): TOption[] => {
     return mrtStationOptions.filter((elem) => {
       return mrtStations.includes(elem.value);
     });

@@ -15,8 +15,8 @@ const StyledAutocomplete = styled(Autocomplete)`
 `;
 
 interface ISelectProps {
-  options: Array<TOption>;
-  value: Array<TOption>;
+  options: TOption[];
+  value: TOption[];
   name: string;
   handleChange: (e: React.SyntheticEvent, value: unknown) => void;
 }

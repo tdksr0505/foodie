@@ -87,7 +87,7 @@ export const getStationColor = (StationID: string): { fontColor: string; bgColor
     bgColor: bgColor,
   };
 };
-export const getFilterMrt = (StationIDArray: Array<string>) => {
+export const getFilterMrt = (StationIDArray: string[]) => {
   const filterMrt: { [x: string]: TOption[] } = {};
   StationIDArray.forEach((stationID) => {
     const lineID = mrtStationConfig[stationID as keyof typeof mrtStationConfig].line;

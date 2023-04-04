@@ -6,7 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { TOption } from '@/type';
 
 interface IRadiosProps {
-  radiosConfig: Array<TOption>;
+  radiosConfig: TOption[];
   value: number | string | null;
   name: string;
   disabled?: boolean;

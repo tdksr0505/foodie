@@ -13,7 +13,7 @@ const StyledSelect = styled(Select)`
 `;
 
 interface ISelectProps {
-  options: Array<TOption>;
+  options: TOption[];
   value: number | string;
   name: string;
   handleChange: (e: SelectChangeEvent<unknown>) => void;

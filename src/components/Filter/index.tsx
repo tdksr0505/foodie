@@ -69,7 +69,7 @@ const Filter = ({ filterOpen, setFilterOpen, listData }: IFilterProps) => {
     // 生成資料有包含的捷運站
     const mrtStationsID = listData?.reduce((pre, cur) => {
       return [...pre, ...cur.mrt];
-    }, [] as Array<string>);
+    }, [] as string[]);
 
     if (mrtStationsID) {
       // 清除重複項目

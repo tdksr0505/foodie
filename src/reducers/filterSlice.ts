@@ -3,8 +3,8 @@ import type { TRestaurantDetail } from '@/type';
 
 interface IFilter {
   name: string;
-  type: Array<string>;
-  mrt: Array<string>;
+  type: string[];
+  mrt: string[];
   isVisited: boolean | null;
 }
 interface IRootState {
