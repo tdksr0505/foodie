@@ -27,7 +27,7 @@ const List = ({ list, setListCount }: IList) => {
     if (list) {
       const result = list.filter((elem) => {
         return (
-          (filter.name === '' || elem.name.includes(filter.name)) &&
+          (filter.name === '' || elem.name.toLowerCase().includes(filter.name.toLowerCase())) &&
           (filter.type.length === 0 || filter.type.includes(elem.type)) &&
           (filter.mrt.length === 0 || compareMrt(filter.mrt, elem.mrt)) &&
           (filter.isVisited === null || filter.isVisited === elem.isVisited)
