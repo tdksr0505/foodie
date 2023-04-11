@@ -32,6 +32,7 @@ export const ListItem = styled.div`
   width: 100%;
   background-color: #ffffff;
   box-shadow: 0px 5px 9px -3px rgba(110, 106, 106, 0.75);
+  transition: transform 0.2s;
   cursor: pointer;
   &:focus-visible,
   &:focus,
@@ -53,6 +54,7 @@ export const ListItem = styled.div`
   }
   @media (hover: hover) {
     &:hover {
+      transform: translateY(-5px);
       &:before {
         height: 8px;
       }
