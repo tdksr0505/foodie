@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import * as Styled from './styledList';
 import TagBox from '@/components/TagBox';
@@ -7,13 +7,20 @@ import { getStationName, getStationColor } from '../../utils/mrtUtil';
 import { useSelector } from 'react-redux';
 import type { RootState } from '@/store';
 import type { TRestaurantDetail } from '@/type';
+import InfiniteScroll from 'react-infinite-scroll-component';
+
 interface IList {
   list: TRestaurantDetail[];
   setListCount: React.Dispatch<React.SetStateAction<number>>;
 }
+const ITEM_COUNT_PER_PAGE = 5;
 const List = ({ list, setListCount }: IList) => {
+  // display list
   const [data, setData] = useState<TRestaurantDetail[]>(list);
+
+  const [searchedList, setSearchedList] = useState<TRestaurantDetail[]>(list);
   const filter = useSelector((state: RootState) => state.filter).filter;
+  const page = useRef<number>(1);
   const compareMrt = (filterMrt: string[], listItemMrt: string[]) => {
     //比較 filter mrt[] 和 list item的mrt[]
     for (let itemMrt of listItemMrt) {
@@ -33,8 +40,14 @@ const List = ({ list, setListCount }: IList) => {
           (filter.isVisited === null || filter.isVisited === elem.isVisited)
         );
       });
-      setData(result);
+      setSearchedList(result);
       setListCount(result.length);
+      page.current = 1;
+      setData(searchedList.slice(0, page.current * ITEM_COUNT_PER_PAGE));
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
     }
   };
 
@@ -42,11 +55,20 @@ const List = ({ list, setListCount }: IList) => {
     filterList();
   }, [filter]);
 
+  const loadMoreData = () => {
+    page.current++;
+    setData(searchedList.slice(0, page.current * ITEM_COUNT_PER_PAGE));
+  };
   const BASE_DETAIL_URL = '/restaurant/detail/';
   return (
     <Styled.List>
-      {data &&
-        data.map((item) => {
+      <InfiniteScroll
+        dataLength={data.length}
+        next={loadMoreData}
+        hasMore={data.length < searchedList.length}
+        loader={''}
+      >
+        {data.map((item) => {
           return (
             <Styled.ListItem key={item._id}>
               <Link href={BASE_DETAIL_URL + item._id}>
@@ -75,6 +97,7 @@ const List = ({ list, setListCount }: IList) => {
             </Styled.ListItem>
           );
         })}
+      </InfiniteScroll>
     </Styled.List>
   );
 };
