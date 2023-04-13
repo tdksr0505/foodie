@@ -44,9 +44,6 @@ const List = ({ list, setListCount }: IList) => {
       setListCount(result.length);
       page.current = 1;
       setData(result.slice(0, page.current * ITEM_COUNT_PER_PAGE));
-      window.scrollTo({
-        top: 0,
-      });
     }
   };
 
