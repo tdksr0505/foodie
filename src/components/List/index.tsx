@@ -43,10 +43,9 @@ const List = ({ list, setListCount }: IList) => {
       setSearchedList(result);
       setListCount(result.length);
       page.current = 1;
-      setData(searchedList.slice(0, page.current * ITEM_COUNT_PER_PAGE));
+      setData(result.slice(0, page.current * ITEM_COUNT_PER_PAGE));
       window.scrollTo({
         top: 0,
-        behavior: 'smooth',
       });
     }
   };
@@ -67,6 +66,7 @@ const List = ({ list, setListCount }: IList) => {
         next={loadMoreData}
         hasMore={data.length < searchedList.length}
         loader={''}
+        style={{ overflow: 'initial' }}
       >
         {data.map((item) => {
           return (
