@@ -13,7 +13,7 @@ interface IList {
   list: TRestaurantDetail[];
   setListCount: React.Dispatch<React.SetStateAction<number>>;
 }
-const ITEM_COUNT_PER_PAGE = 5;
+const ITEM_COUNT_PER_PAGE = 10;
 const List = ({ list, setListCount }: IList) => {
   // display list
   const [data, setData] = useState<TRestaurantDetail[]>(list);
