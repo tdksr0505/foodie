@@ -6,19 +6,19 @@ import Tag from '@/components/Tag';
 import { getStationName, getStationColor } from '../../utils/mrtUtil';
 import { useSelector } from 'react-redux';
 import type { RootState } from '@/store';
-import type { TRestaurantDetail } from '@/type';
+import type { TRestaurantData } from '@/type';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 interface IList {
-  list: TRestaurantDetail[];
+  list: TRestaurantData[];
   setListCount: React.Dispatch<React.SetStateAction<number>>;
 }
 const ITEM_COUNT_PER_PAGE = 10;
 const List = ({ list, setListCount }: IList) => {
   // display list
-  const [data, setData] = useState<TRestaurantDetail[]>(list);
+  const [data, setData] = useState<TRestaurantData[]>(list);
 
-  const [searchedList, setSearchedList] = useState<TRestaurantDetail[]>(list);
+  const [searchedList, setSearchedList] = useState<TRestaurantData[]>(list);
   const filter = useSelector((state: RootState) => state.filter).filter;
   const page = useRef<number>(1);
   const compareMrt = (filterMrt: string[], listItemMrt: string[]) => {
@@ -34,8 +34,8 @@ const List = ({ list, setListCount }: IList) => {
     if (list) {
       const result = list.filter((elem) => {
         return (
-          (filter.name === '' || elem.name.toLowerCase().includes(filter.name.toLowerCase())) &&
-          (filter.type.length === 0 || filter.type.includes(elem.type)) &&
+          (filter.name === '' || elem.name?.toLowerCase().includes(filter.name.toLowerCase())) &&
+          (filter.type.length === 0 || filter.type.includes(elem.type || '')) &&
           (filter.mrt.length === 0 || compareMrt(filter.mrt, elem.mrt)) &&
           (filter.isVisited === null || filter.isVisited === elem.isVisited)
         );

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useState } from 'react';
-import type { TRestaurantFormData } from '@/type';
+import type { TRestaurantData } from '@/type';
 import Button from '@/components/Button';
 import WhiteBox from '@/components/WhiteBox';
 import Tag from '@/components/Tag';
@@ -14,7 +14,7 @@ import useLoading from '@/hooks/useLoading';
 import useAuth from '@/hooks/useAuth';
 import { getRestaurantDetail, deleteRestaurant } from '@/lib/api';
 
-export default function RestaurantDetail({ detailData, id }: { detailData: TRestaurantFormData; id: string }) {
+export default function RestaurantDetail({ detailData, id }: { detailData: TRestaurantData; id: string }) {
   const { auth } = useAuth();
   const router = useRouter();
   const [openDialog, setOpenDialog] = useState<boolean>(false);

@@ -1,3 +1,5 @@
+import type { TRestaurantData } from '@/type';
+
 const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
 
 export const getRestaurantList = async () => {
@@ -18,7 +20,7 @@ export const doLogin = async (account: string, password: string) => {
   }).then((res) => res.json());
 };
 
-export const addRestaurant = async (submitValue: any) => {
+export const addRestaurant = async (submitValue: TRestaurantData) => {
   return await fetch(`${BASE_API_URL}/api/restaurant`, {
     method: 'POST',
     headers: {
@@ -28,7 +30,7 @@ export const addRestaurant = async (submitValue: any) => {
   }).then((res) => res.json());
 };
 
-export const updateRestaurant = async (id: string, submitValue: any) => {
+export const updateRestaurant = async (id: string, submitValue: TRestaurantData) => {
   return await fetch(`${BASE_API_URL}/api/restaurant/${id}`, {
     method: 'POST',
     headers: {

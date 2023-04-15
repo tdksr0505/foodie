@@ -7,7 +7,7 @@ import WhiteBox from '@/components/WhiteBox';
 import { mrtStationOptions } from '../../utils/mrtUtil';
 import * as Styled from './styledRestaurantForm';
 import RadioGroup from '@/components/RadioGroup';
-import { TOption, TRestaurantFormData, TRestaurantDetail } from '@/type';
+import { TOption, TRestaurantData } from '@/type';
 import Select from '@/components/Select';
 import AutoComplete from '@/components/AutoComplete';
 import { foodTypeOptions } from '../../utils/foodTypeUtil';
@@ -19,7 +19,7 @@ import Slider from '@mui/material/Slider';
 import { addRestaurant, updateRestaurant } from '@/lib/api';
 
 interface IRestaurantFormProps {
-  data?: TRestaurantDetail;
+  data?: TRestaurantData;
   title?: string;
   id?: string;
 }
@@ -55,7 +55,7 @@ const canReserveConfig: TOption[] = [
 ];
 const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
   const router = useRouter();
-  const initailValue: TRestaurantFormData = {
+  const initailValue: TRestaurantData = {
     name: null,
     simpleAddress: null,
     address: null,
@@ -68,7 +68,7 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
     canReserve: canReserveConfig[0].value,
   };
 
-  const [formValue, setFormValue] = useState<TRestaurantFormData>(initailValue);
+  const [formValue, setFormValue] = useState<TRestaurantData>(initailValue);
   const [mrtDefaultOption, setMrtDefaultOption] = useState<TOption[] | null>(null);
   const { showSnackbar } = useSnackbar();
   const { setLoading } = useLoading();
@@ -122,7 +122,7 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
   const onSubmit = async () => {
     const { isVisited, isReturnVisited, canReserve, ...rest } = formValue;
 
-    // 整理form value
+    // 整理form value 將string轉boolean
     const submitValue = {
       ...rest,
       isVisited: isVisited === 'true',
@@ -223,7 +223,7 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
                 <RadioGroup
                   name={'canReserve'}
                   radiosConfig={canReserveConfig}
-                  value={formValue?.canReserve}
+                  value={formValue?.canReserve as string}
                   handleChange={handleValueChange}
                 ></RadioGroup>
               </Form.RightBox>
@@ -234,7 +234,7 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
                 <RadioGroup
                   name={'isVisited'}
                   radiosConfig={isVisitedConfig}
-                  value={formValue?.isVisited}
+                  value={formValue?.isVisited as string}
                   handleChange={handleValueChange}
                 ></RadioGroup>
               </Form.RightBox>
@@ -245,7 +245,7 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
                 <RadioGroup
                   name={'isReturnVisited'}
                   radiosConfig={isReturnVisitedConfig}
-                  value={formValue?.isReturnVisited || null}
+                  value={(formValue?.isReturnVisited as string) || null}
                   handleChange={handleValueChange}
                   disabled={formValue.isVisited === 'false'}
                 ></RadioGroup>

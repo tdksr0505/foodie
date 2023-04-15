@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { TRestaurantDetail } from '@/type';
+import type { TRestaurantData } from '@/type';
 
 interface IFilter {
   name: string;

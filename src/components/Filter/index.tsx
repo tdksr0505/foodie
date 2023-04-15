@@ -13,12 +13,12 @@ import RadioGroup from '@mui/material/RadioGroup';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from '@/reducers/filterSlice';
 import type { RootState } from '@/store';
-import type { TRestaurantDetail } from '@/type';
+import type { TRestaurantData } from '@/type';
 
 interface IFilterProps {
   filterOpen: boolean;
   setFilterOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  listData: TRestaurantDetail[];
+  listData: TRestaurantData[];
 }
 
 const Filter = ({ filterOpen, setFilterOpen, listData }: IFilterProps) => {

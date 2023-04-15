@@ -4,10 +4,10 @@ import * as ListStyled from '../styles/styledListPage';
 import Filter from '../components/Filter';
 import List from '../components/List';
 import useAuth from '@/hooks/useAuth';
-import type { TRestaurantDetail } from '@/type';
+import type { TRestaurantData } from '@/type';
 import { getRestaurantList } from '../lib/api';
 
-const IndexPage = ({ listData }: { listData: TRestaurantDetail[] }) => {
+const IndexPage = ({ listData }: { listData: TRestaurantData[] }) => {
   const { auth } = useAuth();
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
   const [listCount, setListCount] = useState<number>(0);
