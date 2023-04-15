@@ -1,5 +1,6 @@
 import type { TRestaurantDetail } from '@/type';
 import RestaurantForm from '@/components/RestaurantForm';
+import { getRestaurantDetail } from '@/lib/api';
 
 export default function RestaurantDetail({ id, detailData }: { id: string; detailData: TRestaurantDetail }) {
   return <RestaurantForm title="Edit" data={detailData} id={id} />;
@@ -7,8 +8,12 @@ export default function RestaurantDetail({ id, detailData }: { id: string; detai
 
 export async function getServerSideProps(context: any) {
   const id = context.params.id;
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/restaurant/${id}`);
-  const result = await res.json();
+  const result = await getRestaurantDetail(id);
+  if (!result.data) {
+    const { res } = context;
+    res.writeHead(301, { Location: '/' });
+    res.end();
+  }
   return {
     props: { detailData: result.data, id },
   };

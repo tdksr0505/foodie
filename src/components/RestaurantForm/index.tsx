@@ -16,11 +16,12 @@ import useSnackbar from '@/hooks/useSnackbar';
 import useLoading from '@/hooks/useLoading';
 import * as Form from '@/styles/styledFormPage';
 import Slider from '@mui/material/Slider';
+import { addRestaurant, updateRestaurant } from '@/lib/api';
 
 interface IRestaurantFormProps {
   data?: TRestaurantDetail;
   title?: string;
-  id?: string | string[];
+  id?: string;
 }
 const isVisitedConfig: TOption[] = [
   {
@@ -52,7 +53,6 @@ const canReserveConfig: TOption[] = [
     label: '不可訂位',
   },
 ];
-const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
 const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
   const router = useRouter();
   const initailValue: TRestaurantFormData = {
@@ -119,30 +119,22 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
     });
   };
 
-  const onSubmit = () => {
-    const fetchUrl = id ? `${BASE_API_URL}/api/restaurant/${id}` : `${BASE_API_URL}/api/restaurant`;
-    const returnUrl = id ? `/restaurant/detail/${id}` : `/`;
+  const onSubmit = async () => {
     const { isVisited, isReturnVisited, canReserve, ...rest } = formValue;
+
+    // 整理form value
     const submitValue = {
       ...rest,
       isVisited: isVisited === 'true',
       isReturnVisited: isReturnVisited === null ? null : isReturnVisited === 'true',
       canReserve: canReserve === 'true',
     };
+    const redirectUrl = id ? `/restaurant/detail/${id}` : `/`;
     setLoading(true);
-    fetch(fetchUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(submitValue),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        setLoading(false);
-        showSnackbar(result.data.msg);
-        router.push(returnUrl);
-      });
+    const result = id ? await updateRestaurant(id, submitValue) : await addRestaurant(submitValue);
+    setLoading(false);
+    result.data.msg && showSnackbar(result.data.msg);
+    router.push(redirectUrl);
   };
   const getMrtDefalutValue = (mrtStations: string[]): TOption[] => {
     return mrtStationOptions.filter((elem) => {

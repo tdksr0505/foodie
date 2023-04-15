@@ -7,7 +7,7 @@ import useSnackbar from '@/hooks/useSnackbar';
 import useLoading from '@/hooks/useLoading';
 import { useRouter } from 'next/router';
 import useAuth from '@/hooks/useAuth';
-
+import { doLogin } from '../lib/api';
 interface IFormValue {
   account: string;
   password: string;
@@ -24,27 +24,18 @@ const LoginPage = () => {
   const [formValue, setFormValue] = useState<IFormValue>(initFormValue);
   const handleLogin = async () => {
     setLoading(true);
-    await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ account: formValue.account, password: formValue.password }),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.code === 0) {
-          login({ account: result.data.account, token: result.data.token, name: result.data.name });
-          router.push(`/`);
-        } else {
-          setFormValue({
-            ...formValue,
-            password: '',
-          });
-        }
-        setLoading(false);
-        showSnackbar(result.data.msg);
+    const result = await doLogin(formValue.account, formValue.password);
+    if (result.code === 0) {
+      login({ account: result.data.account, token: result.data.token, name: result.data.name });
+      router.push(`/`);
+    } else {
+      setFormValue({
+        ...formValue,
+        password: '',
       });
+    }
+    setLoading(false);
+    showSnackbar(result.data.msg);
   };
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;

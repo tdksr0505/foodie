@@ -1,10 +1,11 @@
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import * as ListStyled from '../styles/styledListPage';
 import Filter from '../components/Filter';
 import List from '../components/List';
 import useAuth from '@/hooks/useAuth';
 import type { TRestaurantDetail } from '@/type';
+import { getRestaurantList } from '../lib/api';
 
 const IndexPage = ({ listData }: { listData: TRestaurantDetail[] }) => {
   const { auth } = useAuth();
@@ -28,11 +29,13 @@ const IndexPage = ({ listData }: { listData: TRestaurantDetail[] }) => {
           </ListStyled.PageButtonArea>
         )}
       </ListStyled.ListTopArea>
+      <Suspense fallback={<p>Loading feed...</p>}>
+        <ListStyled.RestaurantListPageBox>
+          <Filter filterOpen={filterOpen} setFilterOpen={setFilterOpen} listData={listData} />
+          <List list={listData} setListCount={setListCount} />
+        </ListStyled.RestaurantListPageBox>
+      </Suspense>
 
-      <ListStyled.RestaurantListPageBox>
-        <Filter filterOpen={filterOpen} setFilterOpen={setFilterOpen} listData={listData} />
-        <List list={listData} setListCount={setListCount} />
-      </ListStyled.RestaurantListPageBox>
       <ListStyled.FilterButtonBox>
         <ListStyled.FilterButton
           onClick={() => {
@@ -48,9 +51,8 @@ const IndexPage = ({ listData }: { listData: TRestaurantDetail[] }) => {
 
 export default IndexPage;
 export async function getServerSideProps(context: any) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/restaurant/`);
-  const result = await res.json();
+  const listData = await getRestaurantList();
   return {
-    props: { listData: result.data.restaurant },
+    props: { listData },
   };
 }

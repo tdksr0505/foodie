@@ -12,11 +12,11 @@ import { getStationName, getStationColor } from '../../../utils/mrtUtil';
 import useSnackbar from '@/hooks/useSnackbar';
 import useLoading from '@/hooks/useLoading';
 import useAuth from '@/hooks/useAuth';
+import { getRestaurantDetail, deleteRestaurant } from '@/lib/api';
 
-export default function RestaurantDetail({ detailData }: { detailData: TRestaurantFormData }) {
+export default function RestaurantDetail({ detailData, id }: { detailData: TRestaurantFormData; id: string }) {
   const { auth } = useAuth();
   const router = useRouter();
-  const { id } = router.query;
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const { showSnackbar } = useSnackbar();
   const { setLoading } = useLoading();
@@ -24,15 +24,12 @@ export default function RestaurantDetail({ detailData }: { detailData: TRestaura
   const handleDelete = async () => {
     setOpenDialog(false);
     setLoading(true);
-    await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/restaurant/${id}`, { method: 'DELETE' })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.code === 0) {
-          setLoading(false);
-          showSnackbar(result.data.msg);
-          router.push(`/`);
-        }
-      });
+    const result = await deleteRestaurant(id);
+    if (result.code === 0) {
+      setLoading(false);
+      showSnackbar(result.data.msg);
+      router.push(`/`);
+    }
   };
   const onClickDelete = () => {
     setOpenDialog(true);
@@ -131,14 +128,13 @@ export default function RestaurantDetail({ detailData }: { detailData: TRestaura
 }
 export async function getServerSideProps(context: any) {
   const id = context.params.id;
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/restaurant/${id}`);
-  const result = await res.json();
+  const result = await getRestaurantDetail(id);
   if (!result.data) {
     const { res } = context;
     res.writeHead(301, { Location: '/' });
     res.end();
   }
   return {
-    props: { detailData: result.data },
+    props: { detailData: result.data, id },
   };
 }
