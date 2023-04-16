@@ -2,17 +2,17 @@ import React from 'react';
 import * as Styled from './styledHeader';
 import Link from 'next/link';
 import logo from '../../assets/logo.png';
-import useAuth from '@/hooks/useAuth';
 import { useRouter } from 'next/router';
 import useSnackbar from '@/hooks/useSnackbar';
 import Button from '../Button';
-
+import { useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 const Header = () => {
   const router = useRouter();
-  const { user, logout, auth } = useAuth();
+  const { data: session } = useSession();
   const { showSnackbar } = useSnackbar();
   const handleLogout = () => {
-    logout();
+    signOut();
     showSnackbar('已登出');
     router.push(`/`);
   };
@@ -21,9 +21,9 @@ const Header = () => {
       <Link href="/">
         <Styled.Logo src={logo.src} />
       </Link>
-      {auth ? (
+      {session ? (
         <Styled.RightBox>
-          <Styled.Account>{user.name}</Styled.Account>
+          <Styled.Account>{session.user?.name}</Styled.Account>
           <Button onClick={handleLogout}>logout</Button>
         </Styled.RightBox>
       ) : (

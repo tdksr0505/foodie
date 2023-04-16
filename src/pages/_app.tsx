@@ -10,11 +10,11 @@ import Gotop from '../components/Gotop';
 import GlobalStyles from '../styles/globalStyles';
 import { SnackbarProvider } from '../context/snackbarContext';
 import { LoadingProvider } from '../context/loadingContext';
-import { AuthProvider } from '../context/authContext';
 import { Provider as ReduxProvider } from 'react-redux';
 import store from '../store';
 import theme from '../config/theme';
 import { ThemeProvider } from '@mui/material/styles';
+import { SessionProvider } from 'next-auth/react';
 
 NProgress.configure({ showSpinner: false });
 Router.events.on('routeChangeStart', () => NProgress.start());
@@ -30,7 +30,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
         <ThemeProvider theme={theme}>
           <LoadingProvider>
             <SnackbarProvider>
-              <AuthProvider>
+              <SessionProvider session={session}>
                 <>
                   <GlobalStyles />
                   <Background />
@@ -39,7 +39,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
                   </Layout>
                   <Gotop />
                 </>
-              </AuthProvider>
+              </SessionProvider>
             </SnackbarProvider>
           </LoadingProvider>
         </ThemeProvider>

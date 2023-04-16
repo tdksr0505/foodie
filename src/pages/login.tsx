@@ -6,8 +6,8 @@ import Button from '@/components/Button';
 import useSnackbar from '@/hooks/useSnackbar';
 import useLoading from '@/hooks/useLoading';
 import { useRouter } from 'next/router';
-import useAuth from '@/hooks/useAuth';
-import { doLogin } from '../lib/api';
+import { signIn } from 'next-auth/react';
+
 interface IFormValue {
   account: string;
   password: string;
@@ -17,25 +17,31 @@ const initFormValue = {
   password: '',
 };
 const LoginPage = () => {
-  const { login } = useAuth();
   const router = useRouter();
   const { showSnackbar } = useSnackbar();
   const { setLoading } = useLoading();
   const [formValue, setFormValue] = useState<IFormValue>(initFormValue);
   const handleLogin = async () => {
+    if (!formValue.account || !formValue.password) {
+      showSnackbar('請輸入帳號密碼');
+      return;
+    }
     setLoading(true);
-    const result = await doLogin(formValue.account, formValue.password);
-    if (result.code === 0) {
-      login({ account: result.data.account, token: result.data.token, name: result.data.name });
+    const result = await signIn('credentials', {
+      account: formValue.account,
+      password: formValue.password,
+      redirect: false,
+    });
+    if (result?.ok) {
       router.push(`/`);
     } else {
+      result?.error && showSnackbar(result.error);
       setFormValue({
         ...formValue,
         password: '',
       });
     }
     setLoading(false);
-    showSnackbar(result.data.msg);
   };
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;

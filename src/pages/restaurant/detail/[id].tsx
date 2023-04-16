@@ -11,11 +11,11 @@ import { RateBox, Rate, Star } from '@/components/List/styledList';
 import { getStationName, getStationColor } from '../../../utils/mrtUtil';
 import useSnackbar from '@/hooks/useSnackbar';
 import useLoading from '@/hooks/useLoading';
-import useAuth from '@/hooks/useAuth';
 import { getRestaurantDetail, deleteRestaurant } from '@/lib/api';
+import { useSession } from 'next-auth/react';
 
 export default function RestaurantDetail({ detailData, id }: { detailData: TRestaurantData; id: string }) {
-  const { auth } = useAuth();
+  const { data: session } = useSession();
   const router = useRouter();
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const { showSnackbar } = useSnackbar();
@@ -104,7 +104,7 @@ export default function RestaurantDetail({ detailData, id }: { detailData: TRest
             )}
             <Detail.DetailButtonArea>
               <div>
-                {auth && (
+                {session && (
                   <>
                     <Link href={`/restaurant/edit/${id}`}>
                       <Button>編輯</Button>

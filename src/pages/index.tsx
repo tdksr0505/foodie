@@ -3,14 +3,14 @@ import { useState, useEffect, Suspense } from 'react';
 import * as ListStyled from '../styles/styledListPage';
 import Filter from '../components/Filter';
 import List from '../components/List';
-import useAuth from '@/hooks/useAuth';
 import type { TRestaurantData } from '@/type';
 import { getRestaurantList } from '../lib/api';
+import { useSession } from 'next-auth/react';
 
 const IndexPage = ({ listData }: { listData: TRestaurantData[] }) => {
-  const { auth } = useAuth();
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
   const [listCount, setListCount] = useState<number>(0);
+  const { data: session } = useSession();
 
   useEffect(() => {
     document.body.style.overflow = filterOpen ? 'hidden' : 'initial';
@@ -19,7 +19,7 @@ const IndexPage = ({ listData }: { listData: TRestaurantData[] }) => {
     <>
       <ListStyled.ListTopArea>
         <ListStyled.CountBox>筆數：{listCount}</ListStyled.CountBox>
-        {auth && (
+        {session && (
           <ListStyled.PageButtonArea>
             <Link href="/restaurant/add">
               <ListStyled.AddButton>
@@ -29,13 +29,10 @@ const IndexPage = ({ listData }: { listData: TRestaurantData[] }) => {
           </ListStyled.PageButtonArea>
         )}
       </ListStyled.ListTopArea>
-      <Suspense fallback={<p>Loading feed...</p>}>
-        <ListStyled.RestaurantListPageBox>
-          <Filter filterOpen={filterOpen} setFilterOpen={setFilterOpen} listData={listData} />
-          <List list={listData} setListCount={setListCount} />
-        </ListStyled.RestaurantListPageBox>
-      </Suspense>
-
+      <ListStyled.RestaurantListPageBox>
+        <Filter filterOpen={filterOpen} setFilterOpen={setFilterOpen} listData={listData} />
+        <List list={listData} setListCount={setListCount} />
+      </ListStyled.RestaurantListPageBox>
       <ListStyled.FilterButtonBox>
         <ListStyled.FilterButton
           onClick={() => {
