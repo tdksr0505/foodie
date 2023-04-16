@@ -15,13 +15,10 @@ const IndexPage = () => {
   const { data: session } = useSession();
   useEffect(() => {
     setIsLoadingList(true);
-    console.log('loading true');
-
     const fetchList = async () => {
       const data = await getRestaurantList();
       setListData(data);
       setIsLoadingList(false);
-      console.log('loading false');
     };
     fetchList();
   }, []);
