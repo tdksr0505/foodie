@@ -6,7 +6,7 @@ import Button from '@/components/Button';
 import useSnackbar from '@/hooks/useSnackbar';
 import useLoading from '@/hooks/useLoading';
 import { useRouter } from 'next/router';
-import { signIn } from 'next-auth/react';
+import { getSession, signIn } from 'next-auth/react';
 
 interface IFormValue {
   account: string;
@@ -77,3 +77,16 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
+  if (session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+  return { props: {} };
+}
