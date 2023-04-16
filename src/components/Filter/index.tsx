@@ -18,7 +18,7 @@ import type { TRestaurantData } from '@/type';
 interface IFilterProps {
   filterOpen: boolean;
   setFilterOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  listData: TRestaurantData[];
+  listData: TRestaurantData[] | null;
 }
 
 const Filter = ({ filterOpen, setFilterOpen, listData }: IFilterProps) => {

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect } from 'react';
 import * as ListStyled from '../styles/styledListPage';
 import Filter from '../components/Filter';
 import List from '../components/List';
@@ -7,14 +7,29 @@ import type { TRestaurantData } from '@/type';
 import { getRestaurantList } from '../lib/api';
 import { useSession } from 'next-auth/react';
 
-const IndexPage = ({ listData }: { listData: TRestaurantData[] }) => {
+const IndexPage = () => {
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
   const [listCount, setListCount] = useState<number>(0);
+  const [listData, setListData] = useState<TRestaurantData[] | null>(null);
+  const [isLoadingList, setIsLoadingList] = useState<boolean>(false);
   const { data: session } = useSession();
+  useEffect(() => {
+    setIsLoadingList(true);
+    console.log('loading true');
+
+    const fetchList = async () => {
+      const data = await getRestaurantList();
+      setListData(data);
+      setIsLoadingList(false);
+      console.log('loading false');
+    };
+    fetchList();
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = filterOpen ? 'hidden' : 'initial';
   }, [filterOpen]);
+
   return (
     <>
       <ListStyled.ListTopArea>
@@ -31,7 +46,7 @@ const IndexPage = ({ listData }: { listData: TRestaurantData[] }) => {
       </ListStyled.ListTopArea>
       <ListStyled.RestaurantListPageBox>
         <Filter filterOpen={filterOpen} setFilterOpen={setFilterOpen} listData={listData} />
-        <List list={listData} setListCount={setListCount} />
+        <List list={listData} setListCount={setListCount} isLoadingList={isLoadingList} />
       </ListStyled.RestaurantListPageBox>
       <ListStyled.FilterButtonBox>
         <ListStyled.FilterButton
@@ -47,9 +62,3 @@ const IndexPage = ({ listData }: { listData: TRestaurantData[] }) => {
 };
 
 export default IndexPage;
-export async function getServerSideProps(context: any) {
-  const listData = await getRestaurantList();
-  return {
-    props: { listData },
-  };
-}
