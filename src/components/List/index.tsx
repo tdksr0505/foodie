@@ -36,6 +36,7 @@ const List = ({ list, setListCount, isLoadingList }: IList) => {
     if (list) {
       setData(list);
       setSearchedList(list);
+      setListCount(list.length);
     }
   }, [list]);
 
