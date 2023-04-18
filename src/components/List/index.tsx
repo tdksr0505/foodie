@@ -32,14 +32,6 @@ const List = ({ list, setListCount, isLoadingList }: IList) => {
     return false;
   };
 
-  useEffect(() => {
-    if (list) {
-      setData(list);
-      setSearchedList(list);
-      setListCount(list.length);
-    }
-  }, [list]);
-
   const filterList = () => {
     if (list) {
       const result = list.filter((elem) => {
@@ -59,7 +51,7 @@ const List = ({ list, setListCount, isLoadingList }: IList) => {
 
   useEffect(() => {
     filterList();
-  }, [filter]);
+  }, [filter, list]);
 
   const loadMoreData = () => {
     page.current++;
