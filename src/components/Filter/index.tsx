@@ -91,7 +91,7 @@ const Filter = ({ filterOpen, setFilterOpen, listData }: IFilterProps) => {
         </Styled.CloseBtnBox>
         <Styled.FilterOptions>
           <Styled.InputBox>
-            <Styled.SearchInput name="name" value={filter.name} onChange={handleKeywordChange} />
+            <Styled.SearchInput name="name" value={filter.name} onChange={handleKeywordChange} autocomplete="off" />
             <Styled.SearchIcon />
           </Styled.InputBox>
 
