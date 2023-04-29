@@ -117,10 +117,16 @@ export const Filter = styled.div<IFilterProps>`
   width: 100%;
   background-color: #ffffff;
   transition: top 0.2s;
+  input {
+    display: ${(props) => (props.isOpen ? 'initial' : 'none')}; // open時到header高度
+  }
   @media screen and (min-width: 992px) {
     position: static;
     flex: 0 0 auto;
     width: 300px;
     height: auto;
+    input {
+      display: initial;
+    }
   }
 `;
