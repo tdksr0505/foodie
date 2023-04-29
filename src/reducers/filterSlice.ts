@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { TRestaurantData } from '@/type';
 
 interface IFilter {
-  name: string;
+  keyword: string;
   type: string[];
   mrt: string[];
   isVisited: boolean | null;
@@ -10,7 +10,7 @@ interface IFilter {
 interface IRootState {
   filter: IFilter;
 }
-const initialFilter = { name: '', type: [], mrt: [], isVisited: null };
+const initialFilter = { keyword: '', type: [], mrt: [], isVisited: null };
 const initialState: IRootState = {
   filter: initialFilter,
 };
