@@ -27,7 +27,7 @@ const Filter = ({ filterOpen, setFilterOpen, listData }: IFilterProps) => {
   const [filterMrtOption, setFilterMrtOption] = useState<{ [x: string]: TOption[] }>({});
 
   const handleReset = () => {
-    dispatch(setFilter({ name: '', type: [], mrt: [], isVisited: null }));
+    dispatch(setFilter({ keyword: '', type: [], mrt: [], isVisited: null }));
   };
 
   const handleKeywordChange = (e: any) => {
