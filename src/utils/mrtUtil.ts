@@ -39,7 +39,12 @@ const MRT_LINE: { [x: string]: string } = {
 const DEFAULT_FONT_COLOR = MRT_COLOR_CONFIG.BL.font;
 const DEFAULT_BG_COLOR = MRT_COLOR_CONFIG.BL.bg;
 
-export const getStationName = (StationID: string) => {
+/**
+ * 根據捷運站ID取得捷運站名稱
+ * @param StationID - 捷運站ID
+ * @returns 捷運站名稱
+ */
+export const getStationName = (StationID: string): string => {
   return mrtStationConfig[StationID as keyof typeof mrtStationConfig].name;
 };
 
@@ -67,6 +72,11 @@ const mrtStationOptions = getMrtStationsOptions();
 
 export { mrtStationOptions };
 
+/**
+ * 根據捷運站ID取得捷運站標籤顏色
+ * @param StationID - 捷運站ID
+ * @returns 捷運站標籤顏色(包含背景色及字體顏色)
+ */
 export const getStationColor = (StationID: string): { fontColor: string; bgColor: string[] } => {
   const stationName = mrtStationConfig[StationID as keyof typeof mrtStationConfig].name;
   const stationLines: string[] = [];
@@ -87,7 +97,13 @@ export const getStationColor = (StationID: string): { fontColor: string; bgColor
     bgColor: bgColor,
   };
 };
-export const getFilterMrt = (StationIDArray: string[]) => {
+
+/**
+ * 根據捷運站id生成篩選器的捷運站資料(路線、站名)
+ * @param StationIDArray - 捷運站ID
+ * @returns 篩選器的捷運站資料
+ */
+export const getFilterMrt = (StationIDArray: string[]): { [x: string]: TOption[] } => {
   const filterMrt: { [x: string]: TOption[] } = {};
   StationIDArray.forEach((stationID) => {
     const lineID = mrtStationConfig[stationID as keyof typeof mrtStationConfig].line;
@@ -105,14 +121,24 @@ export const getFilterMrt = (StationIDArray: string[]) => {
   return filterMrt;
 };
 
-export const getLineName = (lineID: string) => {
+/**
+ * 根據捷運路線ID取得路線名稱
+ * @param lineID - 捷運路線ID
+ * @returns 路線名稱
+ */
+export const getLineName = (lineID: string): string | null => {
   if (lineID in MRT_LINE) {
     return MRT_LINE[lineID];
   }
   return null;
 };
 
-export const getLineColor = (lineID: string) => {
+/**
+ * 根據捷運路線ID取得路線標籤顏色
+ * @param lineID - 捷運路線ID
+ * @returns 路線標籤顏色(包含背景色及字體顏色)
+ */
+export const getLineColor = (lineID: string): { fontColor: string; bgColor: string } => {
   if (lineID in MRT_COLOR_CONFIG) {
     return { fontColor: MRT_COLOR_CONFIG[lineID].font, bgColor: MRT_COLOR_CONFIG[lineID].bg };
   }
