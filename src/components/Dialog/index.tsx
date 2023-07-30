@@ -5,7 +5,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import React from 'react';
 interface IDialog {
   title: string;
-  handleAgree: any;
+  handleAgree: () => {};
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
