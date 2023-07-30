@@ -122,7 +122,14 @@ export default function RestaurantDetail({ detailData, id }: { detailData: TRest
           </>
         )}
       </WhiteBox>
-      <Dialog title={'確定要刪除餐廳嗎?'} handleAgree={handleDelete} open={openDialog} setOpen={setOpenDialog} />
+      <Dialog
+        title={'確定要刪除餐廳嗎?'}
+        handleAgree={handleDelete}
+        open={openDialog}
+        onRequestClose={() => {
+          setOpenDialog(false);
+        }}
+      />
     </>
   );
 }

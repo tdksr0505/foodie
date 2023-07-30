@@ -5,20 +5,17 @@ import DialogTitle from '@mui/material/DialogTitle';
 import React from 'react';
 interface IDialog {
   title: string;
-  handleAgree: () => {};
+  handleAgree: () => void;
   open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onRequestClose: () => void;
 }
-const MyDialog = ({ title, handleAgree, open, setOpen }: IDialog) => {
-  const handleClose = () => {
-    setOpen(false);
-  };
+const MyDialog = ({ title, handleAgree, open, onRequestClose }: IDialog) => {
   return (
     <>
       <Dialog open={open}>
         <DialogTitle>{title}</DialogTitle>
         <DialogActions>
-          <Button onClick={handleClose}>取消</Button>
+          <Button onClick={onRequestClose}>取消</Button>
           <Button onClick={handleAgree}>確定</Button>
         </DialogActions>
       </Dialog>
