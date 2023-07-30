@@ -1,0 +1,67 @@
+{
+  "stationNameTestData": [
+    { "input": "BL01", "output": "頂埔" },
+    { "input": "BL04", "output": "海山" },
+    { "input": "R09", "output": "台大醫院" },
+    { "input": "R12", "output": "雙連" }
+  ],
+  "lineColorTestData": [
+    {
+      "input": "BL",
+      "output": {
+        "fontColor": "#ffffff",
+        "bgColor": "#0070bd"
+      }
+    },
+    {
+      "input": "BR",
+      "output": {
+        "fontColor": "#ffffff",
+        "bgColor": "#c48c31"
+      }
+    },
+    {
+      "input": "G",
+      "output": {
+        "fontColor": "#ffffff",
+        "bgColor": "#008659"
+      }
+    },
+    {
+      "input": "O",
+      "output": {
+        "fontColor": "#000000",
+        "bgColor": "#f8b61c"
+      }
+    },
+    {
+      "input": "Y",
+      "output": {
+        "fontColor": "#000000",
+        "bgColor": "#ffdb00"
+      }
+    },
+    {
+      "input": "R",
+      "output": {
+        "fontColor": "#ffffff",
+        "bgColor": "#e3002c"
+      }
+    }
+  ],
+  "filterMrtTestData": [
+    {
+      "input": ["BL01", "BL04", "R09", "R12"],
+      "output": {
+        "BL": [
+          { "label": "頂埔", "value": "BL01" },
+          { "label": "海山", "value": "BL04" }
+        ],
+        "R": [
+          { "label": "台大醫院", "value": "R09" },
+          { "label": "雙連", "value": "R12" }
+        ]
+      }
+    }
+  ]
+}
