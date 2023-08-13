@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { GetServerSidePropsContext } from 'next';
 import TextField from '@/components/TextField';
 import WhiteBox from '@/components/WhiteBox';
 import * as Form from '@/styles/styledFormPage';
@@ -78,7 +79,7 @@ const LoginPage = () => {
 
 export default LoginPage;
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getSession(context);
   if (session) {
     return {

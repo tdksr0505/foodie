@@ -1,3 +1,4 @@
+import { GetServerSidePropsContext } from 'next';
 import type { TRestaurantData } from '@/type';
 import RestaurantForm from '@/components/RestaurantForm';
 import { getRestaurantDetail } from '@/lib/api';
@@ -7,9 +8,9 @@ export default function RestaurantDetail({ id, detailData }: { id: string; detai
   return <RestaurantForm title="Edit" data={detailData} id={id} />;
 }
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getSession(context);
-  if (!session) {
+  if (!session || !context.params) {
     return {
       redirect: {
         destination: '/',
@@ -19,7 +20,7 @@ export async function getServerSideProps(context: any) {
   }
 
   const id = context.params.id;
-  const result = await getRestaurantDetail(id);
+  const result = await getRestaurantDetail(id as string);
   if (!result.data) {
     return {
       redirect: {

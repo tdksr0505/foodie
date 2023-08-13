@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
 import { useState } from 'react';
 import type { TRestaurantData } from '@/type';
@@ -133,9 +134,17 @@ export default function RestaurantDetail({ detailData, id }: { detailData: TRest
     </>
   );
 }
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  if (!context.params) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
   const id = context.params.id;
-  const result = await getRestaurantDetail(id);
+  const result = await getRestaurantDetail(id as string);
   if (!result.data) {
     const { res } = context;
     res.writeHead(301, { Location: '/' });

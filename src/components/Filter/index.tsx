@@ -30,7 +30,7 @@ const Filter = ({ filterOpen, setFilterOpen, listData }: IFilterProps) => {
     dispatch(setFilter({ keyword: '', type: [], mrt: [], isVisited: null }));
   };
 
-  const handleKeywordChange = (e: any) => {
+  const handleKeywordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setFilter({ ...filter, [e.target.name]: e.target.value }));
   };
 

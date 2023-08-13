@@ -10,7 +10,8 @@ const StyledInput = styled.input`
   font-size: 16px;
 `;
 
-const TextField = (props: any) => {
+interface ITextFieldProps extends React.ComponentPropsWithoutRef<'input'> {}
+const TextField = (props: ITextFieldProps) => {
   return <StyledInput {...props} autoComplete="off" />;
 };
 
