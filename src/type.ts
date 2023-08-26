@@ -11,10 +11,10 @@ export type TRestaurantData = {
   tel: string | null;
   type: string | null;
   mrt: string[];
-  isVisited: string | boolean | null;
-  isReturnVisited: string | boolean | null;
+  isVisited: boolean;
+  canReserve: boolean;
+  isReturnVisited: boolean | null;
   rate: string | null;
-  canReserve: string | boolean;
 };
 
 export type TChildren = {

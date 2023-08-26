@@ -25,49 +25,51 @@ interface IRestaurantFormProps {
 }
 const isVisitedConfig: TOption[] = [
   {
-    value: 'true',
+    value: true,
     label: '吃過',
   },
   {
-    value: 'false',
+    value: false,
     label: '沒吃過',
   },
 ];
 const isReturnVisitedConfig: TOption[] = [
   {
-    value: 'true',
+    value: true,
     label: '可回訪',
   },
   {
-    value: 'false',
+    value: false,
     label: '不用回訪',
   },
 ];
 const canReserveConfig: TOption[] = [
   {
-    value: 'true',
+    value: true,
     label: '可訂位',
   },
   {
-    value: 'false',
+    value: false,
     label: '不可訂位',
   },
 ];
+const initailValue: TRestaurantData = {
+  name: null,
+  simpleAddress: null,
+  address: null,
+  tel: null,
+  type: foodTypeOptions[0].value,
+  mrt: [],
+  isVisited: isVisitedConfig[0].value,
+  isReturnVisited: null,
+  rate: null,
+  canReserve: canReserveConfig[0].value,
+};
+const MIN_RATE = 3.5;
+const MAX_RATE = 5;
+const RATE_STEP = 0.1;
 const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
   const router = useRouter();
-  const initailValue: TRestaurantData = {
-    name: null,
-    simpleAddress: null,
-    address: null,
-    tel: null,
-    type: foodTypeOptions[0].value,
-    mrt: [],
-    isVisited: isVisitedConfig[0].value,
-    isReturnVisited: null,
-    rate: null,
-    canReserve: canReserveConfig[0].value,
-  };
-
   const [formValue, setFormValue] = useState<TRestaurantData>(initailValue);
   const [mrtDefaultOption, setMrtDefaultOption] = useState<TOption[] | null>(null);
   const { showSnackbar } = useSnackbar();
@@ -77,30 +79,44 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
     if (data) {
       const mrtDefaultValue = getMrtDefalutValue(data.mrt);
       setMrtDefaultOption(mrtDefaultValue);
-      const { isVisited, canReserve, isReturnVisited, ...rest } = data;
-      const formData = {
-        ...rest,
-        isVisited: isVisited ? 'true' : 'false',
-        canReserve: canReserve ? 'true' : 'false',
-        isReturnVisited: isReturnVisited === null ? null : data.isReturnVisited ? 'true' : 'false',
-      };
-      setFormValue(formData);
+      setFormValue(data);
     }
   }, [data]);
-  const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  // text input change事件
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let target = e.target as HTMLInputElement;
-    let value: boolean | string = e.target.value;
+    let value = e.target.value;
     setFormValue({
       ...formValue,
       [target.name]: value,
     });
   };
+
+  // radio input change事件
+  const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let target = e.target as HTMLInputElement;
+    let value = e.target.value;
+    let booleanValue = false;
+    // change event的value為string, 須轉為boolean
+    if (value === 'true') {
+      booleanValue = true;
+    }
+    setFormValue({
+      ...formValue,
+      [target.name]: booleanValue,
+    });
+  };
+
+  // select input change事件
   const handleSelectChange = (e: SelectChangeEvent<unknown>) => {
     setFormValue({
       ...formValue,
       [e.target.name]: e.target.value,
     });
   };
+
+  // 選擇捷運站 change事件
   const handleMrtChange = (e: React.SyntheticEvent, value: unknown) => {
     let storeValue = (value as TOption[]).map((elem) => {
       return elem.value;
@@ -112,6 +128,7 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
     });
   };
 
+  // 評分change事件
   const handleRateChange = (event: Event, value: number | number[]) => {
     setFormValue({
       ...formValue,
@@ -119,23 +136,22 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
     });
   };
 
+  // 提交表單
   const onSubmit = async () => {
     const { isVisited, isReturnVisited, canReserve, ...rest } = formValue;
-
-    // 整理form value 將string轉boolean
-    const submitValue = {
-      ...rest,
-      isVisited: isVisited === 'true',
-      isReturnVisited: isReturnVisited === null ? null : isReturnVisited === 'true',
-      canReserve: canReserve === 'true',
-    };
     const redirectUrl = id ? `/restaurant/detail/${id}` : `/`;
     setLoading(true);
-    const result = id ? await updateRestaurant(id, submitValue) : await addRestaurant(submitValue);
+    const result = id ? await updateRestaurant(id, formValue) : await addRestaurant(formValue);
     setLoading(false);
     result.data.msg && showSnackbar(result.data.msg);
     router.push(redirectUrl);
   };
+
+  /**
+   * 取得包含lable和value的捷運站資料
+   * @param mrtStations 捷運站id
+   * @returns 包含lable和value的捷運站資料
+   */
   const getMrtDefalutValue = (mrtStations: string[]): TOption[] => {
     return mrtStationOptions.filter((elem) => {
       return mrtStations.includes(elem.value);
@@ -144,7 +160,7 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
 
   useEffect(() => {
     // 選擇沒吃過時, 是否回訪value設為null
-    if (formValue.isVisited === 'false') {
+    if (formValue.isVisited === false) {
       setFormValue({
         ...formValue,
         isReturnVisited: null,
@@ -160,7 +176,7 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
             <Form.FormGroup>
               <Form.Label>餐廳名稱</Form.Label>
               <Form.RightBox>
-                <TextField name="name" value={formValue?.name || ''} onChange={handleValueChange} />
+                <TextField name="name" value={formValue?.name || ''} onChange={handleInputChange} />
               </Form.RightBox>
             </Form.FormGroup>
             <Form.FormGroup>
@@ -168,11 +184,11 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
               <Form.RightBox>
                 <Slider
                   valueLabelDisplay="on"
-                  step={0.1}
+                  step={RATE_STEP}
                   marks
-                  min={3.5}
-                  max={5}
-                  value={parseFloat(formValue.rate || '3.5')}
+                  min={MIN_RATE}
+                  max={MAX_RATE}
+                  value={parseFloat(formValue.rate || MIN_RATE)}
                   onChange={handleRateChange}
                 />
               </Form.RightBox>
@@ -180,19 +196,19 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
             <Form.FormGroup>
               <Form.Label>簡易地址</Form.Label>
               <Form.RightBox>
-                <TextField name="simpleAddress" value={formValue?.simpleAddress || ''} onChange={handleValueChange} />
+                <TextField name="simpleAddress" value={formValue?.simpleAddress || ''} onChange={handleInputChange} />
               </Form.RightBox>
             </Form.FormGroup>
             <Form.FormGroup>
               <Form.Label>地址</Form.Label>
               <Form.RightBox>
-                <TextField name="address" value={formValue?.address || ''} onChange={handleValueChange} />
+                <TextField name="address" value={formValue?.address || ''} onChange={handleInputChange} />
               </Form.RightBox>
             </Form.FormGroup>
             <Form.FormGroup>
               <Form.Label>電話</Form.Label>
               <Form.RightBox>
-                <TextField name="tel" value={formValue?.tel || ''} onChange={handleValueChange} />
+                <TextField name="tel" value={formValue?.tel || ''} onChange={handleInputChange} />
               </Form.RightBox>
             </Form.FormGroup>
             <Form.FormGroup>
@@ -223,8 +239,8 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
                 <RadioGroup
                   name={'canReserve'}
                   radiosConfig={canReserveConfig}
-                  value={formValue?.canReserve as string}
-                  handleChange={handleValueChange}
+                  value={formValue?.canReserve}
+                  handleChange={handleRadioChange}
                 ></RadioGroup>
               </Form.RightBox>
             </Form.FormGroup>
@@ -234,8 +250,8 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
                 <RadioGroup
                   name={'isVisited'}
                   radiosConfig={isVisitedConfig}
-                  value={formValue?.isVisited as string}
-                  handleChange={handleValueChange}
+                  value={formValue?.isVisited}
+                  handleChange={handleRadioChange}
                 ></RadioGroup>
               </Form.RightBox>
             </Form.FormGroup>
@@ -245,9 +261,9 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
                 <RadioGroup
                   name={'isReturnVisited'}
                   radiosConfig={isReturnVisitedConfig}
-                  value={(formValue?.isReturnVisited as string) || null}
-                  handleChange={handleValueChange}
-                  disabled={formValue.isVisited === 'false'}
+                  value={formValue?.isReturnVisited}
+                  handleChange={handleRadioChange}
+                  disabled={formValue.isVisited === false}
                 ></RadioGroup>
               </Form.RightBox>
             </Form.FormGroup>

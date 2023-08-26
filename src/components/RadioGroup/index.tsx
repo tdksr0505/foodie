@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -7,7 +6,7 @@ import { TOption } from '@/type';
 
 interface IRadiosProps {
   radiosConfig: TOption[];
-  value: number | string | null;
+  value: any;
   name: string;
   disabled?: boolean;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>, value: string) => void;
@@ -19,7 +18,7 @@ const MyRadioGroup = (props: IRadiosProps) => {
       {props.radiosConfig &&
         props.radiosConfig.map((radio) => (
           <FormControlLabel
-            key={radio.value}
+            key={radio.label}
             value={radio.value}
             control={<Radio />}
             label={radio.label}
