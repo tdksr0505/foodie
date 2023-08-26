@@ -188,7 +188,7 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
                   marks
                   min={MIN_RATE}
                   max={MAX_RATE}
-                  value={parseFloat(formValue.rate || MIN_RATE)}
+                  value={parseFloat(formValue.rate || MIN_RATE.toString())}
                   onChange={handleRateChange}
                 />
               </Form.RightBox>
