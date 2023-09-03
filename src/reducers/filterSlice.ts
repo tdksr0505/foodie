@@ -1,14 +1,8 @@
+import { TFilter } from '@/type';
 import { createSlice } from '@reduxjs/toolkit';
-import type { TRestaurantData } from '@/type';
 
-interface IFilter {
-  keyword: string;
-  type: string[];
-  mrt: string[];
-  isVisited: boolean | null;
-}
 interface IRootState {
-  filter: IFilter;
+  filter: TFilter;
 }
 const initialFilter = { keyword: '', type: [], mrt: [], isVisited: null };
 const initialState: IRootState = {

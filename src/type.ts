@@ -20,3 +20,10 @@ export type TRestaurantData = {
 export type TChildren = {
   children: React.ReactElement;
 };
+
+export type TFilter = {
+  keyword: string;
+  type: string[];
+  mrt: string[];
+  isVisited: boolean | null;
+};
