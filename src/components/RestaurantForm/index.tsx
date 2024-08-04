@@ -194,7 +194,7 @@ const RestaurantForm = ({ data, title, id }: IRestaurantFormProps) => {
               </Form.RightBox>
             </Form.FormGroup>
             <Form.FormGroup>
-              <Form.Label>簡易地址</Form.Label>
+              <Form.Label>區域</Form.Label>
               <Form.RightBox>
                 <TextField name="simpleAddress" value={formValue?.simpleAddress || ''} onChange={handleInputChange} />
               </Form.RightBox>
